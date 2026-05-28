@@ -106,7 +106,7 @@ header {
 
     padding-bottom: 1rem !important;
 
-    padding-left: 4rem !important;
+    padding-left: 10rem !important;
 
     padding-right: 4rem !important;
 
