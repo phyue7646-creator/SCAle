@@ -479,13 +479,13 @@ if st.session_state.page == "welcome":
 elif st.session_state.page == "diploma":
 
     with st.container():
-        st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
+        back_col, _ = st.columns([1, 20])
 
-        if st.button("←", key="back1"):
+    with back_col:
+    
+        if st.button("←", key="back1", type="secondary"):
             st.session_state.page = "welcome"
             st.rerun()
-
-        st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
