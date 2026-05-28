@@ -246,7 +246,7 @@ QUESTION SECTION
 
 .form-section {
 
-    width: 200px;
+    width: 100px;
 
     max-width: 90%;
 }
@@ -715,7 +715,16 @@ elif st.session_state.page == "diploma":
         if st.button("←", key="back1", type="secondary"):
             st.session_state.page = "welcome"
             st.rerun()
-
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    
     st.markdown(
     '<div class="page-wrap"><div class="form-section">',
     unsafe_allow_html=True
@@ -725,17 +734,23 @@ elif st.session_state.page == "diploma":
         '<div class="question-title">What is your diploma?</div>',
         unsafe_allow_html=True
     )
-    
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
     st.markdown(
         '<div class="question-subtitle">This helps me to tailor sustainability project ideas to your field of study.</div>',
         unsafe_allow_html=True
     )
-    
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
     st.markdown(
         '<div class="question-label">Select your diploma</div>',
         unsafe_allow_html=True
     )
-    
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
     st.session_state.diploma = st.selectbox(
         "Select Diploma",
         diplomas,
