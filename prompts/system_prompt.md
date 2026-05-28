@@ -104,6 +104,9 @@ Avoid repeatedly generating:
   * problem-solving method
 
 * Keep each idea concise and natural
+*The project idea must be able to accomplish within 3 months by the diploma students.
+*the idea must be able to show how individual students in a group of 5 can contribute in the project
+*the project idea must feel innovative, meaningful, and implementable by diploma students
 
 * Write one short paragraph per idea
 
@@ -118,10 +121,10 @@ Do NOT return:
 You MUST follow EXACTLY this structure: 
 TITLE: Idea title 
 IDEA: Paragraph content 
-
+==
 TITLE: Idea title 
 IDEA: Paragraph content 
-
+==
 TITLE: Idea title 
 IDEA: Paragraph content
 
