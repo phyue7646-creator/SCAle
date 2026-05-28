@@ -389,7 +389,7 @@ div[data-testid="stTextArea"] textarea {
 
     border-radius: 12px !important;
 
-    border: 2px solid black !important;
+    border: 0.5px solid black !important;
 
     box-shadow: none !important;
 }
@@ -422,7 +422,7 @@ div[data-testid="stTextArea"] > div {
 
 /* WORD COUNT */
 
-div[data-testid="stTextArea"] small {
+div[data-testid="stTextArea"] p {
 
     color: black !important;
 
