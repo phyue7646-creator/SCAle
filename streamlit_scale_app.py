@@ -1,4 +1,3 @@
-
 import streamlit as st
 import google.generativeai as genai
 
@@ -22,54 +21,11 @@ genai.configure(
 model = genai.GenerativeModel("gemini-2.5-flash")
 
 # =========================================================
-# SYSTEM PROMPT
+# LOAD SYSTEM PROMPT
 # =========================================================
 
-SYSTEM_PROMPT = """
-You are SCAle, an AI sustainability project assistant.
-
-Generate EXACTLY 3 sustainability project ideas.
-
-Requirements:
-- Tailored to the diploma
-- Aligned to the sustainability category
-- Match the preferred solution type
-- Innovative but achievable for diploma students
-- Realistic and practical
-- Clear and professional
-- Each idea should be around 120-180 words
-- Write in ONE clear paragraph
-
-IMPORTANT:
-
-Return ONLY plain text.
-
-DO NOT return:
-- JSON
-- Markdown
-- Bullet points
-- Numbering
-- Symbols
-
-Use EXACTLY this format:
-
-TITLE: Idea title
-
-IDEA:
-Paragraph
-
-
-TITLE: Idea title
-
-IDEA:
-Paragraph
-
-
-TITLE: Idea title
-
-IDEA:
-Paragraph
-"""
+with open("prompts/system_prompt.md", "r", encoding="utf-8") as f:
+    SYSTEM_PROMPT = f.read()
 
 # =========================================================
 # DATA
@@ -218,29 +174,56 @@ footer {
 }
 
 .stApp {
-    background: #F5F5F5;
+    background-color: #F5F5F5;
 }
 
 .block-container {
-    padding-top: 2rem;
-    max-width: 1200px;
+    max-width: 1180px;
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
 }
 
 /* =========================================================
-SCALE LOGO
+LOGO
 ========================================================= */
 
 .scale-logo {
-    font-size: 44px;
+    display: flex;
+    align-items: center;
+}
+
+.scale-logo-text {
+    font-size: 42px;
     font-weight: 700;
 }
 
-.scale-dark {
-    color: #14532D;
+/* =========================================================
+TEXT
+========================================================= */
+
+.page-title {
+    font-size: 56px;
+    font-weight: 700;
+    color: #161616;
+    line-height: 1.2;
 }
 
-.scale-light {
-    color: #8BC34A;
+.page-subtitle {
+    font-size: 24px;
+    color: #666666;
+    line-height: 1.7;
+}
+
+/* =========================================================
+LABELS
+========================================================= */
+
+label,
+.stSelectbox label,
+.stTextArea label {
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
 }
 
 /* =========================================================
@@ -248,17 +231,17 @@ BUTTONS
 ========================================================= */
 
 .stButton > button {
-    background: #14532D !important;
+    background: #1F6F43 !important;
     color: white !important;
 
     border: none !important;
     border-radius: 14px !important;
 
-    height: 58px !important;
-    width: 320px !important;
+    min-height: 60px !important;
+    width: 340px !important;
 
     font-size: 22px !important;
-    font-weight: 600 !important;
+    font-weight: 700 !important;
 
     transition: 0.2s;
 }
@@ -269,6 +252,7 @@ BUTTONS
 }
 
 .stButton > button:active {
+    background: #1F6F43 !important;
     color: white !important;
 }
 
@@ -283,34 +267,33 @@ BACK ARROW
 
     color: black !important;
 
-    font-size: 62px !important;
-    font-weight: 300 !important;
-
     width: auto !important;
     height: auto !important;
 
     padding: 0 !important;
     margin: 0 !important;
+
+    font-size: 72px !important;
+    font-weight: 300 !important;
+
+    min-height: unset !important;
 }
 
 .back-arrow button:hover {
     background: transparent !important;
     color: black !important;
+    border: none !important;
 }
 
-/* =========================================================
-TEXT
-========================================================= */
-
-.page-title {
-    font-size: 58px;
-    font-weight: 700;
-    color: #1A1A1A;
+.back-arrow button:focus {
+    outline: none !important;
+    box-shadow: none !important;
 }
 
-.page-subtitle {
-    font-size: 24px;
-    color: #666666;
+.back-arrow button p {
+    font-size: 72px !important;
+    margin: 0 !important;
+    color: black !important;
 }
 
 /* =========================================================
@@ -320,42 +303,49 @@ SELECT BOX
 div[data-baseweb="select"] > div {
     background: rgba(255,255,255,1) !important;
 
-    border: 1px solid #D6D6D6 !important;
+    border: 1px solid #D9D9D9 !important;
 
-    border-radius: 12px !important;
+    border-radius: 0px !important;
 
-    min-height: 62px !important;
+    min-height: 60px !important;
 
-    display: flex !important;
-    align-items: center !important;
+    box-shadow: none !important;
 }
+
+/* Selected text */
 
 div[data-baseweb="select"] span {
     color: black !important;
     font-size: 18px !important;
 }
 
-div[data-baseweb="select"] input {
-    color: black !important;
-}
+/* Dropdown popup */
 
 div[role="listbox"] {
     background: white !important;
+    border: 1px solid #D9D9D9 !important;
 }
+
+/* Dropdown option */
 
 div[role="option"] {
     background: white !important;
     color: black !important;
+
     font-size: 17px !important;
 }
+
+/* Hover */
 
 div[role="option"]:hover {
     background: #E7F3EC !important;
     color: black !important;
 }
 
+/* Selected */
+
 div[aria-selected="true"] {
-    background: #14532D !important;
+    background: #1F6F43 !important;
 }
 
 div[aria-selected="true"] * {
@@ -370,11 +360,15 @@ TEXT AREA
     background: white !important;
     color: black !important;
 
-    border-radius: 12px !important;
+    border: 1px solid #D9D9D9 !important;
+
+    border-radius: 4px !important;
 
     font-size: 18px !important;
 
-    min-height: 220px !important;
+    min-height: 230px !important;
+
+    padding: 18px !important;
 }
 
 /* =========================================================
@@ -384,50 +378,72 @@ IDEA CARD
 .idea-card {
     background: white;
 
+    border: 1px solid #E1E1E1;
+
     border-radius: 18px;
 
-    padding: 50px;
-
-    border: 1px solid #E0E0E0;
+    padding: 42px;
 }
 
 .idea-title {
     text-align: center;
 
-    font-size: 34px;
+    font-size: 32px;
     font-weight: 700;
 
-    margin-bottom: 35px;
+    margin-bottom: 28px;
 
-    color: #1A1A1A;
+    color: #161616;
 }
 
 .idea-text {
-    font-size: 24px;
+    font-size: 20px;
 
     line-height: 2;
 
-    color: #333333;
+    color: #2B2B2B;
+
+    text-align: left;
 }
 
 .idea-counter {
     text-align: center;
 
-    margin-top: 40px;
+    margin-top: 28px;
 
     font-size: 18px;
-}
-
-.idea-arrow {
-    font-size: 62px;
 
     color: black;
+}
 
-    cursor: pointer;
+/* =========================================================
+ARROWS
+========================================================= */
 
-    text-align: center;
+.arrow-button button {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 
-    margin-top: 140px;
+    color: #1F6F43 !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    font-size: 70px !important;
+
+    padding-top: 150px !important;
+
+    min-height: unset !important;
+}
+
+.arrow-button button:hover {
+    background: transparent !important;
+}
+
+.arrow-button button p {
+    font-size: 70px !important;
+    color: #1F6F43 !important;
 }
 
 </style>
@@ -441,27 +457,39 @@ if st.session_state.page == 0:
 
     st.markdown("""
     <div class="scale-logo">
-        <span class="scale-dark">SCA</span><span class="scale-light">le</span>
-    </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("<br><br>", unsafe_allow_html=True)
-
-    st.markdown("""
-    <div style="text-align:center;">
-        <div class="page-title">
-            Hi! I'm <span class="scale-dark">SCA</span><span class="scale-light">le</span>.
-        </div>
-
-        <br>
-
-        <div class="page-subtitle">
-            I help students generate sustainability project ideas.
+        <div class="scale-logo-text">
+            <span style="color:#14532D;">SCA</span><span style="color:#8BC34A;">le</span>
         </div>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("<br><br><br>", unsafe_allow_html=True)
+
+    st.markdown("""
+    <div style="text-align:center;">
+
+        <div class="page-title">
+            Hi! I'm
+            <span style="color:#14532D;">SCA</span><span style="color:#8BC34A;">le</span>.
+        </div>
+
+        <br>
+
+        <div class="page-subtitle">
+            I will help you to explore sustainability project ideas tailored to your diploma and interests. Let's get started.
+        </div>
+
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("<br><br><br>", unsafe_allow_html=True)
+
+    st.image(
+        "https://i.imgur.com/V4sQ9mA.png",
+        width=420
+    )
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns([1,1,1])
 
@@ -477,13 +505,19 @@ if st.session_state.page == 0:
 
 elif st.session_state.page == 1:
 
-    st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
+    col_back, col_space = st.columns([0.08, 0.92])
 
-    if st.button("←", key="back1"):
-        previous_page()
-        st.rerun()
+    with col_back:
 
-    st.markdown('</div>', unsafe_allow_html=True)
+        st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
+
+        if st.button("←", key="back1"):
+            previous_page()
+            st.rerun()
+
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
 
     st.markdown("""
     <div class="page-title">
@@ -493,11 +527,11 @@ elif st.session_state.page == 1:
     <br>
 
     <div class="page-subtitle">
-        This helps me tailor sustainability ideas to your field of study.
+        This helps me to tailor sustainability project ideas to your field of study.
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br><br>", unsafe_allow_html=True)
 
     diploma = st.selectbox(
         "Select your diploma",
@@ -522,22 +556,36 @@ elif st.session_state.page == 1:
 
 elif st.session_state.page == 2:
 
-    st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
+    col_back, col_space = st.columns([0.08, 0.92])
 
-    if st.button("←", key="back2"):
-        previous_page()
-        st.rerun()
+    with col_back:
 
-    st.markdown('</div>', unsafe_allow_html=True)
+        st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
+
+        if st.button("←", key="back2"):
+            previous_page()
+            st.rerun()
+
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
 
     st.markdown("""
     <div class="page-title">
-        Which sustainability category interests you?
+        What sustainability category interests you?
+    </div>
+
+    <br>
+
+    <div class="page-subtitle">
+        This allows sustainability project ideas align to your focus areas.
     </div>
     """, unsafe_allow_html=True)
 
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
     category = st.selectbox(
-        "Select category",
+        "Select sustainability category",
         CATEGORIES
     )
 
@@ -559,23 +607,37 @@ elif st.session_state.page == 2:
 
 elif st.session_state.page == 3:
 
-    st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
+    col_back, col_space = st.columns([0.08, 0.92])
 
-    if st.button("←", key="back3"):
-        previous_page()
-        st.rerun()
+    with col_back:
 
-    st.markdown('</div>', unsafe_allow_html=True)
+        st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
+
+        if st.button("←", key="back3"):
+            previous_page()
+            st.rerun()
+
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
 
     st.markdown("""
     <div class="page-title">
         What sustainability problem would you like to solve?
     </div>
+
+    <br>
+
+    <div class="page-subtitle">
+        Share an problem or challenge you have noticed in school, community, or daily life.
+    </div>
     """, unsafe_allow_html=True)
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
 
     concern = st.text_area(
         "Sustainability concern",
-        max_chars=250
+        max_chars=200
     )
 
     st.session_state.concern = concern
@@ -589,7 +651,7 @@ elif st.session_state.page == 3:
         if st.button("Continue →"):
 
             if concern.strip() == "":
-                st.warning("Please enter a concern.")
+                st.warning("Please enter a sustainability concern.")
 
             else:
                 next_page()
@@ -601,22 +663,36 @@ elif st.session_state.page == 3:
 
 elif st.session_state.page == 4:
 
-    st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
+    col_back, col_space = st.columns([0.08, 0.92])
 
-    if st.button("←", key="back4"):
-        previous_page()
-        st.rerun()
+    with col_back:
 
-    st.markdown('</div>', unsafe_allow_html=True)
+        st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
+
+        if st.button("←", key="back4"):
+            previous_page()
+            st.rerun()
+
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
 
     st.markdown("""
     <div class="page-title">
-        Which solution type do you prefer?
+        Which solution format are you interested in developing?
+    </div>
+
+    <br>
+
+    <div class="page-subtitle">
+        This helps me to suggest the right type of project for you.
     </div>
     """, unsafe_allow_html=True)
 
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
     solution_type = st.selectbox(
-        "Select solution type",
+        "Select Solution Type",
         SOLUTION_TYPES
     )
 
@@ -628,7 +704,7 @@ elif st.session_state.page == 4:
 
     with col2:
 
-        if st.button("Generate Ideas"):
+        if st.button("Submit"):
 
             with st.spinner("Generating ideas..."):
 
@@ -655,13 +731,15 @@ elif st.session_state.page == 5:
 
     st.markdown("""
     <div style="text-align:center;">
-        <div class="page-subtitle">
+
+        <div style="font-size:22px;font-weight:600;color:black;">
             Here are your
         </div>
 
         <div class="page-title">
             Project Ideas!
         </div>
+
     </div>
     """, unsafe_allow_html=True)
 
@@ -671,11 +749,15 @@ elif st.session_state.page == 5:
 
     with left:
 
+        st.markdown('<div class="arrow-button">', unsafe_allow_html=True)
+
         if st.button("←", key="idea_left"):
 
             if current > 0:
                 st.session_state.current_idea -= 1
                 st.rerun()
+
+        st.markdown('</div>', unsafe_allow_html=True)
 
     with center:
 
@@ -699,11 +781,15 @@ elif st.session_state.page == 5:
 
     with right:
 
+        st.markdown('<div class="arrow-button">', unsafe_allow_html=True)
+
         if st.button("→", key="idea_right"):
 
             if current < len(ideas) - 1:
                 st.session_state.current_idea += 1
                 st.rerun()
+
+        st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
