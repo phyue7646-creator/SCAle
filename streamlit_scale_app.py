@@ -82,11 +82,15 @@ html, body, [class*="css"] {
 
 .main .block-container {
 
-    max-width: 1100px !important;
+    max-width: 900px !important;
 
-    padding-top: 0.8rem !important;
+    padding-top: 1.2rem !important;
 
-    padding-bottom: 2rem !important;
+    padding-bottom: 1rem !important;
+
+    padding-left: 3rem !important;
+
+    padding-right: 3rem !important;
 }
 
 /* =========================================================
@@ -130,18 +134,19 @@ PAGE TITLES
 /* =========================================================
 QUESTION SECTION
 ========================================================= */
-
 .question-title {
-    font-size: 40px;
+    font-size: 34px;
     font-weight: 700;
     color: black;
-    margin-bottom: 15px;
+    line-height: 1.2;
+    margin-bottom: 8px;
 }
 
 .question-subtitle {
-    font-size: 20px;
+    font-size: 18px;
     color: #6B7280;
-    margin-bottom: 28px;
+    line-height: 1.5;
+    margin-bottom: 24px;
 }
 
 .question-label {
@@ -149,6 +154,15 @@ QUESTION SECTION
     font-weight: 600;
     color: black;
     margin-bottom: 10px;
+}
+
+.form-section {
+
+    max-width: 680px;
+
+    margin: 0 auto;
+
+    padding-top: 24px;
 }
 
 /* =========================================================
@@ -488,27 +502,27 @@ if st.session_state.page == "welcome":
         unsafe_allow_html=True
     )
 
-    st.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height:40px'></div>", unsafe_allow_html=True)
 
     st.markdown(
         '<div style="text-align:center;"><div class="page-title">Hi! I\'m SCAle.</div><br><div class="page-subtitle">I will help you to explore sustainability project ideas tailored to your diploma and interests. Let\'s get started.</div></div>',
         unsafe_allow_html=True
     )
 
-    st.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height:28px'></div>", unsafe_allow_html=True)
 
     image = Image.open("d06d65c5-67c9-4a99-b853-40525a2c4d2c.png")
 
-    c1, c2, c3 = st.columns([1,2,1])
+    c1, c2, c3 = st.columns([1.2,1.6,1.2])
 
     with c2:
         st.image(image, width=430)
 
-    st.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
 
-    c1, c2, c3 = st.columns([1.2,1,1.2])
+    button_left, button_center, button_right = st.columns([1.5,1,1.5])
 
-    with c2:
+    with button_center:
         if st.button("Start Your Project Ideas", type="primary"):
             st.session_state.page = "diploma"
             st.rerun()
@@ -528,36 +542,41 @@ elif st.session_state.page == "diploma":
             st.session_state.page = "welcome"
             st.rerun()
 
-    st.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
+    st.markdown('<div class="form-section">', unsafe_allow_html=True)
 
-    st.markdown('<div class="question-title">What is your diploma?</div>', unsafe_allow_html=True)
-
+    st.markdown(
+        '<div class="question-title">What is your diploma?</div>',
+        unsafe_allow_html=True
+    )
+    
     st.markdown(
         '<div class="question-subtitle">This helps me to tailor sustainability project ideas to your field of study.</div>',
         unsafe_allow_html=True
     )
-
-    st.markdown('<div class="question-label">Select your diploma</div>', unsafe_allow_html=True)
-
-    left, center, right = st.columns([1,4,1])
-
-    with center:
     
-        st.session_state.diploma = st.selectbox(
-            "Select Diploma",
-            diplomas,
-            index=0,
-            label_visibility="collapsed"
-        )
-
-    st.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)
-
-    c1, c2, c3 = st.columns([1.2,1,1.2])
-
-    with c2:
+    st.markdown(
+        '<div class="question-label">Select your diploma</div>',
+        unsafe_allow_html=True
+    )
+    
+    st.session_state.diploma = st.selectbox(
+        "Select Diploma",
+        diplomas,
+        index=0,
+        label_visibility="collapsed"
+    )
+    
+    st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
+    
+    button_left, button_center, button_right = st.columns([1.5,1,1.5])
+    
+    with button_center:
         if st.button("Continue →", type="primary"):
             st.session_state.page = "category"
             st.rerun()
+    
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # =========================================================
 # CATEGORY PAGE
@@ -574,8 +593,8 @@ elif st.session_state.page == "category":
             st.session_state.page = "diploma"
             st.rerun()
 
-    st.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)
-
+    st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
+    st.markdown('<div class="form-section">', unsafe_allow_html=True)
     st.markdown(
         '<div class="question-title">What sustainability category interests you?</div>',
         unsafe_allow_html=True
@@ -587,30 +606,27 @@ elif st.session_state.page == "category":
     )
 
     st.markdown(
-        '<div class="question-label">Select sustainability category</div>',
-        unsafe_allow_html=True
+    '<div class="question-label">Select sustainability category</div>',
+    unsafe_allow_html=True
     )
+
+
+    st.session_state.category = st.selectbox(
+        "Select Category",
+        categories,
+        index=0,
+        label_visibility="collapsed"
+    )
+    st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
+
+    button_left, button_center, button_right = st.columns([1.5,1,1.5])
     
-    left, center, right = st.columns([1,4,1])
-
-    with center:
-    
-        st.session_state.category = st.selectbox(
-            "Select Category",
-            categories,
-            index=0,
-            label_visibility="collapsed"
-        )
-
-    st.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)
-
-    c1, c2, c3 = st.columns([1.2,1,1.2])
-
-    with c2:
+    with button_center:
         if st.button("Continue →", type="primary"):
             st.session_state.page = "concern"
             st.rerun()
-
+    
+    st.markdown('</div>', unsafe_allow_html=True)
 # =========================================================
 # CONCERN PAGE
 # =========================================================
@@ -625,8 +641,8 @@ elif st.session_state.page == "concern":
         if st.button("←", key="back3", type="secondary"):
             st.session_state.page = "category"
             st.rerun()
-    st.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)
-
+    st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
+    st.markdown('<div class="form-section">', unsafe_allow_html=True)
     st.markdown(
         '<div class="question-title">What sustainability problem would you like to solve?</div>',
         unsafe_allow_html=True
@@ -641,26 +657,21 @@ elif st.session_state.page == "concern":
         '<div class="question-label">Sustainability concern</div>',
         unsafe_allow_html=True
     )
+  
+    st.session_state.concern = st.text_area(
+        "",
+        height=140,
+        max_chars=200,
+        label_visibility="collapsed"
+    ) 
 
-    left, center, right = st.columns([1,4,1])
+    button_left, button_center, button_right = st.columns([1.5,1,1.5])
 
-    with center:
-
-        st.session_state.concern = st.text_area(
-            "",
-            height=140,
-            max_chars=200,
-            label_visibility="collapsed"
-        )
-
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    c1, c2, c3 = st.columns([1.2,1,1.2])
-
-    with c2:
+    with button_center:
         if st.button("Continue →", type="primary"):
             st.session_state.page = "solution"
             st.rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # =========================================================
 # SOLUTION PAGE
@@ -676,8 +687,8 @@ elif st.session_state.page == "solution":
             st.session_state.page = "concern"
             st.rerun()
 
-    st.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)
-
+    st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
+    st.markdown('<div class="form-section">', unsafe_allow_html=True)
     st.markdown(
         '<div class="question-title">Which solution format are you interested in developing?</div>',
         unsafe_allow_html=True
@@ -692,24 +703,22 @@ elif st.session_state.page == "solution":
         '<div class="question-label">Select Solution Type</div>',
         unsafe_allow_html=True
     )
+   
     
-    left, center, right = st.columns([1,4,1])
-    with center:
-    
-        st.session_state.solution = st.selectbox(
-            "Select Solution",
-            solutions,
-            index=0,
-            label_visibility="collapsed"
-        )
+    st.session_state.solution = st.selectbox(
+        "Select Solution",
+        solutions,
+        index=0,
+        label_visibility="collapsed"
+    )
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    c1, c2, c3 = st.columns([1.2,1,1.2])
+    button_left, button_center, button_right = st.columns([1.5,1,1.5])
 
-    with c2:
+    with button_center:
         if st.button("Submit", type="primary"):
-
+    
             prompt = f"""
 Generate 3 sustainability project ideas.
 
@@ -733,7 +742,7 @@ Return only 3 ideas in paragraph style.
             st.session_state.page = "results"
 
             st.rerun()
-
+    st.markdown('</div>', unsafe_allow_html=True)
 # =========================================================
 # RESULTS PAGE
 # =========================================================
@@ -791,9 +800,9 @@ elif st.session_state.page == "results":
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    c1, c2, c3 = st.columns([1.2,1,1.2])
+    button_left, button_center, button_right = st.columns([1.5,1,1.5])
 
-    with c2:
+    with button_center:
         if st.button("Start Over", type="primary"):
 
             st.session_state.page = "welcome"
