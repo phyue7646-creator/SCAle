@@ -385,7 +385,7 @@ textarea {
 
     border-radius: 12px !important;
 
-    border: 1px solid #D9D9D9 !important;
+    border: 1px solid black !important;
 
     line-height: 1.6 !important;
 }
@@ -406,6 +406,8 @@ div[data-testid="stTextArea"] textarea {
     color: black !important;
 
     caret-color: black !important;
+
+    border: 1px solid black !important;
 }
 
 /* FOCUS */
@@ -416,11 +418,22 @@ textarea:focus {
 
     color: black !important;
 
-    border: 1px solid #1F6F43 !important;
+    border: 1px solid black !important;
 
     outline: none !important;
 
     box-shadow: none !important;
+}
+
+/* WORD COUNT */
+
+div[data-testid="stTextArea"] small {
+
+    color: #6B7280 !important;
+
+    font-size: 14px !important;
+
+    opacity: 1 !important;
 }
 /* =========================================================
 IDEA CARD
