@@ -559,6 +559,21 @@ IDEA CARD
     font-size: 18px;
 }
 
+/* =========================================================
+CENTER BUTTON
+========================================================= */
+
+.button-center {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    width: 100%;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -659,12 +674,29 @@ if st.session_state.page == "welcome":
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
-    button_left, button_center, button_right = st.columns([1,1,1])
+    st.markdown(
+    '<div class="button-center">',
+    unsafe_allow_html=True
+    )
 
-    with button_center:
-        if st.button("Start Your Project Ideas", type="primary"):
-            st.session_state.page = "diploma"
-            st.rerun()
+    if st.button("Start Your Project Ideas", type="primary"):
+        st.session_state.page = "diploma"
+        st.rerun()
+    
+    st.markdown(
+        '</div>',
+        unsafe_allow_html=True
+    )
+
+    # button_left, button_center, button_right = st.columns([1,1,1])
+
+    # with button_center:
+    #     if st.button("Start Your Project Ideas", type="primary"):
+    #         st.session_state.page = "diploma"
+    #         st.rerun()
+
+
+    
 # =========================================================
 # DIPLOMA PAGE
 # =========================================================
