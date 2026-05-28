@@ -179,7 +179,7 @@ footer {
 
 .block-container {
     max-width: 1180px;
-    padding-top: 1.5rem;
+    padding-top: 1rem;
     padding-bottom: 2rem;
 }
 
@@ -188,11 +188,6 @@ LOGO
 ========================================================= */
 
 .scale-logo {
-    display: flex;
-    align-items: center;
-}
-
-.scale-logo-text {
     font-size: 42px;
     font-weight: 700;
 }
@@ -273,16 +268,15 @@ BACK ARROW
     padding: 0 !important;
     margin: 0 !important;
 
+    min-height: unset !important;
+
     font-size: 72px !important;
     font-weight: 300 !important;
-
-    min-height: unset !important;
 }
 
 .back-arrow button:hover {
     background: transparent !important;
     color: black !important;
-    border: none !important;
 }
 
 .back-arrow button:focus {
@@ -301,7 +295,7 @@ SELECT BOX
 ========================================================= */
 
 div[data-baseweb="select"] > div {
-    background: rgba(255,255,255,1) !important;
+    background: white !important;
 
     border: 1px solid #D9D9D9 !important;
 
@@ -311,8 +305,6 @@ div[data-baseweb="select"] > div {
 
     box-shadow: none !important;
 }
-
-/* Selected text */
 
 div[data-baseweb="select"] span {
     color: black !important;
@@ -430,11 +422,11 @@ ARROWS
     width: auto !important;
     height: auto !important;
 
+    min-height: unset !important;
+
     font-size: 70px !important;
 
     padding-top: 150px !important;
-
-    min-height: unset !important;
 }
 
 .arrow-button button:hover {
@@ -455,37 +447,41 @@ ARROWS
 
 if st.session_state.page == 0:
 
-    st.markdown("""
-    <div class="scale-logo">
-        <div class="scale-logo-text">
+    st.markdown(
+        """
+        <div class="scale-logo">
             <span style="color:#14532D;">SCA</span><span style="color:#8BC34A;">le</span>
         </div>
-    </div>
-    """, unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True
+    )
 
     st.markdown("<br><br><br>", unsafe_allow_html=True)
 
-    st.markdown("""
-    <div style="text-align:center;">
+    st.markdown(
+        """
+        <div style="text-align:center;">
 
-        <div class="page-title">
-            Hi! I'm
-            <span style="color:#14532D;">SCA</span><span style="color:#8BC34A;">le</span>.
+            <div class="page-title">
+                Hi! I'm
+                <span style="color:#14532D;">SCA</span><span style="color:#8BC34A;">le</span>.
+            </div>
+
+            <br>
+
+            <div class="page-subtitle">
+                I will help you to explore sustainability project ideas tailored to your diploma and interests. Let's get started.
+            </div>
+
         </div>
-
-        <br>
-
-        <div class="page-subtitle">
-            I will help you to explore sustainability project ideas tailored to your diploma and interests. Let's get started.
-        </div>
-
-    </div>
-    """, unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True
+    )
 
     st.markdown("<br><br><br>", unsafe_allow_html=True)
 
     st.image(
-        "https://i.imgur.com/V4sQ9mA.png",
+        "assets/bot.png",
         width=420
     )
 
@@ -519,17 +515,20 @@ elif st.session_state.page == 1:
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    st.markdown("""
-    <div class="page-title">
-        What is your diploma?
-    </div>
+    st.markdown(
+        """
+        <div class="page-title">
+            What is your diploma?
+        </div>
 
-    <br>
+        <br>
 
-    <div class="page-subtitle">
-        This helps me to tailor sustainability project ideas to your field of study.
-    </div>
-    """, unsafe_allow_html=True)
+        <div class="page-subtitle">
+            This helps me to tailor sustainability project ideas to your field of study.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
@@ -570,17 +569,20 @@ elif st.session_state.page == 2:
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    st.markdown("""
-    <div class="page-title">
-        What sustainability category interests you?
-    </div>
+    st.markdown(
+        """
+        <div class="page-title">
+            What sustainability category interests you?
+        </div>
 
-    <br>
+        <br>
 
-    <div class="page-subtitle">
-        This allows sustainability project ideas align to your focus areas.
-    </div>
-    """, unsafe_allow_html=True)
+        <div class="page-subtitle">
+            This allows sustainability project ideas align to your focus areas.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
@@ -621,17 +623,20 @@ elif st.session_state.page == 3:
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    st.markdown("""
-    <div class="page-title">
-        What sustainability problem would you like to solve?
-    </div>
+    st.markdown(
+        """
+        <div class="page-title">
+            What sustainability problem would you like to solve?
+        </div>
 
-    <br>
+        <br>
 
-    <div class="page-subtitle">
-        Share an problem or challenge you have noticed in school, community, or daily life.
-    </div>
-    """, unsafe_allow_html=True)
+        <div class="page-subtitle">
+            Share an problem or challenge you have noticed in school, community, or daily life.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
@@ -677,17 +682,20 @@ elif st.session_state.page == 4:
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    st.markdown("""
-    <div class="page-title">
-        Which solution format are you interested in developing?
-    </div>
+    st.markdown(
+        """
+        <div class="page-title">
+            Which solution format are you interested in developing?
+        </div>
 
-    <br>
+        <br>
 
-    <div class="page-subtitle">
-        This helps me to suggest the right type of project for you.
-    </div>
-    """, unsafe_allow_html=True)
+        <div class="page-subtitle">
+            This helps me to suggest the right type of project for you.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
@@ -729,19 +737,22 @@ elif st.session_state.page == 5:
 
     idea = ideas[current]
 
-    st.markdown("""
-    <div style="text-align:center;">
+    st.markdown(
+        """
+        <div style="text-align:center;">
 
-        <div style="font-size:22px;font-weight:600;color:black;">
-            Here are your
+            <div style="font-size:22px;font-weight:600;color:black;">
+                Here are your
+            </div>
+
+            <div class="page-title">
+                Project Ideas!
+            </div>
+
         </div>
-
-        <div class="page-title">
-            Project Ideas!
-        </div>
-
-    </div>
-    """, unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True
+    )
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
@@ -761,23 +772,26 @@ elif st.session_state.page == 5:
 
     with center:
 
-        st.markdown(f"""
-        <div class="idea-card">
+        st.markdown(
+            f"""
+            <div class="idea-card">
 
-            <div class="idea-title">
-                {idea['title']}
+                <div class="idea-title">
+                    {idea['title']}
+                </div>
+
+                <div class="idea-text">
+                    {idea['idea']}
+                </div>
+
+                <div class="idea-counter">
+                    {current + 1} / {len(ideas)}
+                </div>
+
             </div>
-
-            <div class="idea-text">
-                {idea['idea']}
-            </div>
-
-            <div class="idea-counter">
-                {current + 1} / {len(ideas)}
-            </div>
-
-        </div>
-        """, unsafe_allow_html=True)
+            """,
+            unsafe_allow_html=True
+        )
 
     with right:
 
