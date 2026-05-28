@@ -687,7 +687,7 @@ if st.session_state.page == "welcome":
 
     st.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)
 
-    c1, c2, c3 = st.columns([1,1,1])
+    c1, c2, c3 = st.columns([1.5,1,1])
 
     with c2:
         if st.button("Start Your Project Ideas", type="primary"):
