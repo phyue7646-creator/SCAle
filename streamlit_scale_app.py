@@ -1067,7 +1067,7 @@ elif st.session_state.page == "results":
         
         if len(parts) > 1:
             idea_body = parts[1].strip()
-                st.markdown(
+        st.markdown(
 f"""
 <div class="idea-card">
 
