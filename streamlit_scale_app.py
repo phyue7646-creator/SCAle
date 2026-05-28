@@ -558,6 +558,12 @@ IDEA CARD
     color: black;
 
     text-align: left;
+
+    max-height: 420px;
+
+    overflow-y: auto;
+
+    padding-right: 10px;
 }
 
 .idea-counter {
@@ -1000,10 +1006,10 @@ elif st.session_state.page == "results":
 
     current = st.session_state.idea_index
 
-    st.markdown(
-        '<div style="font-size:22px;font-weight:600;color:black;text-align:center;">Here are your</div>',
-        unsafe_allow_html=True
-    )
+    # st.markdown(
+    #     '<div style="font-size:22px;font-weight:600;color:black;text-align:center;">Here are your</div>',
+    #     unsafe_allow_html=True
+    # )
 
     st.markdown(
         '<div class="page-title"><span style="color:#14532D;">Project Ideas!</span></div>',
@@ -1032,18 +1038,14 @@ elif st.session_state.page == "results":
         raw_idea = raw_idea.replace("#", "")
         raw_idea = raw_idea.replace("-", "")
 
-        # EXTRACT TITLE
-        title = ""
+        parts = raw_idea.split(":", 1)
 
-        if "TITLE:" in raw_idea:
-            title = raw_idea.split("TITLE:")[1].split("IDEA:")[0].strip()
-
-        # EXTRACT IDEA BODY
+        title = parts[0].strip()
+        
         idea_body = ""
-
-        if "IDEA:" in raw_idea:
-            idea_body = raw_idea.split("IDEA:")[1].strip()
-
+        
+        if len(parts) > 1:
+            idea_body = parts[1].strip()
         st.markdown(
 f"""
 <div class="idea-card">
@@ -1053,7 +1055,7 @@ f"""
 </div>
 
 <div class="idea-text">
-{raw_idea}
+{idea_body}
 </div>
 
 <div class="idea-counter">
@@ -1073,7 +1075,9 @@ f"""
                 st.rerun()
 
     st.markdown("<div style='height:30px'></div>", unsafe_allow_html=True)
-
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
     left_space, center_button, right_space = st.columns([2,1,2])
 
     with center_button:
