@@ -201,7 +201,7 @@ BACK ARROW
 BACK ARROW
 ========================================================= */
 
-button[kind="secondary"] {
+button[kind="secondary"][data-testid="baseButton-secondary"] {
 
     background: transparent !important;
 
@@ -228,9 +228,9 @@ button[kind="secondary"] {
     border-radius: 0 !important;
 }
 
-button[kind="secondary"]:hover,
-button[kind="secondary"]:active,
-button[kind="secondary"]:focus {
+button[kind="secondary"][data-testid="baseButton-secondary"]:hover,
+button[kind="secondary"][data-testid="baseButton-secondary"]:active,
+button[kind="secondary"][data-testid="baseButton-secondary"]:focus {
 
     background: transparent !important;
 
@@ -243,7 +243,7 @@ button[kind="secondary"]:focus {
     outline: none !important;
 }
 
-button[kind="secondary"] p {
+button[kind="secondary"][data-testid="baseButton-secondary"] p {
 
     color: black !important;
 
