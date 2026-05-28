@@ -179,7 +179,17 @@ WELCOME PAGE LAYOUT
 
 .welcome-content {
 
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
     text-align: center;
+
+    margin-top: 120px;
 }
 
 .logo-sca {
@@ -640,26 +650,44 @@ if st.session_state.page == "welcome":
         '<div class="logo"><span class="logo-sca">SCA</span><span class="logo-le">le</span></div>',
         unsafe_allow_html=True
     )
-
-    st.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    
+    
 
     st.markdown(
         '<div style="text-align:center;"><div class="page-title">Hi! I\'m SCAle.</div><br><div class="page-subtitle">I will help you to explore sustainability project ideas tailored to your diploma and interests. Let\'s get started.</div></div>',
         unsafe_allow_html=True
     )
 
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+   
+    
+
+    #image = Image.open("d06d65c5-67c9-4a99-b853-40525a2c4d2c.png")
+
+    #c1, c2, c3 = st.columns([1,1,1])
+
+    #with c2:
+        #st.image(image, width=430)
+
     st.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)
 
-    image = Image.open("d06d65c5-67c9-4a99-b853-40525a2c4d2c.png")
-
-    c1, c2, c3 = st.columns([1,2,1])
-
-    with c2:
-        st.image(image, width=430)
-
-    st.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)
-
-    c1, c2, c3 = st.columns([1.2,1,1.2])
+    c1, c2, c3 = st.columns([1,1,1)
 
     with c2:
         if st.button("Start Your Project Ideas", type="primary"):
