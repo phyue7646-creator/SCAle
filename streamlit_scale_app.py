@@ -632,7 +632,7 @@ solutions = [
 if st.session_state.page == "welcome":
 
     st.markdown(
-        '''
+        """
         <div class="welcome-wrapper">
 
             <div class="logo">
@@ -654,7 +654,7 @@ if st.session_state.page == "welcome":
             </div>
 
         </div>
-        ''',
+        """,
         unsafe_allow_html=True
     )
 
