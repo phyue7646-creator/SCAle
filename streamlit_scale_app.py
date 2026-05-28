@@ -325,7 +325,7 @@ ul li {
 
 ul li:hover {
 
-    background-color: #E7F3EC !important;
+    background-color: #EAF4EC !important;
 
     color: black !important;
 }
@@ -339,7 +339,7 @@ ul li:hover {
 
 [aria-selected="true"] * {
 
-    color: white !important;
+    color: black !important;
 }
 
 /* =========================================================
@@ -417,14 +417,49 @@ diplomas = [
     "Diploma in Veterinary Technology",
     "Diploma in Communication Design",
     "Diploma in Digital Film & Television",
+    "Diploma in Interior Architecture & Design",
+    "Diploma in Fashion Management & Design",
+    "Diploma in Product Experience & Design",
+    "Diploma in Aerospace Electronics",
+    "Diploma in Aerospace Engineering",
+    "Diploma in Aviation Management",
+    "Diploma in Computer Engineering",
+    "Diploma in Architectural Technology and Building Services",
+    "Diploma in Electrical and Electronics Engineering",
+    "Diploma in Business Process and System Engineering",
+    "Diploma in Integrated Facility Management",
+    "Diploma in Mechatronics",
+    "Diploma in Big Data & Analytics",
+    "Diploma in Cybersecurity & Digital Forensics",
+    "Diploma in Information Technology",
+    "Diploma in Applied Artificial Intelligence",
+    "Diploma in Immersive Media and Game Development",
+    "Diploma in Accountancy & Finance",
+    "Diploma in Business",
+    "Diploma in Communications & Media Management",
+    "Diploma in Culinary Arts & Management",
+    "Diploma in Hospitality & Tourism Management",
+    "Diploma in International Trade & Logistics",
+    "Diploma in Law & Management",
+    "Diploma in Marketing",
+    "Diploma in Early Childhood Development & Education",
+    "Diploma in Psychology Studies",
+    "Diploma in Social Science in Gerontology"
 ]
 
 categories = [
     "Circular Economy",
+    "Liveable City and Community",
+    "Green Buildings",
     "Renewable Energy",
-    "Waste Management and Recycling",
+    "Green Finance and Impact Investing",
+    "Sustainable Food Systems",
+    "Sustainable Materials and Packaging",
     "Green Transportation",
-    "Sustainable Food Systems"
+    "Sustainable Tourism",
+    "Green Economy Opportunities",
+    "Waste Management and Recycling",
+    "Biodiversity and Conservation"
 ]
 
 solutions = [
