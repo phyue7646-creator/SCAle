@@ -1006,10 +1006,10 @@ elif st.session_state.page == "results":
 
     current = st.session_state.idea_index
 
-    # st.markdown(
-    #     '<div style="font-size:22px;font-weight:600;color:black;text-align:center;">Here are your</div>',
-    #     unsafe_allow_html=True
-    # )
+    st.markdown(
+        '<div style="font-size:22px;font-weight:600;color:black;text-align:center;">Here are your</div>',
+        unsafe_allow_html=True
+    )
 
     st.markdown(
         '<div class="page-title"><span style="color:#14532D;">Project Ideas!</span></div>',
