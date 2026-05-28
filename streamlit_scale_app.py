@@ -249,6 +249,7 @@ QUESTION SECTION
     width: 100px;
 
     max-width: 90%;
+    padding-left: 2rem;
 }
 .page-wrap {
 
@@ -717,13 +718,7 @@ elif st.session_state.page == "diploma":
             st.rerun()
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
+   
     
     st.markdown(
     '<div class="page-wrap"><div class="form-section">',
@@ -759,6 +754,9 @@ elif st.session_state.page == "diploma":
     )
     
     st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
     
     button_left, button_center, button_right = st.columns([2.2,1,2.2])
     
