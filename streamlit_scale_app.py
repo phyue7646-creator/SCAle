@@ -48,11 +48,8 @@ with open(SYSTEM_PROMPT_FILE, "r", encoding="utf-8") as f:
 # =========================================================
 
 
-def load_base64_image(image_path):
-    with open(image_path, "rb") as img:
-        return base64.b64encode(img.read()).decode()
 
-robot_image = load_base64_image("assets/robot.png")
+robot_image = "d06d65c5-67c9-4a99-b853-40525a2c4d2c.png"
 
 # =========================================================
 # CUSTOM CSS
