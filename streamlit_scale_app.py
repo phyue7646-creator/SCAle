@@ -194,14 +194,10 @@ div.stButton > button:not([kind="secondary"]):focus {
 
     box-shadow: none !important;}
 /* =========================================================
-BACK ARROW
+BACK ARROW ONLY
 ========================================================= */
 
-/* =========================================================
-BACK ARROW
-========================================================= */
-
-button[kind="secondary"][data-testid="baseButton-secondary"] {
+button[data-testid="baseButton-secondary"] {
 
     background: transparent !important;
 
@@ -210,10 +206,6 @@ button[kind="secondary"][data-testid="baseButton-secondary"] {
     box-shadow: none !important;
 
     color: black !important;
-
-    font-size: 70px !important;
-
-    font-weight: 300 !important;
 
     padding: 0 !important;
 
@@ -228,9 +220,22 @@ button[kind="secondary"][data-testid="baseButton-secondary"] {
     border-radius: 0 !important;
 }
 
-button[kind="secondary"][data-testid="baseButton-secondary"]:hover,
-button[kind="secondary"][data-testid="baseButton-secondary"]:active,
-button[kind="secondary"][data-testid="baseButton-secondary"]:focus {
+/* BIG ARROWS */
+
+button[data-testid="baseButton-secondary"] p {
+
+    color: black !important;
+
+    font-size: 70px !important;
+
+    font-weight: 300 !important;
+
+    margin: 0 !important;
+}
+
+button[data-testid="baseButton-secondary"]:hover,
+button[data-testid="baseButton-secondary"]:active,
+button[data-testid="baseButton-secondary"]:focus {
 
     background: transparent !important;
 
@@ -242,16 +247,6 @@ button[kind="secondary"][data-testid="baseButton-secondary"]:focus {
 
     outline: none !important;
 }
-
-button[kind="secondary"][data-testid="baseButton-secondary"] p {
-
-    color: black !important;
-
-    font-size: 70px !important;
-
-    margin: 0 !important;
-}
-
 /* =========================================================
 SELECTBOX
 ========================================================= */
