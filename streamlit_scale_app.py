@@ -374,15 +374,49 @@ TEXT AREA
 ========================================================= */
 
 textarea {
+
+    background-color: white !important;
+
+    color: black !important;
+
+    -webkit-text-fill-color: black !important;
+
     font-size: 18px !important;
 
-    border-radius: 0px !important;
+    border-radius: 12px !important;
 
     border: 1px solid #D9D9D9 !important;
+
+    line-height: 1.6 !important;
 }
+
+/* OUTER CONTAINER */
+
+div[data-testid="stTextArea"] > div {
+
+    background-color: white !important;
+}
+
+/* INNER BOX */
+
+div[data-testid="stTextArea"] textarea {
+
+    background-color: white !important;
+
+    color: black !important;
+
+    caret-color: black !important;
+}
+
+/* FOCUS */
+
 textarea:focus {
 
-    border: 1px solid #D9D9D9 !important;
+    background-color: white !important;
+
+    color: black !important;
+
+    border: 1px solid #1F6F43 !important;
 
     outline: none !important;
 
