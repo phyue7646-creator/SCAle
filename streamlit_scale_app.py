@@ -1,8 +1,6 @@
-
 import streamlit as st
 import google.generativeai as genai
 import json
-import base64
 from pathlib import Path
 
 # =========================================================
@@ -44,219 +42,257 @@ with open(SYSTEM_PROMPT_FILE, "r", encoding="utf-8") as f:
     SYSTEM_PROMPT = f.read()
 
 # =========================================================
-# LOAD IMAGE
+# IMAGE
 # =========================================================
 
-
-
-robot_image = "d06d65c5-67c9-4a99-b853-40525a2c4d2c.png"
+robot_image = "https://raw.githubusercontent.com/phuye7646-creator/SCAle/main/d06d65c5-67c9-4a99-b853-40525a2c4d2c.png"
 
 # =========================================================
 # CUSTOM CSS
 # =========================================================
 
-st.markdown(
-    f"""
+st.markdown("""
 <style>
 
 /* =========================================================
 GLOBAL
 ========================================================= */
 
-#MainMenu {{
+#MainMenu,
+header,
+footer {
     visibility: hidden;
-}}
+}
 
-footer {{
-    visibility: hidden;
-}}
+.stApp {
+    background-color: #F6F6F6;
+}
 
-header {{
-    visibility: hidden;
-}}
-
-.stApp {{
-    background-color: #F5F5F5;
-}}
-
-.block-container {{
+.block-container {
     padding-top: 0rem;
-    padding-bottom: 2rem;
+    padding-bottom: 0rem;
     max-width: 100%;
-}}
+}
 
 /* =========================================================
 TOP BAR
 ========================================================= */
 
-.topbar {{
+.topbar {
     background: #742774;
-    height: 58px;
+    height: 54px;
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 999;
-}}
+}
 
 /* =========================================================
-PAGE WRAPPER
+LAYOUT
 ========================================================= */
 
-.page-wrapper {{
+.page-wrapper {
     margin-top: 90px;
-    padding-left: 8%;
-    padding-right: 8%;
-}}
+    padding-left: 17%;
+    padding-right: 17%;
+}
 
 /* =========================================================
 LOGO
 ========================================================= */
 
-.logo {{
-    font-size: 42px;
+.logo {
+    font-size: 48px;
     font-weight: 700;
-    color: #5F8F42;
-    margin-bottom: 40px;
-}}
+    color: #4C7A46;
+    margin-bottom: 50px;
+}
 
 /* =========================================================
 WELCOME PAGE
 ========================================================= */
 
-.hero-title {{
+.hero-title {
     text-align: center;
-    font-size: 60px;
+    font-size: 58px;
     font-weight: 700;
-    color: #1F1F1F;
-    margin-top: 20px;
-}}
+    color: #1A1A1A;
+    margin-top: 10px;
+}
 
-.hero-subtitle {{
+.hero-subtitle {
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
     color: #666666;
-    margin-top: 18px;
     line-height: 1.7;
-}}
+    margin-top: 18px;
+}
 
-.hero-image {{
+.hero-image {
     display: flex;
     justify-content: center;
     margin-top: 40px;
     margin-bottom: 40px;
-}}
+}
 
-.hero-image img {{
-    width: 520px;
-}}
+.hero-image img {
+    width: 360px;
+}
 
 /* =========================================================
-BUTTONS
+PAGE TITLES
 ========================================================= */
 
-.stButton > button {{
-    background: #46784D;
+.page-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: #1A1A1A;
+    margin-top: 40px;
+}
+
+.page-subtitle {
+    font-size: 20px;
+    color: #666666;
+    margin-top: 12px;
+    margin-bottom: 35px;
+}
+
+/* =========================================================
+LABELS
+========================================================= */
+
+label {
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+}
+
+/* =========================================================
+TEXT AREA
+========================================================= */
+
+textarea {
+    background: white !important;
+    color: black !important;
+    border: 1px solid #D3D3D3 !important;
+    border-radius: 0px !important;
+    font-size: 18px !important;
+    min-height: 180px !important;
+}
+
+/* =========================================================
+SELECTBOX
+========================================================= */
+
+div[data-baseweb="select"] > div {
+    background: white !important;
+    color: black !important;
+    border: 1px solid #D3D3D3 !important;
+    border-radius: 0px !important;
+    min-height: 50px;
+    font-size: 18px !important;
+}
+
+div[data-baseweb="select"] * {
+    color: black !important;
+}
+
+/* =========================================================
+NORMAL BUTTONS
+========================================================= */
+
+.stButton > button {
+    background: #4C7A46;
     color: white;
     border: none;
-    border-radius: 14px;
-    width: 340px;
-    height: 64px;
-    font-size: 28px;
-    font-weight: 700;
-}}
+    border-radius: 12px;
+    height: 52px;
+    width: 320px;
+    font-size: 20px;
+    font-weight: 600;
+}
 
-.stButton > button:hover {{
-    background: #355E38;
+.stButton > button:hover {
+    background: #3D6439;
     color: white;
-}}
+}
 
 /* =========================================================
-FORM PAGES
+BACK BUTTON
 ========================================================= */
 
-.page-title {{
-    font-size: 58px;
-    font-weight: 700;
-    color: #1F1F1F;
-    margin-top: 70px;
-}}
-
-.page-subtitle {{
-    font-size: 24px;
-    color: #666666;
-    margin-top: 15px;
-    margin-bottom: 45px;
-}}
-
-label {{
-    font-size: 26px !important;
-    font-weight: 700 !important;
-}}
-
-textarea {{
-    border-radius: 0px !important;
-    border: 2px solid #D0D0D0 !important;
-    min-height: 240px !important;
-    font-size: 22px !important;
-}}
-
-div[data-baseweb="select"] > div {{
-    border-radius: 0px !important;
-    min-height: 62px;
-    font-size: 22px !important;
-}}
+.back-btn button {
+    background: transparent !important;
+    border: none !important;
+    color: black !important;
+    font-size: 44px !important;
+    width: 70px !important;
+    height: 70px !important;
+    box-shadow: none !important;
+}
 
 /* =========================================================
 RESULT PAGE
 ========================================================= */
 
-.result-header-small {{
+.result-small {
     text-align: center;
-    font-size: 34px;
+    font-size: 24px;
     font-weight: 700;
-    margin-top: 20px;
-}}
+}
 
-.result-header-large {{
+.result-big {
     text-align: center;
-    font-size: 64px;
+    font-size: 58px;
     font-weight: 700;
-    color: #2F5E36;
-}}
+    color: #4C7A46;
+    margin-bottom: 30px;
+}
 
-.result-card {{
+.result-card {
     background: white;
-    border: 2px solid #DADADA;
+    border: 1px solid #DADADA;
     border-radius: 18px;
-    padding: 40px;
-    margin-top: 30px;
-    min-height: 500px;
-}}
+    padding: 50px;
+    min-height: 360px;
+}
 
-.idea-title {{
+.idea-title {
     text-align: center;
-    font-size: 42px;
+    font-size: 32px;
     font-weight: 700;
     margin-bottom: 30px;
-}}
+    color: #1A1A1A;
+}
 
-.idea-text {{
-    font-size: 24px;
+.idea-text {
+    font-size: 20px;
     line-height: 2;
     color: #333333;
-}}
+}
 
-.idea-counter {{
+.idea-counter {
     text-align: center;
-    margin-top: 30px;
-    font-size: 22px;
-}}
+    margin-top: 25px;
+    font-size: 18px;
+}
+
+/* =========================================================
+ARROW BUTTONS
+========================================================= */
+
+.arrow-btn button {
+    background: transparent !important;
+    border: none !important;
+    color: black !important;
+    font-size: 42px !important;
+    width: 70px !important;
+    box-shadow: none !important;
+}
 
 </style>
-""",
-    unsafe_allow_html=True
-)
+""", unsafe_allow_html=True)
 
 # =========================================================
 # DATA
@@ -326,41 +362,29 @@ if st.session_state.page == "welcome":
 
     st.markdown("<div class='page-wrapper'>", unsafe_allow_html=True)
 
-    st.markdown(
-        """
-        <div class='logo'>
-            🌱 SCAle
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown("""
+    <div class='logo'>
+        🌱 SCAle
+    </div>
+    """, unsafe_allow_html=True)
 
-    st.markdown(
-        """
-        <div class='hero-title'>
-            Hi! I'm SCAle.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown("""
+    <div class='hero-title'>
+        Hi! I'm SCAle.
+    </div>
+    """, unsafe_allow_html=True)
 
-    st.markdown(
-        """
-        <div class='hero-subtitle'>
-            I will help you explore sustainability project ideas tailored to your diploma and interests. Let's get started.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown("""
+    <div class='hero-subtitle'>
+        I will help you explore sustainability project ideas tailored to your diploma and interests. Let's get started.
+    </div>
+    """, unsafe_allow_html=True)
 
-    st.markdown(
-        f"""
-        <div class='hero-image'>
-            <img src="data:image/png;base64,{robot_image}">
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown(f"""
+    <div class='hero-image'>
+        <img src="{robot_image}">
+    </div>
+    """, unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns([1,1,1])
 
@@ -379,27 +403,25 @@ elif st.session_state.page == "diploma":
 
     st.markdown("<div class='page-wrapper'>", unsafe_allow_html=True)
 
+    st.markdown('<div class="back-btn">', unsafe_allow_html=True)
+
     if st.button("←"):
         st.session_state.page = "welcome"
         st.rerun()
 
-    st.markdown(
-        """
-        <div class='page-title'>
-            What is your diploma?
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown('</div>', unsafe_allow_html=True)
 
-    st.markdown(
-        """
-        <div class='page-subtitle'>
-            This helps me to tailor sustainability project ideas to your field of study.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown("""
+    <div class='page-title'>
+        What is your diploma?
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class='page-subtitle'>
+        This helps me to tailor sustainability project ideas to your field of study.
+    </div>
+    """, unsafe_allow_html=True)
 
     diploma = st.selectbox(
         "Select your diploma",
@@ -426,27 +448,25 @@ elif st.session_state.page == "category":
 
     st.markdown("<div class='page-wrapper'>", unsafe_allow_html=True)
 
+    st.markdown('<div class="back-btn">', unsafe_allow_html=True)
+
     if st.button("←"):
         st.session_state.page = "diploma"
         st.rerun()
 
-    st.markdown(
-        """
-        <div class='page-title'>
-            What sustainability category interests you?
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown('</div>', unsafe_allow_html=True)
 
-    st.markdown(
-        """
-        <div class='page-subtitle'>
-            This allows sustainability project ideas align to your focus areas.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown("""
+    <div class='page-title'>
+        What sustainability category interests you?
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class='page-subtitle'>
+        This allows sustainability project ideas align to your focus areas.
+    </div>
+    """, unsafe_allow_html=True)
 
     category = st.selectbox(
         "Select sustainability category",
@@ -473,27 +493,25 @@ elif st.session_state.page == "concern":
 
     st.markdown("<div class='page-wrapper'>", unsafe_allow_html=True)
 
+    st.markdown('<div class="back-btn">', unsafe_allow_html=True)
+
     if st.button("←"):
         st.session_state.page = "category"
         st.rerun()
 
-    st.markdown(
-        """
-        <div class='page-title'>
-            What sustainability problem would you like to solve?
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown('</div>', unsafe_allow_html=True)
 
-    st.markdown(
-        """
-        <div class='page-subtitle'>
-            Share a problem or challenge you have noticed in school, community, or daily life.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown("""
+    <div class='page-title'>
+        What sustainability problem would you like to solve?
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class='page-subtitle'>
+        Share a problem or challenge you have noticed in school, community, or daily life.
+    </div>
+    """, unsafe_allow_html=True)
 
     concern = st.text_area(
         "Sustainability concern",
@@ -520,27 +538,25 @@ elif st.session_state.page == "solution":
 
     st.markdown("<div class='page-wrapper'>", unsafe_allow_html=True)
 
+    st.markdown('<div class="back-btn">', unsafe_allow_html=True)
+
     if st.button("←"):
         st.session_state.page = "concern"
         st.rerun()
 
-    st.markdown(
-        """
-        <div class='page-title'>
-            Which solution format are you interested in developing?
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown('</div>', unsafe_allow_html=True)
 
-    st.markdown(
-        """
-        <div class='page-subtitle'>
-            This helps me to suggest the right type of project for you.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown("""
+    <div class='page-title'>
+        Which solution format are you interested in developing?
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class='page-subtitle'>
+        This helps me to suggest the right type of project for you.
+    </div>
+    """, unsafe_allow_html=True)
 
     solution_type = st.selectbox(
         "Select Solution Type",
@@ -557,7 +573,7 @@ elif st.session_state.page == "solution":
 
             st.session_state.solution_type = solution_type
 
-            final_prompt = f'''
+            final_prompt = f"""
 {SYSTEM_PROMPT}
 
 Diploma:
@@ -571,7 +587,7 @@ Sustainability Concern:
 
 Preferred Solution Type:
 {st.session_state.solution_type}
-'''
+"""
 
             with st.spinner("Generating ideas..."):
 
@@ -581,15 +597,8 @@ Preferred Solution Type:
 
                 cleaned = response.text.strip()
 
-                cleaned = cleaned.replace(
-                    "```json",
-                    ""
-                )
-
-                cleaned = cleaned.replace(
-                    "```",
-                    ""
-                )
+                cleaned = cleaned.replace("```json", "")
+                cleaned = cleaned.replace("```", "")
 
                 ideas = json.loads(cleaned)
 
@@ -613,64 +622,66 @@ elif st.session_state.page == "results":
 
     idea = ideas[current]
 
-    st.markdown(
-        """
-        <div class='result-header-small'>
-            Here are your
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown("""
+    <div class='result-small'>
+        Here are your
+    </div>
+    """, unsafe_allow_html=True)
 
-    st.markdown(
-        """
-        <div class='result-header-large'>
-            Project Ideas!
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown("""
+    <div class='result-big'>
+        Project Ideas!
+    </div>
+    """, unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns([1,8,1])
 
     with col1:
 
-        if st.button("◀"):
+        st.markdown('<div class="arrow-btn">', unsafe_allow_html=True)
+
+        if st.button("←"):
 
             if current > 0:
                 st.session_state.current_idea -= 1
                 st.rerun()
 
+        st.markdown('</div>', unsafe_allow_html=True)
+
     with col2:
 
         st.markdown(
             f"""
-            <div class='result-card'>
+<div class="result-card">
 
-                <div class='idea-title'>
-                    {idea['title']}
-                </div>
+<div class="idea-title">
+{idea["title"]}
+</div>
 
-                <div class='idea-text'>
-                    {idea['idea']}
-                </div>
+<div class="idea-text">
+{idea["idea"]}
+</div>
 
-                <div class='idea-counter'>
-                    {current + 1} / {len(ideas)}
-                </div>
+<div class="idea-counter">
+{current + 1} / {len(ideas)}
+</div>
 
-            </div>
-            """,
+</div>
+""",
             unsafe_allow_html=True
         )
 
     with col3:
 
-        if st.button("▶"):
+        st.markdown('<div class="arrow-btn">', unsafe_allow_html=True)
+
+        if st.button("→"):
 
             if current < len(ideas) - 1:
                 st.session_state.current_idea += 1
                 st.rerun()
+
+        st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
 
