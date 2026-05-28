@@ -866,6 +866,8 @@ elif st.session_state.page == "concern":
         label_visibility="collapsed"
     ) 
     st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
     button_left, button_center, button_right = st.columns([2.2,1,2.2])
 
     with button_center:
