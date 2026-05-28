@@ -494,8 +494,9 @@ elif st.session_state.page == "diploma":
     st.markdown('<div class="question-label">Select your diploma</div>', unsafe_allow_html=True)
 
     st.session_state.diploma = st.selectbox(
-        "",
+        "Select Diploma",
         diplomas,
+        index=0,
         label_visibility="collapsed"
     )
 
@@ -539,10 +540,11 @@ elif st.session_state.page == "category":
         '<div class="question-label">Select sustainability category</div>',
         unsafe_allow_html=True
     )
-
+    
     st.session_state.category = st.selectbox(
-        "",
+        "Select Category",
         categories,
+        index=0,
         label_visibility="collapsed"
     )
 
@@ -634,8 +636,9 @@ elif st.session_state.page == "solution":
     )
 
     st.session_state.solution = st.selectbox(
-        "",
+        "Select Solution",
         solutions,
+        index=0,
         label_visibility="collapsed"
     )
 
