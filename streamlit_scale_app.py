@@ -614,6 +614,9 @@ if st.session_state.page == "welcome":
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
     st.markdown(
         '<div style="text-align:center;"><div class="page-title">Hi! I\'m SCAle.</div><br><div class="page-subtitle">I will help you to explore sustainability project ideas tailored to your diploma and interests. Let\'s get started.</div></div>',
         unsafe_allow_html=True
