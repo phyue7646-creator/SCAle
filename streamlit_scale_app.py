@@ -522,42 +522,58 @@ IDEA CARD
 ========================================================= */
 
 .idea-card {
+
     background-color: white;
 
     border: 1px solid #E5E7EB;
 
-    border-radius: 18px;
+    border-radius: 24px;
 
-    padding: 40px;
+    padding: 50px;
 
-    min-height: 420px;
+    min-height: 520px;
+
+    position: relative;
 }
 
 .idea-title {
+
     font-size: 34px;
+
     font-weight: 700;
-    text-align: center;
+
     color: black;
 
-    margin-bottom: 25px;
+    text-align: center;
+
+    margin-bottom: 30px;
 }
 
 .idea-text {
+
     font-size: 20px;
+
     line-height: 1.9;
+
     color: black;
 
     text-align: left;
 }
 
 .idea-counter {
-    text-align: center;
 
-    margin-top: 20px;
+    position: absolute;
+
+    bottom: 20px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
 
     font-size: 18px;
-}
 
+    color: #6B7280;
+}
 /* =========================================================
 CENTER BUTTON
 ========================================================= */
@@ -984,8 +1000,6 @@ elif st.session_state.page == "results":
 
     current = st.session_state.idea_index
 
-    st.markdown("<br>", unsafe_allow_html=True)
-
     st.markdown(
         '<div style="font-size:22px;font-weight:600;color:black;text-align:center;">Here are your</div>',
         unsafe_allow_html=True
@@ -996,46 +1010,72 @@ elif st.session_state.page == "results":
         unsafe_allow_html=True
     )
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([1.5,6,1.5])
+    col1, col2, col3 = st.columns([1,6,1])
 
     with col1:
+
         if current > 0:
-            if st.button("←", key="prev", type="primary"):
+            if st.button("←", key="prev", type="secondary"):
                 st.session_state.idea_index -= 1
                 st.rerun()
 
     with col2:
 
-        idea = st.session_state.ideas[current]
+        raw_idea = st.session_state.ideas[current]
+
+        # CLEAN SPECIAL CHARACTERS
+        raw_idea = raw_idea.replace("*", "")
+        raw_idea = raw_idea.replace("#", "")
+        raw_idea = raw_idea.replace("-", "")
+
+        # EXTRACT TITLE
+        title = ""
+
+        if "TITLE:" in raw_idea:
+            title = raw_idea.split("TITLE:")[1].split("IDEA:")[0].strip()
+
+        # EXTRACT IDEA BODY
+        idea_body = ""
+
+        if "IDEA:" in raw_idea:
+            idea_body = raw_idea.split("IDEA:")[1].strip()
 
         st.markdown(
-            f'''
-            <div class="idea-card">
-                <div class="idea-text">
-                    {idea}
-                </div>
+f"""
+<div class="idea-card">
 
-                <div class="idea-counter">
-                    {current + 1} / {len(st.session_state.ideas)}
-                </div>
-            </div>
-            ''',
+    <div class="idea-title">
+        {title}
+    </div>
+
+    <div class="idea-text">
+        {idea_body}
+    </div>
+
+    <div class="idea-counter">
+        {current + 1} / {len(st.session_state.ideas)}
+    </div>
+
+</div>
+""",
             unsafe_allow_html=True
         )
 
     with col3:
+
         if current < len(st.session_state.ideas) - 1:
-            if st.button("→", key="next", type="primary"):
+            if st.button("→", key="next", type="secondary"):
                 st.session_state.idea_index += 1
                 st.rerun()
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<div style='height:30px'></div>", unsafe_allow_html=True)
 
-    button_left, button_center, button_right = st.columns([2.2,1,2.2])
+    left_space, center_button, right_space = st.columns([2,1,2])
 
-    with button_center:
+    with center_button:
+
         if st.button("Start Over", type="primary"):
 
             st.session_state.page = "welcome"
