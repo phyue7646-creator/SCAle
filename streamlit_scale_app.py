@@ -611,7 +611,9 @@ if st.session_state.page == "welcome":
         unsafe_allow_html=True
     )
     #st.markdown("<div style='height:40px'></div>", unsafe_allow_html=True)
-
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
     st.markdown(
         '<div style="text-align:center;"><div class="page-title">Hi! I\'m SCAle.</div><br><div class="page-subtitle">I will help you to explore sustainability project ideas tailored to your diploma and interests. Let\'s get started.</div></div>',
         unsafe_allow_html=True
@@ -621,6 +623,11 @@ if st.session_state.page == "welcome":
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    
     image = Image.open("d06d65c5-67c9-4a99-b853-40525a2c4d2c.png")
 
     c1, c2, c3 = st.columns([1.2,1.6,1.2])
