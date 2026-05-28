@@ -835,6 +835,9 @@ elif st.session_state.page == "concern":
         if st.button("←", key="back3", type="secondary"):
             st.session_state.page = "category"
             st.rerun()
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+   
     st.markdown(
     '<div class="page-wrap"><div class="form-section">',
     unsafe_allow_html=True
@@ -843,24 +846,26 @@ elif st.session_state.page == "concern":
         '<div class="question-title">What sustainability problem would you like to solve?</div>',
         unsafe_allow_html=True
     )
+    st.markdown("<br>", unsafe_allow_html=True)
+ 
 
     st.markdown(
         '<div class="question-subtitle">Share an problem or challenge you have noticed in school, community, or daily life.</div>',
         unsafe_allow_html=True
     )
-
+    st.markdown("<br>", unsafe_allow_html=True)
     st.markdown(
         '<div class="question-label">Sustainability concern</div>',
         unsafe_allow_html=True
     )
-  
+    st.markdown("<br>", unsafe_allow_html=True)
     st.session_state.concern = st.text_area(
         "",
         height=140,
         max_chars=200,
         label_visibility="collapsed"
     ) 
-
+    st.markdown("<br>", unsafe_allow_html=True)
     button_left, button_center, button_right = st.columns([2.2,1,2.2])
 
     with button_center:
