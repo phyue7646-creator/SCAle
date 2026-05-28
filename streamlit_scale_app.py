@@ -1009,7 +1009,7 @@ Solution Type: {st.session_state.solution}
 
             response = model.generate_content(prompt)
 
-            ideas = response.text.split("===")
+            ideas = response.text.split("==")
 
             ideas = [idea.strip() for idea in ideas if idea.strip()]
 
@@ -1061,14 +1061,28 @@ elif st.session_state.page == "results":
         raw_idea = raw_idea.replace("#", "")
         raw_idea = raw_idea.replace("-", "")
 
-        parts = raw_idea.split(":", 1)
-
-        title = parts[0].strip()
-        
+        title = ""
         idea_body = ""
         
-        if len(parts) > 1:
-            idea_body = parts[1].strip()
+        if "TITLE:" in raw_idea and "IDEA:" in raw_idea:
+        
+            title = (
+                raw_idea
+                .split("TITLE:")[1]
+                .split("IDEA:")[0]
+                .strip()
+            )
+        
+            idea_body = (
+                raw_idea
+                .split("IDEA:")[1]
+                .strip()
+            )
+        
+        else:
+        
+            title = "Project Idea"
+            idea_body = raw_idea
         st.markdown(
 f"""
 <div class="idea-card">
