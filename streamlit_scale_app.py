@@ -306,6 +306,26 @@ ul li:hover {
     color: black !important;
 }
 
+/* selected value shown in box */
+
+div[data-baseweb="select"] input {
+
+    color: black !important;          /* UPDATED */
+
+    -webkit-text-fill-color: black !important;   /* UPDATED */
+
+    font-size: 18px !important;       /* UPDATED */
+
+    opacity: 1 !important;            /* UPDATED */
+}
+
+div[data-baseweb="select"] div[role="button"] {
+
+    color: black !important;          /* UPDATED */
+
+    opacity: 1 !important;            /* UPDATED */
+}
+
 /* selected */
 
 [aria-selected="true"] {
