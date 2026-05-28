@@ -167,7 +167,16 @@ QUESTION SECTION
 
     margin-top: 40px;
 }
+.page-wrap {
 
+    min-height: 78vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
 /* =========================================================
 GREEN BUTTONS
 ========================================================= */
@@ -544,7 +553,10 @@ elif st.session_state.page == "diploma":
             st.session_state.page = "welcome"
             st.rerun()
 
-    st.markdown('<div class="form-section">', unsafe_allow_html=True)
+    st.markdown(
+    '<div class="page-wrap"><div class="form-section">',
+    unsafe_allow_html=True
+    )
 
     st.markdown(
         '<div class="question-title">What is your diploma?</div>',
@@ -577,7 +589,7 @@ elif st.session_state.page == "diploma":
             st.session_state.page = "category"
             st.rerun()
     
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div></div>', unsafe_allow_html=True)
 
 # =========================================================
 # CATEGORY PAGE
@@ -591,7 +603,10 @@ elif st.session_state.page == "category":
         if st.button("←", key="back2", type="secondary"):
             st.session_state.page = "diploma"
             st.rerun()
-    st.markdown('<div class="form-section">', unsafe_allow_html=True)
+    st.markdown(
+    '<div class="page-wrap"><div class="form-section">',
+    unsafe_allow_html=True
+    )
     st.markdown(
         '<div class="question-title">What sustainability category interests you?</div>',
         unsafe_allow_html=True
@@ -623,7 +638,7 @@ elif st.session_state.page == "category":
             st.session_state.page = "concern"
             st.rerun()
     
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div></div>', unsafe_allow_html=True)
 # =========================================================
 # CONCERN PAGE
 # =========================================================
@@ -636,7 +651,10 @@ elif st.session_state.page == "concern":
         if st.button("←", key="back3", type="secondary"):
             st.session_state.page = "category"
             st.rerun()
-    st.markdown('<div class="form-section">', unsafe_allow_html=True)
+    st.markdown(
+    '<div class="page-wrap"><div class="form-section">',
+    unsafe_allow_html=True
+    )
     st.markdown(
         '<div class="question-title">What sustainability problem would you like to solve?</div>',
         unsafe_allow_html=True
@@ -665,7 +683,7 @@ elif st.session_state.page == "concern":
         if st.button("Continue →", type="primary"):
             st.session_state.page = "solution"
             st.rerun()
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div></div>', unsafe_allow_html=True)
 
 # =========================================================
 # SOLUTION PAGE
@@ -680,7 +698,10 @@ elif st.session_state.page == "solution":
             st.session_state.page = "concern"
             st.rerun()
 
-    st.markdown('<div class="form-section">', unsafe_allow_html=True)
+    st.markdown(
+    '<div class="page-wrap"><div class="form-section">',
+    unsafe_allow_html=True
+    )
     st.markdown(
         '<div class="question-title">Which solution format are you interested in developing?</div>',
         unsafe_allow_html=True
@@ -734,7 +755,7 @@ Return only 3 ideas in paragraph style.
             st.session_state.page = "results"
 
             st.rerun()
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div></div>', unsafe_allow_html=True)
 # =========================================================
 # RESULTS PAGE
 # =========================================================
