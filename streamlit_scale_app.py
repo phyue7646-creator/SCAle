@@ -169,21 +169,36 @@ div.stButton > button:not([kind="secondary"]) {
 }
 
 div.stButton > button:not([kind="secondary"]):hover {
-    background-color: #E7F3EC !important;
+    background-color: #1F6F43  !important;
     color: #1F6F43 !important;
 }
 
 div.stButton > button:not([kind="secondary"]):active {
     background-color: #1F6F43 !important;
     color: white !important;
+    border: none !important;
 }
 
+div.stButton > button:not([kind="secondary"]):focus {
+
+    background-color: #1F6F43 !important;   /* UPDATED */
+
+    color: white !important;                /* UPDATED */
+
+    border: none !important;
+
+    outline: none !important;
+
+    box-shadow: none !important;
 /* =========================================================
 BACK ARROW
 ========================================================= */
 
-.back-arrow button {
-    background: transparent !important;
+.back-arrow div.stButton > button {
+
+    background-color: transparent !important;   /* UPDATED */
+
+    background: transparent !important;         /* UPDATED */
 
     border: none !important;
 
@@ -203,20 +218,45 @@ BACK ARROW
     font-size: 70px !important;
 
     font-weight: 300 !important;
+
+    border-radius: 0 !important;               /* UPDATED */
 }
 
-.back-arrow button:hover {
-    background: transparent !important;
+.back-arrow div.stButton > button:hover {
+
+    background-color: transparent !important;  /* UPDATED */
+
+    background: transparent !important;        /* UPDATED */
+
     color: black !important;
 }
 
-.back-arrow button:focus {
-    outline: none !important;
-    box-shadow: none !important;
+.back-arrow div.stButton > button:active {
+
+    background-color: transparent !important;  /* UPDATED */
+
+    background: transparent !important;        /* UPDATED */
+
+    color: black !important;
 }
 
-.back-arrow button p {
+.back-arrow div.stButton > button:focus {
+
+    background-color: transparent !important;  /* UPDATED */
+
+    background: transparent !important;        /* UPDATED */
+
+    outline: none !important;
+
+    box-shadow: none !important;
+
+    color: black !important;
+}
+
+.back-arrow div.stButton > button p {
+
     font-size: 70px !important;
+
     color: black !important;
 
     margin: 0 !important;
