@@ -1059,19 +1059,15 @@ elif st.session_state.page == "results":
         raw_idea = raw_idea.replace("#", "")
         raw_idea = raw_idea.replace("-", "")
 
-        title = ""
+        parts = raw_idea.split(":", 1)
+
+        title = parts[0].strip()
+        
         idea_body = ""
         
-        lines = raw_idea.splitlines()
-        
-        for line in lines:
-        
-            if line.startswith("Idea Title:"):
-                title = line.replace("Idea Title:", "").strip()
-        
-            elif line.startswith("Idea Body:"):
-                idea_body = line.replace("Idea Body:", "").strip()
-        st.markdown(
+        if len(parts) > 1:
+            idea_body = parts[1].strip()
+                st.markdown(
 f"""
 <div class="idea-card">
 
