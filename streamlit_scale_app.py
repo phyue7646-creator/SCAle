@@ -373,7 +373,7 @@ ul li:hover {
 TEXT AREA
 ========================================================= */
 
-textarea {
+div[data-testid="stTextArea"] textarea {
 
     background-color: white !important;
 
@@ -381,35 +381,44 @@ textarea {
 
     -webkit-text-fill-color: black !important;
 
+    caret-color: black !important;
+
     font-size: 18px !important;
+
+    line-height: 1.6 !important;
 
     border-radius: 12px !important;
 
-    border: 1px solid black !important;
+    border: 2px solid black !important;
 
-    line-height: 1.6 !important;
+    box-shadow: none !important;
 }
 
-/* OUTER CONTAINER */
+/* REMOVE RED/GREEN FOCUS EFFECT */
 
-div[data-testid="stTextArea"] > div {
-
-    background-color: white !important;
-}
-
-/* INNER BOX */
-
-div[data-testid="stTextArea"] textarea {
+div[data-testid="stTextArea"] textarea:focus {
 
     background-color: white !important;
 
     color: black !important;
 
-    caret-color: black !important;
+    border: 2px solid black !important;
 
-    border: 1px solid black !important;
+    outline: none !important;
+
+    box-shadow: none !important;
 }
 
+/* REMOVE STREAMLIT DEFAULT BORDER */
+
+div[data-testid="stTextArea"] > div {
+
+    border: none !important;
+
+    box-shadow: none !important;
+
+    background: transparent !important;
+}
 
 /* WORD COUNT */
 
@@ -419,7 +428,7 @@ div[data-testid="stTextArea"] small {
 
     font-size: 14px !important;
 
-    opacity: 0 !important;
+    opacity: 1 !important;
 }
 /* =========================================================
 IDEA CARD
