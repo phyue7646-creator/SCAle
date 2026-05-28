@@ -1,4 +1,4 @@
-```python
+python
 import streamlit as st
 import google.generativeai as genai
 
@@ -718,4 +718,3 @@ elif st.session_state.page == 5:
             st.session_state.ideas = []
 
             st.rerun()
-```
