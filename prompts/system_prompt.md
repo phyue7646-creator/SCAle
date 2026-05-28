@@ -107,24 +107,23 @@ Avoid repeatedly generating:
 
 * Write one short paragraph per idea
 
-Return ONLY valid JSON.
+IMPORTANT FORMAT RULES:
 
-Return Format:
+Return ONLY plain text. 
+Do NOT return: 
+- JSON - Markdown
+- Bullet points
+- Numbering
 
-[
-{
-"title": "Idea 1",
-"idea": "..."
-},
-{
-"title": "Idea 2",
-"idea": "..."
-},
-{
-"title": "Idea 3",
-"idea": "..."
-}
-]
+You MUST follow EXACTLY this structure: 
+TITLE: Idea title 
+IDEA: Paragraph content 
+
+TITLE: Idea title 
+IDEA: Paragraph content 
+
+TITLE: Idea title 
+IDEA: Paragraph content
 
 # FINAL VALIDATION CHECK
 
