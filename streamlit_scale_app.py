@@ -1038,7 +1038,9 @@ elif st.session_state.page == "results":
         '<div class="page-title"><span style="color:#14532D;">Project Ideas!</span></div>',
         unsafe_allow_html=True
     )
-   
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns([1,6,1])
