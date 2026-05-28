@@ -15,18 +15,43 @@ st.set_page_config(
 # GEMINI CONFIG
 # =========================================================
 
-genai.configure(
-    api_key=st.secrets["GOOGLE_API_KEY"]
-)
+genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
 model = genai.GenerativeModel("gemini-2.5-flash")
 
 # =========================================================
-# LOAD SYSTEM PROMPT
+# SYSTEM PROMPT
 # =========================================================
 
-with open("prompts/system_prompt.md", "r", encoding="utf-8") as f:
-    SYSTEM_PROMPT = f.read()
+SYSTEM_PROMPT = """
+You are SCAle, an AI sustainability project idea assistant.
+
+Generate EXACTLY 3 sustainability project ideas.
+
+Requirements:
+- Tailor ideas to the student's diploma.
+- Align ideas to the selected sustainability category.
+- Address the user's sustainability concern.
+- Match the preferred solution type.
+- Ideas must be innovative but achievable for diploma students.
+- Keep descriptions concise but meaningful.
+- Each idea should be around 120-180 words.
+
+IMPORTANT:
+Return ONLY valid JSON.
+Do NOT include markdown.
+Do NOT include explanation text.
+Do NOT include ```json.
+
+Format:
+
+[
+  {
+    "title": "Project Title",
+    "idea": "Project description"
+  }
+]
+"""
 
 # =========================================================
 # DATA
@@ -92,7 +117,7 @@ SOLUTION_TYPES = [
 ]
 
 # =========================================================
-# SESSION STATE
+# SESSION STATES
 # =========================================================
 
 if "page" not in st.session_state:
@@ -111,48 +136,30 @@ if "current_idea" not in st.session_state:
 st.markdown("""
 <style>
 
-/* =========================================================
-HIDE STREAMLIT
-========================================================= */
-
 #MainMenu,
 header,
 footer {
     visibility: hidden;
 }
 
-/* =========================================================
-APP
-========================================================= */
-
 .stApp {
-    background-color: #F5F5F5;
+    background-color: #F3F3F3;
 }
 
 .block-container {
-    padding-top: 1.5rem;
+    padding-top: 1rem;
     max-width: 100%;
 }
 
-/* =========================================================
-LAYOUT
-========================================================= */
-
 .page-wrapper {
-    padding-left: 16%;
-    padding-right: 16%;
+    padding-left: 14%;
+    padding-right: 14%;
     padding-top: 20px;
-    padding-bottom: 60px;
 }
-
-/* =========================================================
-SCALE LOGO
-========================================================= */
 
 .scale-logo {
     font-size: 52px;
     font-weight: 800;
-    margin-bottom: 25px;
 }
 
 .scale-sca {
@@ -163,58 +170,45 @@ SCALE LOGO
     color: #8BC34A;
 }
 
-/* =========================================================
-WELCOME
-========================================================= */
-
 .hero-title {
     text-align: center;
     font-size: 58px;
     font-weight: 700;
-    color: #1A1A1A;
     margin-top: 30px;
+    color: #1A1A1A;
 }
 
 .hero-subtitle {
     text-align: center;
-    font-size: 22px;
+    font-size: 21px;
     line-height: 1.8;
     color: #666666;
-    margin-top: 18px;
+    margin-top: 20px;
 }
 
 .hero-image {
     display: flex;
     justify-content: center;
-    margin-top: 45px;
-    margin-bottom: 45px;
+    margin-top: 35px;
 }
 
 .hero-image img {
-    width: 320px;
+    width: 230px;
 }
 
-/* =========================================================
-PAGE TITLES
-========================================================= */
-
 .page-title {
-    font-size: 48px;
+    font-size: 46px;
     font-weight: 700;
     color: #1A1A1A;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .page-subtitle {
     font-size: 20px;
     color: #666666;
-    margin-top: 10px;
-    margin-bottom: 35px;
+    margin-top: 12px;
+    margin-bottom: 30px;
 }
-
-/* =========================================================
-LABELS
-========================================================= */
 
 label {
     color: black !important;
@@ -222,34 +216,14 @@ label {
     font-weight: 600 !important;
 }
 
-/* =========================================================
-SELECTBOX
-========================================================= */
-
-div[data-baseweb="select"] > div {
-    background: white !important;
-    border: 1px solid #CCCCCC !important;
-    border-radius: 8px !important;
-    min-height: 58px !important;
-    color: black !important;
-}
-
-div[data-baseweb="select"] * {
-    color: black !important;
-}
-
-/* =========================================================
-TEXT AREA
-========================================================= */
-
 .stTextArea textarea {
     background-color: white !important;
     color: black !important;
-    border: 1px solid #CCCCCC !important;
+    border: 1px solid #D0D0D0 !important;
     border-radius: 8px !important;
     font-size: 18px !important;
+    padding: 18px !important;
     min-height: 240px !important;
-    padding: 16px !important;
 
     -webkit-text-fill-color: black !important;
     caret-color: black !important;
@@ -258,117 +232,119 @@ TEXT AREA
 .stTextArea textarea:focus {
     border: 1px solid #14532D !important;
     box-shadow: none !important;
-    outline: none !important;
 }
 
-/* =========================================================
-BUTTONS
-========================================================= */
+div[data-baseweb="select"] > div {
+    background: white !important;
+    border: 1px solid #D0D0D0 !important;
+    min-height: 58px !important;
+    border-radius: 8px !important;
+}
+
+div[data-baseweb="select"] * {
+    color: black !important;
+    font-size: 18px !important;
+}
+
+ul {
+    background-color: white !important;
+}
+
+li:hover {
+    background-color: #E7F3EC !important;
+}
 
 .stButton > button {
-    background: #14532D !important;
-    color: white !important;
-    border: none !important;
-    border-radius: 14px !important;
-    height: 56px !important;
-    width: 320px !important;
-    font-size: 20px !important;
-    font-weight: 700 !important;
+    background-color: #14532D;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    height: 56px;
+    width: 320px;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .stButton > button:hover {
-    background: #0F3F22 !important;
-    color: white !important;
+    background-color: #1F6F43;
+    color: white;
 }
 
-/* =========================================================
-BACK BUTTON
-========================================================= */
-
-.back-btn button {
+.back-arrow button {
     background: transparent !important;
-    color: black !important;
     border: none !important;
+    color: black !important;
+    font-size: 56px !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
     box-shadow: none !important;
-    width: 70px !important;
-    height: 70px !important;
-    font-size: 50px !important;
 }
 
-.back-btn button:hover {
+.back-arrow button:hover {
     background: transparent !important;
     color: black !important;
 }
-
-/* =========================================================
-RESULT
-========================================================= */
 
 .result-small {
     text-align: center;
     font-size: 24px;
     font-weight: 700;
-    color: #222222;
+    color: #1A1A1A;
 }
 
 .result-big {
     text-align: center;
-    font-size: 58px;
+    font-size: 62px;
     font-weight: 800;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
 .result-card {
     background: white;
     border: 1px solid #DDDDDD;
-    border-radius: 22px;
-    padding: 45px 55px;
-    min-height: 430px;
+    border-radius: 18px;
+    padding: 38px 48px;
+    min-height: 460px;
 }
 
 .idea-title {
     text-align: center;
-    font-size: 32px;
+    font-size: 34px;
     font-weight: 700;
-    margin-bottom: 30px;
     color: #1A1A1A;
+    margin-bottom: 32px;
 }
 
 .idea-text {
     font-size: 21px;
     line-height: 2;
     color: #333333;
+    text-align: left;
 }
 
 .idea-counter {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 35px;
     font-size: 18px;
-    color: #666666;
+    color: #222222;
 }
 
-/* =========================================================
-ARROWS
-========================================================= */
-
-.arrow-btn button {
+.arrow-only button {
     background: transparent !important;
     border: none !important;
     color: #14532D !important;
+    font-size: 72px !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
     box-shadow: none !important;
-    font-size: 55px !important;
-    width: 60px !important;
-    height: 60px !important;
 }
 
-.arrow-btn button:hover {
+.arrow-only button:hover {
     background: transparent !important;
     color: #14532D !important;
 }
-
-/* =========================================================
-MOBILE
-========================================================= */
 
 @media (max-width: 768px) {
 
@@ -378,7 +354,7 @@ MOBILE
 }
 
 .hero-title {
-    font-size: 42px;
+    font-size: 40px;
 }
 
 .page-title {
@@ -389,8 +365,16 @@ MOBILE
     font-size: 42px;
 }
 
+.idea-title {
+    font-size: 28px;
+}
+
+.idea-text {
+    font-size: 18px;
+}
+
 .hero-image img {
-    width: 220px;
+    width: 180px;
 }
 
 }
@@ -401,16 +385,6 @@ MOBILE
 # =========================================================
 # FUNCTIONS
 # =========================================================
-
-def scale_logo():
-    st.markdown(
-        """
-        <div class="scale-logo">
-            <span class="scale-sca">SCA</span><span class="scale-le">le</span>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
 
 def next_page():
     st.session_state.page += 1
@@ -430,47 +404,20 @@ Sustainability Concern:
 
 Preferred Solution Type:
 {solution_type}
-
-Return ONLY valid JSON.
-
-Format:
-[
-  {{
-    "title": "Project Title",
-    "idea": "Project description"
-  }}
-]
-
-Generate exactly 3 ideas.
 """
 
-    final_prompt = SYSTEM_PROMPT + "\n\n" + user_prompt
-
-    response = model.generate_content(final_prompt)
+    response = model.generate_content(
+        SYSTEM_PROMPT + "\n\n" + user_prompt
+    )
 
     text = response.text.strip()
 
-    text = text.replace("```json", "")
-    text = text.replace("```", "")
-    text = text.strip()
+    if text.startswith("```json"):
+        text = text.replace("```json", "").replace("```", "").strip()
 
-    try:
+    ideas = json.loads(text)
 
-        ideas = json.loads(text)
-
-        if isinstance(ideas, dict):
-            ideas = [ideas]
-
-        return ideas
-
-    except Exception:
-
-        return [
-            {
-                "title": "Error Generating Ideas",
-                "idea": "Gemini returned invalid JSON format."
-            }
-        ]
+    return ideas
 
 # =========================================================
 # WRAPPER
@@ -484,32 +431,31 @@ st.markdown('<div class="page-wrapper">', unsafe_allow_html=True)
 
 if st.session_state.page == 0:
 
-    scale_logo()
+    st.markdown("""
+    <div class="scale-logo">
+        <span class="scale-sca">SCA</span><span class="scale-le">le</span>
+    </div>
+    """, unsafe_allow_html=True)
 
-    st.markdown(
-        "<div class='hero-title'>Hi! I'm SCAle.</div>",
-        unsafe_allow_html=True
-    )
+    st.markdown("""
+    <div class="hero-title">
+        Hi! I'm <span class="scale-sca">SCA</span><span class="scale-le">le</span>.
+    </div>
+    """, unsafe_allow_html=True)
 
-    st.markdown(
-        """
-        <div class='hero-subtitle'>
-        I will help you explore sustainability project ideas
-        tailored to your diploma and interests.
-        Let's get started.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown("""
+    <div class="hero-subtitle">
+        I will help you explore sustainability project ideas tailored to your diploma and interests.
+    </div>
+    """, unsafe_allow_html=True)
 
-    st.markdown(
-        """
-        <div class="hero-image">
-            <img src="https://raw.githubusercontent.com/phyu7646-creator/SCAle/main/assets/robot.png">
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown("""
+    <div class="hero-image">
+        <img src="https://raw.githubusercontent.com/phyu7646-creator/SCAle/main/assets/robot.png">
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("<br>", unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns([1,1,1])
 
@@ -524,9 +470,7 @@ if st.session_state.page == 0:
 
 elif st.session_state.page == 1:
 
-    scale_logo()
-
-    st.markdown('<div class="back-btn">', unsafe_allow_html=True)
+    st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
 
     if st.button("←", key="back1"):
         previous_page()
@@ -534,13 +478,10 @@ elif st.session_state.page == 1:
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-    st.markdown(
-        '<div class="page-title">What is your diploma?</div>',
-        unsafe_allow_html=True
-    )
+    st.markdown('<div class="page-title">What is your diploma?</div>', unsafe_allow_html=True)
 
     st.markdown(
-        '<div class="page-subtitle">This helps me tailor ideas to your field of study.</div>',
+        '<div class="page-subtitle">Select your diploma to personalize your sustainability project ideas.</div>',
         unsafe_allow_html=True
     )
 
@@ -553,9 +494,9 @@ elif st.session_state.page == 1:
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([1,1,1])
+    c1, c2, c3 = st.columns([1,1,1])
 
-    with col2:
+    with c2:
         if st.button("Continue →"):
             next_page()
             st.rerun()
@@ -566,9 +507,7 @@ elif st.session_state.page == 1:
 
 elif st.session_state.page == 2:
 
-    scale_logo()
-
-    st.markdown('<div class="back-btn">', unsafe_allow_html=True)
+    st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
 
     if st.button("←", key="back2"):
         previous_page()
@@ -576,13 +515,10 @@ elif st.session_state.page == 2:
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-    st.markdown(
-        '<div class="page-title">What sustainability category interests you?</div>',
-        unsafe_allow_html=True
-    )
+    st.markdown('<div class="page-title">What sustainability category interests you?</div>', unsafe_allow_html=True)
 
     st.markdown(
-        '<div class="page-subtitle">Choose the sustainability focus area you care about.</div>',
+        '<div class="page-subtitle">Choose a sustainability category you want to focus on.</div>',
         unsafe_allow_html=True
     )
 
@@ -595,10 +531,10 @@ elif st.session_state.page == 2:
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([1,1,1])
+    c1, c2, c3 = st.columns([1,1,1])
 
-    with col2:
-        if st.button("Continue →"):
+    with c2:
+        if st.button("Continue →", key="cat_btn"):
             next_page()
             st.rerun()
 
@@ -608,9 +544,7 @@ elif st.session_state.page == 2:
 
 elif st.session_state.page == 3:
 
-    scale_logo()
-
-    st.markdown('<div class="back-btn">', unsafe_allow_html=True)
+    st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
 
     if st.button("←", key="back3"):
         previous_page()
@@ -624,13 +558,12 @@ elif st.session_state.page == 3:
     )
 
     st.markdown(
-        '<div class="page-subtitle">Share a problem or challenge you noticed in school, community, or daily life.</div>',
+        '<div class="page-subtitle">Share a challenge you noticed in school, community, or daily life.</div>',
         unsafe_allow_html=True
     )
 
     concern = st.text_area(
         "Sustainability concern",
-        height=250,
         max_chars=200,
         key="concern_box"
     )
@@ -639,11 +572,10 @@ elif st.session_state.page == 3:
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([1,1,1])
+    c1, c2, c3 = st.columns([1,1,1])
 
-    with col2:
-
-        if st.button("Continue →"):
+    with c2:
+        if st.button("Continue →", key="concern_btn"):
 
             if concern.strip() == "":
                 st.warning("Please enter your sustainability concern.")
@@ -657,9 +589,7 @@ elif st.session_state.page == 3:
 
 elif st.session_state.page == 4:
 
-    scale_logo()
-
-    st.markdown('<div class="back-btn">', unsafe_allow_html=True)
+    st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
 
     if st.button("←", key="back4"):
         previous_page()
@@ -673,7 +603,7 @@ elif st.session_state.page == 4:
     )
 
     st.markdown(
-        '<div class="page-subtitle">Choose your preferred project format.</div>',
+        '<div class="page-subtitle">Choose the type of sustainability solution you want to create.</div>',
         unsafe_allow_html=True
     )
 
@@ -686,11 +616,11 @@ elif st.session_state.page == 4:
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([1,1,1])
+    c1, c2, c3 = st.columns([1,1,1])
 
-    with col2:
+    with c2:
 
-        if st.button("Submit"):
+        if st.button("Generate Ideas"):
 
             with st.spinner("Generating sustainability ideas..."):
 
@@ -698,15 +628,14 @@ elif st.session_state.page == 4:
                     st.session_state.diploma,
                     st.session_state.category,
                     st.session_state.concern,
-                    solution_type
+                    st.session_state.solution_type
                 )
 
                 st.session_state.ideas = ideas
                 st.session_state.current_idea = 0
 
-                next_page()
-
-                st.rerun()
+            next_page()
+            st.rerun()
 
 # =========================================================
 # PAGE 5
@@ -719,7 +648,11 @@ elif st.session_state.page == 5:
 
     idea = ideas[current]
 
-    scale_logo()
+    st.markdown("""
+    <div class="hero-image">
+        <img src="https://raw.githubusercontent.com/phyu7646-creator/SCAle/main/assets/robot.png">
+    </div>
+    """, unsafe_allow_html=True)
 
     st.markdown(
         '<div class="result-small">Here are your</div>',
@@ -727,22 +660,17 @@ elif st.session_state.page == 5:
     )
 
     st.markdown(
-        """
-        <div class="result-big">
-            <span class="scale-sca">Project</span>
-            <span class="scale-le">Ideas!</span>
-        </div>
-        """,
+        '<div class="result-big"><span class="scale-sca">Project</span> <span class="scale-le">Ideas!</span></div>',
         unsafe_allow_html=True
     )
 
-    col1, col2, col3 = st.columns([1,10,1])
+    left, center, right = st.columns([1,8,1])
 
-    with col1:
+    with left:
 
-        st.markdown('<div class="arrow-btn">', unsafe_allow_html=True)
+        st.markdown('<div class="arrow-only">', unsafe_allow_html=True)
 
-        if st.button("◀", key="left_arrow"):
+        if st.button("‹", key="left_arrow"):
 
             if current > 0:
                 st.session_state.current_idea -= 1
@@ -750,18 +678,18 @@ elif st.session_state.page == 5:
 
         st.markdown('</div>', unsafe_allow_html=True)
 
-    with col2:
+    with center:
 
         st.markdown(
             f"""
             <div class="result-card">
 
                 <div class="idea-title">
-                    {idea['title']}
+                    {idea["title"]}
                 </div>
 
                 <div class="idea-text">
-                    {idea['idea']}
+                    {idea["idea"]}
                 </div>
 
                 <div class="idea-counter">
@@ -773,11 +701,11 @@ elif st.session_state.page == 5:
             unsafe_allow_html=True
         )
 
-    with col3:
+    with right:
 
-        st.markdown('<div class="arrow-btn">', unsafe_allow_html=True)
+        st.markdown('<div class="arrow-only">', unsafe_allow_html=True)
 
-        if st.button("▶", key="right_arrow"):
+        if st.button("›", key="right_arrow"):
 
             if current < len(ideas) - 1:
                 st.session_state.current_idea += 1
@@ -787,9 +715,9 @@ elif st.session_state.page == 5:
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([1,1,1])
+    c1, c2, c3 = st.columns([1,1,1])
 
-    with col2:
+    with c2:
 
         if st.button("Start Over"):
 
