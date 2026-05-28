@@ -19,6 +19,11 @@ st.set_page_config(
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
 model = genai.GenerativeModel("gemini-2.5-flash")
+from pathlib import Path
+
+SYSTEM_PROMPT = Path(
+    "prompts/system_prompt.md"
+).read_text(encoding="utf-8")
 
 # =========================================================
 # SESSION STATE
@@ -991,7 +996,7 @@ elif st.session_state.page == "solution":
         if st.button("Submit", type="primary"):
     
             prompt = f"""
-Generate 3 sustainability project ideas.
+{SYSTEM_PROMPT}
 
 Diploma: {st.session_state.diploma}
 
@@ -1000,13 +1005,13 @@ Category: {st.session_state.category}
 Concern: {st.session_state.concern}
 
 Solution Type: {st.session_state.solution}
-
-Return only 3 ideas in paragraph style.
 """
 
             response = model.generate_content(prompt)
 
-            ideas = response.text.split("\n\n")
+            ideas = response.text.split("===")
+
+            ideas = [idea.strip() for idea in ideas if idea.strip()]
 
             st.session_state.ideas = ideas
             st.session_state.idea_index = 0
@@ -1054,14 +1059,18 @@ elif st.session_state.page == "results":
         raw_idea = raw_idea.replace("#", "")
         raw_idea = raw_idea.replace("-", "")
 
-        parts = raw_idea.split(":", 1)
-
-        title = parts[0].strip()
-        
+        title = ""
         idea_body = ""
         
-        if len(parts) > 1:
-            idea_body = parts[1].strip()
+        lines = raw_idea.splitlines()
+        
+        for line in lines:
+        
+            if line.startswith("Idea Title:"):
+                title = line.replace("Idea Title:", "").strip()
+        
+            elif line.startswith("Idea Body:"):
+                idea_body = line.replace("Idea Body:", "").strip()
         st.markdown(
 f"""
 <div class="idea-card">
