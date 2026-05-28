@@ -872,12 +872,7 @@ elif st.session_state.page == "concern":
     label_visibility="collapsed"
     )
     
-    word_count = len(
-        [
-            word for word in st.session_state.concern.strip().split()
-            if word
-        ]
-    )
+    word_count = len(st.session_state.concern.split())
     
     st.markdown(
         f"""
@@ -948,6 +943,8 @@ elif st.session_state.page == "solution":
         label_visibility="collapsed"
     )
 
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
     button_left, button_center, button_right = st.columns([2.2,1,2.2])
