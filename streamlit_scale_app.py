@@ -280,6 +280,24 @@ div[data-baseweb="select"] input {
 
     opacity: 1 !important;
 }
+
+/* ALIGN SELECTED TEXT VERTICALLY */
+
+div[data-baseweb="select"] input {
+
+    line-height: 58px !important;
+
+    height: 58px !important;
+
+    padding-top: 0px !important;
+
+    padding-bottom: 0px !important;
+}
+
+div[data-baseweb="select"] span {
+
+    line-height: 58px !important;
+}
 div[data-baseweb="select"] > div {
     background-color: white !important;
 
