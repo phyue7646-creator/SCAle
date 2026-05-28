@@ -80,6 +80,24 @@ html, body, [class*="css"] {
     background-color: #F5F5F5;
 }
 
+/* =========================================================
+REMOVE HEADER / TOOLBAR / TOP SPACING
+========================================================= */
+
+header {
+    visibility: hidden !important;
+    height: 0rem !important;
+}
+
+[data-testid="stHeader"] {
+    display: none !important;
+    height: 0rem !important;
+}
+
+[data-testid="stToolbar"] {
+    display: none !important;
+}
+
 .main .block-container {
 
     max-width: 1200px !important;
@@ -91,6 +109,25 @@ html, body, [class*="css"] {
     padding-left: 4rem !important;
 
     padding-right: 4rem !important;
+
+    margin-top: 0rem !important;
+}
+
+/* REMOVE EXTRA TOP GAP */
+
+div[data-testid="stVerticalBlock"] {
+    gap: 0rem !important;
+}
+
+div[data-testid="stVerticalBlock"] > div:first-child {
+    margin-top: 0rem !important;
+    padding-top: 0rem !important;
+}
+
+/* REMOVE DEFAULT STREAMLIT TOP SPACE */
+
+section.main > div {
+    padding-top: 0rem !important;
 }
 
 /* =========================================================
