@@ -50,6 +50,9 @@ if "ideas" not in st.session_state:
 if "idea_index" not in st.session_state:
     st.session_state.idea_index = 0
 
+if "loading" not in st.session_state:
+    st.session_state.loading = False
+
 # =========================================================
 # CSS
 # =========================================================
@@ -311,6 +314,21 @@ button[kind="primary"]:focus {
     outline: none !important;
 
     box-shadow: none !important;}
+
+/* DISABLED BUTTON */
+
+button[kind="primary"]:disabled {
+
+    background-color: rgb(166,166,166) !important;
+
+    color: white !important;
+
+    border: none !important;
+
+    opacity: 1 !important;
+
+    cursor: not-allowed !important;
+}
 /* =========================================================
 BACK ARROW ONLY
 ========================================================= */
@@ -993,7 +1011,16 @@ elif st.session_state.page == "solution":
     button_left, button_center, button_right = st.columns([2.2,1,2.2])
 
     with button_center:
-        if st.button("Submit", type="primary"):
+
+        submit_clicked = st.button(
+            "Submit",
+            type="primary",
+            disabled=st.session_state.loading
+        )
+
+        if submit_clicked:
+
+            st.session_state.loading = True
     
             prompt = f"""
 {SYSTEM_PROMPT}
