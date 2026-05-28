@@ -179,17 +179,7 @@ WELCOME PAGE LAYOUT
 
 .welcome-content {
 
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
     text-align: center;
-
-    margin-top: 120px;
 }
 
 .logo-sca {
@@ -647,46 +637,48 @@ solutions = [
 if st.session_state.page == "welcome":
 
     st.markdown(
-        '<div class="logo"><span class="logo-sca">SCA</span><span class="logo-le">le</span></div>',
+"""
+<div class="logo">
+    <span class="logo-sca">SCA</span><span class="logo-le">le</span>
+</div>
+""",
         unsafe_allow_html=True
     )
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
 
-    st.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)
+    left_space, center_content, right_space = st.columns([1.2,2,1.2])
 
-    st.markdown(
-        '<div style="text-align:center;"><div class="page-title">Hi! I\'m SCAle.</div><br><div class="page-subtitle">I will help you to explore sustainability project ideas tailored to your diploma and interests. Let\'s get started.</div></div>',
-        unsafe_allow_html=True
-    )
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
+    with center_content:
 
-    st.markdown(
-    '<div class="button-center">',
-    unsafe_allow_html=True
-    )
+        st.markdown("<div style='height:120px'></div>", unsafe_allow_html=True)
 
-    if st.button("Start Your Project Ideas", type="primary"):
-        st.session_state.page = "diploma"
-        st.rerun()
-    
-    st.markdown(
-        '</div>',
-        unsafe_allow_html=True
-    )
+        st.markdown(
+"""
+<div class="welcome-content">
+
+    <div class="page-title">
+        Hi! I'm SCAle.
+    </div>
+
+    <div class="page-subtitle">
+        I will help you to explore sustainability project ideas
+        tailored to your diploma and interests.
+        Let's get started.
+    </div>
+
+</div>
+""",
+            unsafe_allow_html=True
+        )
+
+        st.markdown("<div style='height:40px'></div>", unsafe_allow_html=True)
+
+        if st.button(
+            "Start Your Project Ideas",
+            type="primary",
+            use_container_width=True
+        ):
+            st.session_state.page = "diploma"
+            st.rerun()
 
     # button_left, button_center, button_right = st.columns([1,1,1])
 
