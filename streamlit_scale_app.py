@@ -251,54 +251,8 @@ button[kind="secondary"]:focus  {
 SELECTBOX
 ========================================================= */
 
-/* SHOW SELECTED ITEM */
-
-div[data-baseweb="select"] div {
-
-    color: black !important;
-
-    opacity: 1 !important;
-}
-
-div[data-baseweb="select"] span {
-
-    color: black !important;
-
-    opacity: 1 !important;
-
-    -webkit-text-fill-color: black !important;
-}
-
-/* selected value shown in box */
-
-
-div[data-baseweb="select"] input {
-
-    color: black !important;
-
-    -webkit-text-fill-color: black !important;
-
-    opacity: 1 !important;
-}
-
-/* ALIGN SELECTED TEXT VERTICALLY */
-
-div[data-baseweb="select"] input {
-
-    line-height: 58px !important;
-
-    height: 58px !important;
-
-    padding-top: 0px !important;
-
-    padding-bottom: 0px !important;
-}
-
-div[data-baseweb="select"] span {
-
-    line-height: 58px !important;
-}
 div[data-baseweb="select"] > div {
+
     background-color: white !important;
 
     border: 1px solid #D9D9D9 !important;
@@ -307,42 +261,49 @@ div[data-baseweb="select"] > div {
 
     min-height: 58px !important;
 
+    height: 58px !important;
+
     box-shadow: none !important;
+
+    display: flex !important;
+
+    align-items: center !important;
 }
 
-div[data-baseweb="select"] > div * {
+/* selected value */
+
+div[data-baseweb="select"] span,
+div[data-baseweb="select"] input,
+div[data-baseweb="select"] div {
 
     color: black !important;
 
     -webkit-text-fill-color: black !important;
 
     opacity: 1 !important;
+
+    font-size: 18px !important;
 }
-/* SHOW SELECTED ITEM */
+
+/* FIX VERTICAL ALIGNMENT */
 
 div[data-baseweb="select"] div[class*="singleValue"] {
 
-    color: black !important;
+    position: relative !important;
 
-    opacity: 1 !important;
+    top: 0px !important;
 
-    font-size: 18px !important;
+    transform: translateY(0px) !important;
 
-    font-weight: 400 !important;
-}
+    display: flex !important;
 
-div[data-baseweb="select"] div[role="button"] {
+    align-items: center !important;
 
-    color: black !important;          /* UPDATED */
+    height: 58px !important;
 
-    opacity: 1 !important;            /* UPDATED */
-}
+    line-height: 58px !important;
 
-div[data-baseweb="select"] > div:focus-within {
-
-    border: 1px solid #D9D9D9 !important;
-
-    box-shadow: none !important;
+    margin: 0 !important;
 }
 
 /* dropdown popup */
@@ -352,7 +313,9 @@ ul {
 }
 
 ul li {
+
     background-color: white !important;
+
     color: black !important;
 
     font-size: 18px !important;
@@ -361,18 +324,21 @@ ul li {
 /* hover */
 
 ul li:hover {
+
     background-color: #E7F3EC !important;
+
     color: black !important;
 }
-
 
 /* selected */
 
 [aria-selected="true"] {
+
     background-color: #1F6F43 !important;
 }
 
 [aria-selected="true"] * {
+
     color: white !important;
 }
 
