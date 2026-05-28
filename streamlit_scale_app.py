@@ -164,282 +164,285 @@ Preferred Solution Type:
 # CSS
 # =========================================================
 
-st.markdown("""
-<style>
-
-#MainMenu,
-header,
-footer {
-    visibility: hidden;
-}
-
-.stApp {
-    background-color: #F5F5F5;
-}
-
-.block-container {
-    max-width: 1180px;
-    padding-top: 1rem;
-    padding-bottom: 2rem;
-}
-
-/* =========================================================
-LOGO
-========================================================= */
-
-.scale-logo {
-    font-size: 42px;
-    font-weight: 700;
-}
-
-/* =========================================================
-TEXT
-========================================================= */
-
-.page-title {
-    font-size: 56px;
-    font-weight: 700;
-    color: #161616;
-    line-height: 1.2;
-}
-
-.page-subtitle {
-    font-size: 24px;
-    color: #666666;
-    line-height: 1.7;
-}
-
-/* =========================================================
-LABELS
-========================================================= */
-
-label,
-.stSelectbox label,
-.stTextArea label {
-    color: black !important;
-    font-size: 18px !important;
-    font-weight: 700 !important;
-}
+st.markdown(
+    """
+    <style>
+
+    #MainMenu,
+    header,
+    footer {
+        visibility: hidden;
+    }
+
+    .stApp {
+        background-color: #F5F5F5;
+    }
+
+    .block-container {
+        max-width: 1180px;
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+    }
+
+    /* =========================================================
+    LOGO
+    ========================================================= */
+
+    .scale-logo {
+        font-size: 42px;
+        font-weight: 700;
+    }
+
+    /* =========================================================
+    TEXT
+    ========================================================= */
+
+    .page-title {
+        font-size: 56px;
+        font-weight: 700;
+        color: #161616;
+        line-height: 1.2;
+    }
+
+    .page-subtitle {
+        font-size: 24px;
+        color: #666666;
+        line-height: 1.7;
+    }
+
+    /* =========================================================
+    LABELS
+    ========================================================= */
+
+    label,
+    .stSelectbox label,
+    .stTextArea label {
+        color: black !important;
+        font-size: 18px !important;
+        font-weight: 700 !important;
+    }
+
+    /* =========================================================
+    BUTTONS
+    ========================================================= */
+
+    .stButton > button {
+        background: #1F6F43 !important;
+        color: white !important;
+
+        border: none !important;
+        border-radius: 14px !important;
 
-/* =========================================================
-BUTTONS
-========================================================= */
+        min-height: 60px !important;
+        width: 340px !important;
 
-.stButton > button {
-    background: #1F6F43 !important;
-    color: white !important;
+        font-size: 22px !important;
+        font-weight: 700 !important;
 
-    border: none !important;
-    border-radius: 14px !important;
+        transition: 0.2s;
+    }
 
-    min-height: 60px !important;
-    width: 340px !important;
+    .stButton > button:hover {
+        background: #1F6F43 !important;
+        color: white !important;
+    }
 
-    font-size: 22px !important;
-    font-weight: 700 !important;
+    .stButton > button:active {
+        background: #1F6F43 !important;
+        color: white !important;
+    }
 
-    transition: 0.2s;
-}
+    /* =========================================================
+    BACK ARROW
+    ========================================================= */
 
-.stButton > button:hover {
-    background: #1F6F43 !important;
-    color: white !important;
-}
+    .back-arrow button {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
 
-.stButton > button:active {
-    background: #1F6F43 !important;
-    color: white !important;
-}
+        color: black !important;
 
-/* =========================================================
-BACK ARROW
-========================================================= */
+        width: auto !important;
+        height: auto !important;
 
-.back-arrow button {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
 
-    color: black !important;
+        min-height: unset !important;
 
-    width: auto !important;
-    height: auto !important;
+        font-size: 72px !important;
+        font-weight: 300 !important;
+    }
 
-    padding: 0 !important;
-    margin: 0 !important;
+    .back-arrow button:hover {
+        background: transparent !important;
+        color: black !important;
+    }
 
-    min-height: unset !important;
+    .back-arrow button:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
 
-    font-size: 72px !important;
-    font-weight: 300 !important;
-}
+    .back-arrow button p {
+        font-size: 72px !important;
+        margin: 0 !important;
+        color: black !important;
+    }
 
-.back-arrow button:hover {
-    background: transparent !important;
-    color: black !important;
-}
+    /* =========================================================
+    SELECT BOX
+    ========================================================= */
 
-.back-arrow button:focus {
-    outline: none !important;
-    box-shadow: none !important;
-}
+    div[data-baseweb="select"] > div {
+        background: white !important;
 
-.back-arrow button p {
-    font-size: 72px !important;
-    margin: 0 !important;
-    color: black !important;
-}
+        border: 1px solid #D9D9D9 !important;
 
-/* =========================================================
-SELECT BOX
-========================================================= */
+        border-radius: 0px !important;
 
-div[data-baseweb="select"] > div {
-    background: white !important;
+        min-height: 60px !important;
 
-    border: 1px solid #D9D9D9 !important;
+        box-shadow: none !important;
+    }
 
-    border-radius: 0px !important;
+    div[data-baseweb="select"] span {
+        color: black !important;
+        font-size: 18px !important;
+    }
 
-    min-height: 60px !important;
+    /* Dropdown popup */
 
-    box-shadow: none !important;
-}
+    div[role="listbox"] {
+        background: white !important;
+        border: 1px solid #D9D9D9 !important;
+    }
 
-div[data-baseweb="select"] span {
-    color: black !important;
-    font-size: 18px !important;
-}
+    /* Dropdown option */
 
-/* Dropdown popup */
+    div[role="option"] {
+        background: white !important;
+        color: black !important;
 
-div[role="listbox"] {
-    background: white !important;
-    border: 1px solid #D9D9D9 !important;
-}
+        font-size: 17px !important;
+    }
 
-/* Dropdown option */
+    /* Hover */
 
-div[role="option"] {
-    background: white !important;
-    color: black !important;
+    div[role="option"]:hover {
+        background: #E7F3EC !important;
+        color: black !important;
+    }
 
-    font-size: 17px !important;
-}
+    /* Selected */
 
-/* Hover */
+    div[aria-selected="true"] {
+        background: #1F6F43 !important;
+    }
 
-div[role="option"]:hover {
-    background: #E7F3EC !important;
-    color: black !important;
-}
+    div[aria-selected="true"] * {
+        color: white !important;
+    }
 
-/* Selected */
+    /* =========================================================
+    TEXT AREA
+    ========================================================= */
 
-div[aria-selected="true"] {
-    background: #1F6F43 !important;
-}
+    .stTextArea textarea {
+        background: white !important;
+        color: black !important;
 
-div[aria-selected="true"] * {
-    color: white !important;
-}
+        border: 1px solid #D9D9D9 !important;
 
-/* =========================================================
-TEXT AREA
-========================================================= */
+        border-radius: 4px !important;
 
-.stTextArea textarea {
-    background: white !important;
-    color: black !important;
+        font-size: 18px !important;
 
-    border: 1px solid #D9D9D9 !important;
+        min-height: 230px !important;
 
-    border-radius: 4px !important;
+        padding: 18px !important;
+    }
 
-    font-size: 18px !important;
+    /* =========================================================
+    IDEA CARD
+    ========================================================= */
 
-    min-height: 230px !important;
+    .idea-card {
+        background: white;
 
-    padding: 18px !important;
-}
+        border: 1px solid #E1E1E1;
 
-/* =========================================================
-IDEA CARD
-========================================================= */
+        border-radius: 18px;
 
-.idea-card {
-    background: white;
+        padding: 42px;
+    }
 
-    border: 1px solid #E1E1E1;
+    .idea-title {
+        text-align: center;
 
-    border-radius: 18px;
+        font-size: 32px;
+        font-weight: 700;
 
-    padding: 42px;
-}
+        margin-bottom: 28px;
 
-.idea-title {
-    text-align: center;
+        color: #161616;
+    }
 
-    font-size: 32px;
-    font-weight: 700;
+    .idea-text {
+        font-size: 20px;
 
-    margin-bottom: 28px;
+        line-height: 2;
 
-    color: #161616;
-}
+        color: #2B2B2B;
 
-.idea-text {
-    font-size: 20px;
+        text-align: left;
+    }
 
-    line-height: 2;
+    .idea-counter {
+        text-align: center;
 
-    color: #2B2B2B;
+        margin-top: 28px;
 
-    text-align: left;
-}
+        font-size: 18px;
 
-.idea-counter {
-    text-align: center;
+        color: black;
+    }
 
-    margin-top: 28px;
+    /* =========================================================
+    ARROWS
+    ========================================================= */
 
-    font-size: 18px;
+    .arrow-button button {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
 
-    color: black;
-}
+        color: #1F6F43 !important;
 
-/* =========================================================
-ARROWS
-========================================================= */
+        width: auto !important;
+        height: auto !important;
 
-.arrow-button button {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+        min-height: unset !important;
 
-    color: #1F6F43 !important;
+        font-size: 70px !important;
 
-    width: auto !important;
-    height: auto !important;
+        padding-top: 150px !important;
+    }
 
-    min-height: unset !important;
+    .arrow-button button:hover {
+        background: transparent !important;
+    }
 
-    font-size: 70px !important;
+    .arrow-button button p {
+        font-size: 70px !important;
+        color: #1F6F43 !important;
+    }
 
-    padding-top: 150px !important;
-}
-
-.arrow-button button:hover {
-    background: transparent !important;
-}
-
-.arrow-button button p {
-    font-size: 70px !important;
-    color: #1F6F43 !important;
-}
-
-</style>
-""", unsafe_allow_html=True)
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # =========================================================
 # PAGE 0
@@ -501,7 +504,7 @@ if st.session_state.page == 0:
 
 elif st.session_state.page == 1:
 
-    col_back, col_space = st.columns([0.08, 0.92])
+    col_back, _ = st.columns([0.08, 0.92])
 
     with col_back:
 
@@ -541,9 +544,9 @@ elif st.session_state.page == 1:
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([1,1,1])
+    c1, c2, c3 = st.columns([1,1,1])
 
-    with col2:
+    with c2:
 
         if st.button("Continue →"):
             next_page()
@@ -555,7 +558,7 @@ elif st.session_state.page == 1:
 
 elif st.session_state.page == 2:
 
-    col_back, col_space = st.columns([0.08, 0.92])
+    col_back, _ = st.columns([0.08, 0.92])
 
     with col_back:
 
@@ -595,9 +598,9 @@ elif st.session_state.page == 2:
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([1,1,1])
+    c1, c2, c3 = st.columns([1,1,1])
 
-    with col2:
+    with c2:
 
         if st.button("Continue →"):
             next_page()
@@ -609,7 +612,7 @@ elif st.session_state.page == 2:
 
 elif st.session_state.page == 3:
 
-    col_back, col_space = st.columns([0.08, 0.92])
+    col_back, _ = st.columns([0.08, 0.92])
 
     with col_back:
 
@@ -649,9 +652,9 @@ elif st.session_state.page == 3:
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([1,1,1])
+    c1, c2, c3 = st.columns([1,1,1])
 
-    with col2:
+    with c2:
 
         if st.button("Continue →"):
 
@@ -668,7 +671,7 @@ elif st.session_state.page == 3:
 
 elif st.session_state.page == 4:
 
-    col_back, col_space = st.columns([0.08, 0.92])
+    col_back, _ = st.columns([0.08, 0.92])
 
     with col_back:
 
@@ -708,9 +711,9 @@ elif st.session_state.page == 4:
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([1,1,1])
+    c1, c2, c3 = st.columns([1,1,1])
 
-    with col2:
+    with c2:
 
         if st.button("Submit"):
 
@@ -807,9 +810,9 @@ elif st.session_state.page == 5:
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([1,1,1])
+    c1, c2, c3 = st.columns([1,1,1])
 
-    with col2:
+    with c2:
 
         if st.button("Start Over"):
 
