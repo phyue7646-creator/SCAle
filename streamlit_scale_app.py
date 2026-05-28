@@ -1,7 +1,6 @@
 import streamlit as st
 from PIL import Image
 import google.generativeai as genai
-import re
 
 # =========================================================
 # PAGE CONFIG
@@ -19,7 +18,7 @@ st.set_page_config(
 
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
-model = genai.GenerativeModel("gemini-1.5-flash")
+model = genai.GenerativeModel("gemini-2.5-flash")
 
 # =========================================================
 # SESSION STATE
@@ -75,11 +74,10 @@ GLOBAL
 
 html, body, [class*="css"] {
     font-family: "Segoe UI", sans-serif;
-    background-color: white !important;
 }
 
 .stApp {
-    background-color: white !important;
+    background-color: #F5F5F5;
 }
 
 /* =========================================================
@@ -87,7 +85,7 @@ LOGO
 ========================================================= */
 
 .logo {
-    font-size: 48px;
+    font-size: 46px;
     font-weight: 700;
     margin-top: 10px;
     margin-left: 40px;
@@ -102,7 +100,7 @@ LOGO
 }
 
 /* =========================================================
-PAGE TITLE
+PAGE TITLES
 ========================================================= */
 
 .page-title {
@@ -121,7 +119,7 @@ PAGE TITLE
 }
 
 /* =========================================================
-QUESTION
+QUESTION SECTION
 ========================================================= */
 
 .question-title {
@@ -145,11 +143,10 @@ QUESTION
 }
 
 /* =========================================================
-GREEN BUTTON
+GREEN BUTTONS
 ========================================================= */
 
 div.stButton > button:not([kind="secondary"]) {
-
     background-color: #1F6F43 !important;
 
     color: white !important;
@@ -162,44 +159,23 @@ div.stButton > button:not([kind="secondary"]) {
 
     font-weight: 600 !important;
 
+    padding: 14px 36px !important;
+
     height: 58px !important;
 
     min-width: 260px !important;
 
     box-shadow: none !important;
-
-    transition: none !important;
 }
 
 div.stButton > button:not([kind="secondary"]):hover {
-
-    background-color: #1F6F43 !important;
-
-    color: white !important;
-
-    border: none !important;
+    background-color: #E7F3EC !important;
+    color: #1F6F43 !important;
 }
 
 div.stButton > button:not([kind="secondary"]):active {
-
     background-color: #1F6F43 !important;
-
     color: white !important;
-
-    border: none !important;
-}
-
-div.stButton > button:not([kind="secondary"]):focus {
-
-    background-color: #1F6F43 !important;
-
-    color: white !important;
-
-    border: none !important;
-
-    outline: none !important;
-
-    box-shadow: none !important;
 }
 
 /* =========================================================
@@ -207,143 +183,93 @@ BACK ARROW
 ========================================================= */
 
 .back-arrow button {
-
-    background-color: #1F6F43 !important;
-
-    color: white !important;
+    background: transparent !important;
 
     border: none !important;
 
     box-shadow: none !important;
 
+    width: auto !important;
     min-width: auto !important;
 
-    width: auto !important;
-
     height: auto !important;
+    min-height: auto !important;
 
-    padding: 0px 16px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+    color: black !important;
 
     font-size: 70px !important;
 
     font-weight: 300 !important;
-
-    border-radius: 14px !important;
 }
 
 .back-arrow button:hover {
-
-    background-color: #1F6F43 !important;
-
-    color: white !important;
-}
-
-.back-arrow button:active {
-
-    background-color: #1F6F43 !important;
-
-    color: white !important;
+    background: transparent !important;
+    color: black !important;
 }
 
 .back-arrow button:focus {
-
-    background-color: #1F6F43 !important;
-
-    color: white !important;
-
-    box-shadow: none !important;
-
     outline: none !important;
+    box-shadow: none !important;
 }
 
 .back-arrow button p {
-
     font-size: 70px !important;
+    color: black !important;
 
-    color: white !important;
+    margin: 0 !important;
 }
 
 /* =========================================================
-SELECT BOX
+SELECTBOX
 ========================================================= */
 
 div[data-baseweb="select"] > div {
-
     background-color: white !important;
 
     border: 1px solid #D9D9D9 !important;
 
     border-radius: 0px !important;
 
-    min-height: 62px !important;
-
-    box-shadow: none !important;
-
-    display: flex !important;
-
-    align-items: center !important;
-}
-
-/* REMOVE RED BORDER */
-
-div[data-baseweb="select"] > div:focus-within {
-
-    border: 1px solid #D9D9D9 !important;
+    min-height: 58px !important;
 
     box-shadow: none !important;
 }
-
-/* SELECTED VALUE */
 
 div[data-baseweb="select"] span {
-
     color: black !important;
-
     font-size: 18px !important;
-
-    width: 100% !important;
-
-    text-align: center !important;
 }
 
-/* DROPDOWN */
+/* dropdown popup */
 
 ul {
-
     background-color: white !important;
 }
 
-/* OPTIONS */
-
 ul li {
-
     background-color: white !important;
-
     color: black !important;
 
     font-size: 18px !important;
-
-    text-align: center !important;
 }
 
-/* HOVER */
+/* hover */
 
 ul li:hover {
-
-    background-color: #DDEEE3 !important;
-
+    background-color: #E7F3EC !important;
     color: black !important;
 }
 
-/* SELECTED */
+/* selected */
 
 [aria-selected="true"] {
-
     background-color: #1F6F43 !important;
 }
 
 [aria-selected="true"] * {
-
     color: white !important;
 }
 
@@ -352,29 +278,11 @@ TEXT AREA
 ========================================================= */
 
 textarea {
-
-    background-color: white !important;
-
-    color: black !important;
-
     font-size: 18px !important;
 
     border-radius: 0px !important;
 
     border: 1px solid #D9D9D9 !important;
-
-    box-shadow: none !important;
-}
-
-/* REMOVE RED BORDER */
-
-textarea:focus {
-
-    border: 1px solid #D9D9D9 !important;
-
-    box-shadow: none !important;
-
-    outline: none !important;
 }
 
 /* =========================================================
@@ -382,90 +290,40 @@ IDEA CARD
 ========================================================= */
 
 .idea-card {
-
     background-color: white;
 
     border: 1px solid #E5E7EB;
 
-    border-radius: 22px;
+    border-radius: 18px;
 
-    padding: 50px;
+    padding: 40px;
 
     min-height: 420px;
+}
 
-    position: relative;
+.idea-title {
+    font-size: 34px;
+    font-weight: 700;
+    text-align: center;
+    color: black;
+
+    margin-bottom: 25px;
 }
 
 .idea-text {
-
-    font-size: 22px;
-
+    font-size: 20px;
     line-height: 1.9;
-
     color: black;
+
+    text-align: left;
 }
 
 .idea-counter {
-
     text-align: center;
 
+    margin-top: 20px;
+
     font-size: 18px;
-
-    color: #6B7280;
-
-    margin-top: 25px;
-}
-
-/* =========================================================
-RESULT ARROWS
-========================================================= */
-
-.arrow-btn button {
-
-    background-color: white !important;
-
-    color: black !important;
-
-    border: none !important;
-
-    box-shadow: none !important;
-
-    min-width: auto !important;
-
-    width: 50px !important;
-
-    height: 50px !important;
-
-    padding: 0 !important;
-
-    font-size: 38px !important;
-
-    border-radius: 50% !important;
-}
-
-.arrow-btn button:hover {
-
-    background-color: white !important;
-
-    color: black !important;
-}
-
-.arrow-btn button:focus {
-
-    background-color: white !important;
-
-    color: black !important;
-
-    box-shadow: none !important;
-
-    outline: none !important;
-}
-
-.arrow-btn button:active {
-
-    background-color: white !important;
-
-    color: black !important;
 }
 
 </style>
@@ -483,49 +341,14 @@ diplomas = [
     "Diploma in Veterinary Technology",
     "Diploma in Communication Design",
     "Diploma in Digital Film & Television",
-    "Diploma in Interior Architecture & Design",
-    "Diploma in Fashion Management & Design",
-    "Diploma in Product Experience & Design",
-    "Diploma in Aerospace Electronics",
-    "Diploma in Aerospace Engineering",
-    "Diploma in Aviation Management",
-    "Diploma in Computer Engineering",
-    "Diploma in Architectural Technology and Building Services",
-    "Diploma in Electrical and Electronics Engineering",
-    "Diploma in Business Process and System Engineering",
-    "Diploma in Integrated Facility Management",
-    "Diploma in Mechatronics",
-    "Diploma in Big Data & Analytics",
-    "Diploma in Cybersecurity & Digital Forensics",
-    "Diploma in Information Technology",
-    "Diploma in Applied Artificial Intelligence",
-    "Diploma in Immersive Media and Game Development",
-    "Diploma in Accountancy & Finance",
-    "Diploma in Business",
-    "Diploma in Communications & Media Management",
-    "Diploma in Culinary Arts & Management",
-    "Diploma in Hospitality & Tourism Management",
-    "Diploma in International Trade & Logistics",
-    "Diploma in Law & Management",
-    "Diploma in Marketing",
-    "Diploma in Early Childhood Development & Education",
-    "Diploma in Psychology Studies",
-    "Diploma in Social Science in Gerontology"
 ]
 
 categories = [
     "Circular Economy",
-    "Liveable City and Community",
-    "Green Buildings",
     "Renewable Energy",
-    "Green Finance and Impact Investing",
-    "Sustainable Food Systems",
-    "Sustainable Materials and Packaging",
-    "Green Transportation",
-    "Sustainable Tourism",
-    "Green Economy Opportunities",
     "Waste Management and Recycling",
-    "Biodiversity and Conservation"
+    "Green Transportation",
+    "Sustainable Food Systems"
 ]
 
 solutions = [
@@ -541,33 +364,14 @@ solutions = [
 if st.session_state.page == "welcome":
 
     st.markdown(
-        '''
-        <div class="logo">
-            <span class="logo-sca">SCA</span><span class="logo-le">le</span>
-        </div>
-        ''',
+        '<div class="logo"><span class="logo-sca">SCA</span><span class="logo-le">le</span></div>',
         unsafe_allow_html=True
     )
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
     st.markdown(
-        """
-        <div style="text-align:center;">
-
-            <div class="page-title">
-                Hi! I'm
-                <span class="logo-sca">SCA</span><span class="logo-le">le</span>.
-            </div>
-
-            <br>
-
-            <div class="page-subtitle">
-                I will help you to explore sustainability project ideas tailored to your diploma and interests. Let's get started.
-            </div>
-
-        </div>
-        """,
+        '<div style="text-align:center;"><div class="page-title">Hi! I\'m SCAle.</div><br><div class="page-subtitle">I will help you to explore sustainability project ideas tailored to your diploma and interests. Let\'s get started.</div></div>',
         unsafe_allow_html=True
     )
 
@@ -595,30 +399,25 @@ if st.session_state.page == "welcome":
 
 elif st.session_state.page == "diploma":
 
-    st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
+    with st.container():
+        st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
 
-    if st.button("←", key="back1"):
-        st.session_state.page = "welcome"
-        st.rerun()
+        if st.button("←", key="back1", type="secondary"):
+            st.session_state.page = "welcome"
+            st.rerun()
 
-    st.markdown('</div>', unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    st.markdown(
-        '<div class="question-title">What is your diploma?</div>',
-        unsafe_allow_html=True
-    )
+    st.markdown('<div class="question-title">What is your diploma?</div>', unsafe_allow_html=True)
 
     st.markdown(
         '<div class="question-subtitle">This helps me to tailor sustainability project ideas to your field of study.</div>',
         unsafe_allow_html=True
     )
 
-    st.markdown(
-        '<div class="question-label">Select your diploma</div>',
-        unsafe_allow_html=True
-    )
+    st.markdown('<div class="question-label">Select your diploma</div>', unsafe_allow_html=True)
 
     st.session_state.diploma = st.selectbox(
         "",
@@ -643,7 +442,7 @@ elif st.session_state.page == "category":
 
     st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
 
-    if st.button("←", key="back2"):
+    if st.button("←", key="back2", type="secondary"):
         st.session_state.page = "diploma"
         st.rerun()
 
@@ -689,7 +488,7 @@ elif st.session_state.page == "concern":
 
     st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
 
-    if st.button("←", key="back3"):
+    if st.button("←", key="back3", type="secondary"):
         st.session_state.page = "category"
         st.rerun()
 
@@ -736,7 +535,7 @@ elif st.session_state.page == "solution":
 
     st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
 
-    if st.button("←", key="back4"):
+    if st.button("←", key="back4", type="secondary"):
         st.session_state.page = "concern"
         st.rerun()
 
@@ -773,39 +572,25 @@ elif st.session_state.page == "solution":
         if st.button("Submit"):
 
             prompt = f"""
-Generate EXACTLY 3 sustainability project ideas.
+Generate 3 sustainability project ideas.
 
-Diploma:
-{st.session_state.diploma}
+Diploma: {st.session_state.diploma}
 
-Category:
-{st.session_state.category}
+Category: {st.session_state.category}
 
-Concern:
-{st.session_state.concern}
+Concern: {st.session_state.concern}
 
-Solution Type:
-{st.session_state.solution}
+Solution Type: {st.session_state.solution}
 
-Rules:
-- Generate exactly 3 ideas only.
-- Each idea must be practical and achievable for diploma students.
-- Use simple paragraph format.
-- Do not use markdown.
-- Do not use bullet points.
-- Separate each idea using ###.
+Return only 3 ideas in paragraph style.
 """
 
             response = model.generate_content(prompt)
 
-            text = response.text.strip()
+            ideas = response.text.split("\n\n")
 
-            ideas = [x.strip() for x in text.split("###") if x.strip()]
-
-            st.session_state.ideas = ideas[:3]
-
+            st.session_state.ideas = ideas
             st.session_state.idea_index = 0
-
             st.session_state.page = "results"
 
             st.rerun()
@@ -818,75 +603,52 @@ elif st.session_state.page == "results":
 
     current = st.session_state.idea_index
 
-    st.markdown(
-        """
-        <div style="text-align:center;">
-            <div style="font-size:22px;font-weight:600;color:black;">
-                Here are your
-            </div>
+    st.markdown("<br>", unsafe_allow_html=True)
 
-            <div class="page-title">
-                <span style="color:#14532D;">
-                    Project Ideas!
-                </span>
-            </div>
-        </div>
-        """,
+    st.markdown(
+        '<div style="font-size:22px;font-weight:600;color:black;text-align:center;">Here are your</div>',
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        '<div class="page-title"><span style="color:#14532D;">Project Ideas!</span></div>',
         unsafe_allow_html=True
     )
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([0.5,9,0.5])
+    col1, col2, col3 = st.columns([1,8,1])
+
+    with col1:
+        if current > 0:
+            if st.button("←", key="prev"):
+                st.session_state.idea_index -= 1
+                st.rerun()
 
     with col2:
 
         idea = st.session_state.ideas[current]
 
-        left, center, right = st.columns([1,14,1])
-
-        with center:
-
-            st.markdown(
-                f"""
-                <div class="idea-card">
-
-                    <div class="idea-text">
-                        {idea}
-                    </div>
-
-                    <div class="idea-counter">
-                        Idea {current + 1} of {len(st.session_state.ideas)}
-                    </div>
-
+        st.markdown(
+            f'''
+            <div class="idea-card">
+                <div class="idea-text">
+                    {idea}
                 </div>
-                """,
-                unsafe_allow_html=True
-            )
 
-        nav1, nav2, nav3 = st.columns([1,12,1])
+                <div class="idea-counter">
+                    {current + 1} / {len(st.session_state.ideas)}
+                </div>
+            </div>
+            ''',
+            unsafe_allow_html=True
+        )
 
-        with nav1:
-
-            st.markdown('<div class="arrow-btn">', unsafe_allow_html=True)
-
-            if current > 0:
-                if st.button("←", key="prev"):
-                    st.session_state.idea_index -= 1
-                    st.rerun()
-
-            st.markdown('</div>', unsafe_allow_html=True)
-
-        with nav3:
-
-            st.markdown('<div class="arrow-btn">', unsafe_allow_html=True)
-
-            if current < len(st.session_state.ideas) - 1:
-                if st.button("→", key="next"):
-                    st.session_state.idea_index += 1
-                    st.rerun()
-
-            st.markdown('</div>', unsafe_allow_html=True)
+    with col3:
+        if current < len(st.session_state.ideas) - 1:
+            if st.button("→", key="next"):
+                st.session_state.idea_index += 1
+                st.rerun()
 
     st.markdown("<br>", unsafe_allow_html=True)
 
@@ -896,7 +658,6 @@ elif st.session_state.page == "results":
         if st.button("Start Over"):
 
             st.session_state.page = "welcome"
-
             st.session_state.idea_index = 0
 
             st.rerun()
