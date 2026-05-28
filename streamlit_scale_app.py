@@ -464,7 +464,7 @@ if st.session_state.page == 0:
     st.markdown('<div class="logo">SCAle</div>', unsafe_allow_html=True)
 
     st.markdown(
-        '<div class="hero-title">Hi! I\\'m SCAle.</div>',
+         "<div class='hero-title'>Hi! I'm SCAle.</div>",
         unsafe_allow_html=True
     )
 
