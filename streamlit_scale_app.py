@@ -735,6 +735,7 @@ elif st.session_state.page == "diploma":
         '<div class="question-subtitle">This helps me to tailor sustainability project ideas to your field of study.</div>',
         unsafe_allow_html=True
     )
+    st.markdown("<br>", unsafe_allow_html=True)
     st.markdown(
         '<div class="question-label">Select your diploma</div>',
         unsafe_allow_html=True
@@ -775,26 +776,31 @@ elif st.session_state.page == "category":
         if st.button("←", key="back2", type="secondary"):
             st.session_state.page = "diploma"
             st.rerun()
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+   
     st.markdown(
     '<div class="page-wrap"><div class="form-section">',
     unsafe_allow_html=True
     )
+   
     st.markdown(
         '<div class="question-title">What sustainability category interests you?</div>',
         unsafe_allow_html=True
     )
-
+    st.markdown("<br>", unsafe_allow_html=True)
+   
     st.markdown(
         '<div class="question-subtitle">This allows sustainability project ideas align to your focus areas.</div>',
         unsafe_allow_html=True
     )
-
+    st.markdown("<br>", unsafe_allow_html=True)
+   
     st.markdown(
     '<div class="question-label">Select sustainability category</div>',
     unsafe_allow_html=True
     )
-
-
+    st.markdown("<br>", unsafe_allow_html=True)
     st.session_state.category = st.selectbox(
         "Select Category",
         categories,
@@ -802,7 +808,10 @@ elif st.session_state.page == "category":
         label_visibility="collapsed"
     )
     st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
-
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    
     button_left, button_center, button_right = st.columns([2.2,1,2.2])
     
     with button_center:
@@ -811,6 +820,9 @@ elif st.session_state.page == "category":
             st.rerun()
     
     st.markdown('</div></div>', unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
 # =========================================================
 # CONCERN PAGE
 # =========================================================
@@ -869,6 +881,8 @@ elif st.session_state.page == "solution":
         if st.button("←", key="back4", type="secondary"):
             st.session_state.page = "concern"
             st.rerun()
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
 
     st.markdown(
     '<div class="page-wrap"><div class="form-section">',
@@ -878,17 +892,17 @@ elif st.session_state.page == "solution":
         '<div class="question-title">Which solution format are you interested in developing?</div>',
         unsafe_allow_html=True
     )
-
+    st.markdown("<br>", unsafe_allow_html=True)
     st.markdown(
         '<div class="question-subtitle">This helps me to suggest the right type of project for you.</div>',
         unsafe_allow_html=True
     )
-
+    st.markdown("<br>", unsafe_allow_html=True)
     st.markdown(
         '<div class="question-label">Select Solution Type</div>',
         unsafe_allow_html=True
     )
-   
+    st.markdown("<br>", unsafe_allow_html=True)
     
     st.session_state.solution = st.selectbox(
         "Select Solution",
@@ -928,6 +942,8 @@ Return only 3 ideas in paragraph style.
 
             st.rerun()
     st.markdown('</div></div>', unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
 # =========================================================
 # RESULTS PAGE
 # =========================================================
