@@ -158,24 +158,13 @@ QUESTION SECTION
 
 .form-section {
 
-    width: 400px;
+    width: 760px;
+
     max-width: 90%;
-
-    margin-left: auto;
-
-    margin-right: auto;
-
-    margin-top: 0px;
 }
 .page-wrap {
 
-    padding-top: 20px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: start;
+    margin-top: -40px;
 }
 /* =========================================================
 GREEN BUTTONS
