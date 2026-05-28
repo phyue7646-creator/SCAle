@@ -22,32 +22,7 @@ genai.configure(api_key=GOOGLE_API_KEY)
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 # =========================================================
-# SESSION STATE
-# =========================================================
-
-if "page" not in st.session_state:
-    st.session_state.page = "welcome"
-
-if "solution_type" not in st.session_state:
-    st.session_state.solution_type = ""
-
-if "concern" not in st.session_state:
-    st.session_state.concern = ""
-
-if "category" not in st.session_state:
-    st.session_state.category = ""
-
-if "diploma" not in st.session_state:
-    st.session_state.diploma = ""
-
-if "ideas" not in st.session_state:
-    st.session_state.ideas = []
-
-if "idea_index" not in st.session_state:
-    st.session_state.idea_index = 0
-
-# =========================================================
-# CSS
+# CUSTOM CSS
 # =========================================================
 
 st.markdown("""
@@ -55,163 +30,108 @@ st.markdown("""
 
 html, body, [class*="css"] {
     font-family: 'Segoe UI', sans-serif;
+    background-color: #F7F8F5;
 }
 
-.stApp {
-    background-color: #F5F5F5;
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    max-width: 1200px;
 }
 
-/* HIDE STREAMLIT */
+/* Hide Streamlit Menu */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
 
-#MainMenu {
-    visibility: hidden;
-}
-
-footer {
-    visibility: hidden;
-}
-
-header {
-    visibility: hidden;
-}
-
-/* LOGO */
-
-.logo-container {
-    position: fixed;
-    top: 30px;
-    left: 50px;
-    font-size: 42px;
-    font-weight: 700;
-    z-index: 999;
-}
-
-.logo-dark {
-    color: #2F5D3A;
-}
-
-.logo-light {
-    color: #A8C256;
-}
-
-/* WELCOME */
-
-.main-title {
-    font-size: 64px;
-    font-weight: 700;
-    text-align: center;
-    color: #1F1F1F;
-    margin-top: 80px;
-    line-height: 1.2;
-}
-
-.sub-title {
-    font-size: 24px;
-    text-align: center;
-    color: #666666;
-    margin-top: 20px;
-    line-height: 1.6;
-}
-
-/* QUESTION */
-
-.question-title {
-    font-size: 54px;
-    font-weight: 700;
-    color: #1F1F1F;
-    margin-top: 90px;
-    line-height: 1.2;
-}
-
-.question-subtitle {
-    font-size: 22px;
-    color: #707070;
-    margin-top: 20px;
-    margin-bottom: 40px;
-    line-height: 1.6;
-}
-
-/* RESULT */
-
-.result-title {
-    text-align: center;
-    font-size: 34px;
-    font-weight: 600;
-    margin-top: 30px;
-    color: #1F1F1F;
-}
-
-.result-heading {
-    text-align: center;
-    font-size: 72px;
-    font-weight: 700;
-    color: #2F5D3A;
-    margin-bottom: 20px;
-}
-
-/* IDEA BOX */
-
-.idea-box {
-    background-color: white;
-    border-radius: 22px;
-    padding: 45px;
-    min-height: 420px;
-    border: 2px solid #E0E0E0;
-    box-shadow: 0px 2px 8px rgba(0,0,0,0.04);
-}
-
-.idea-content {
-    font-size: 24px;
-    line-height: 1.9;
-    color: #333333;
-}
-
-/* BUTTON */
-
-.stButton>button {
-    width: 100%;
-    background-color: #437A4A;
+/* Buttons */
+.stButton > button {
+    background-color: #477A4A;
     color: white;
-    border-radius: 14px;
+    border-radius: 12px;
     border: none;
-    font-size: 22px;
-    font-weight: 700;
-    padding: 14px;
+    padding: 12px 28px;
+    font-size: 18px;
+    font-weight: 600;
     transition: 0.3s;
 }
 
-.stButton>button:hover {
-    background-color: #35633B;
+.stButton > button:hover {
+    background-color: #355E38;
     color: white;
 }
 
-/* SELECT */
-
-.stSelectbox div[data-baseweb="select"] {
-    border-radius: 10px;
+/* Selectbox */
+div[data-baseweb="select"] > div {
+    border-radius: 12px;
+    border: 1px solid #D8E4D2;
 }
 
-/* TEXT AREA */
-
+/* Text area */
 textarea {
-    border-radius: 14px !important;
+    border-radius: 12px !important;
+    border: 1px solid #D8E4D2 !important;
+}
+
+/* Main Title */
+.main-title {
+    text-align: center;
+    color: #2F5D3A;
+    font-size: 52px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* Subtitle */
+.sub-title {
+    text-align: center;
+    color: #5B5B5B;
+    font-size: 22px;
+    margin-bottom: 40px;
+}
+
+/* Section Header */
+.section-header {
+    color: #2F5D3A;
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+/* Description */
+.section-desc {
+    color: #666666;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* Result Card */
+.result-card {
+    background-color: white;
+    padding: 40px;
+    border-radius: 22px;
+    border: 1px solid #DCE8D7;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+/* Scale Logo */
+.scale-logo {
+    font-size: 58px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.scale-green {
+    color: #7BAE3F;
+}
+
+.scale-dark {
+    color: #355E38;
 }
 
 </style>
 """, unsafe_allow_html=True)
-
-# =========================================================
-# LOGO
-# =========================================================
-
-st.markdown(
-    """
-    <div class='logo-container'>
-        <span class='logo-dark'>SCA</span><span class='logo-light'>le</span>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
 
 # =========================================================
 # DATA
@@ -226,138 +146,98 @@ solution_types = [
 categories = [
     "Circular Economy",
     "Renewable Energy",
-    "Waste Management and Recycling",
     "Green Transportation",
-    "Sustainable Tourism",
-    "Biodiversity and Conservation",
+    "Waste Management and Recycling",
+    "Sustainable Food Systems",
     "Green Buildings",
-    "Sustainable Food Systems"
+    "Biodiversity and Conservation",
+    "Green Finance and Impact Investing",
+    "Liveable City and Community",
+    "Sustainable Tourism"
 ]
 
 diplomas = [
-    "Diploma in Information Technology",
     "Diploma in Big Data & Analytics",
-    "Diploma in Accountancy & Finance",
+    "Diploma in Information Technology",
     "Diploma in Applied AI",
     "Diploma in Chemical Engineering",
+    "Diploma in Accountancy & Finance",
     "Diploma in Business",
     "Diploma in Marketing",
-    "Diploma in Cybersecurity & Digital Forensics",
     "Diploma in Pharmaceutical Science",
+    "Diploma in Veterinary Technology",
     "Diploma in Communication Design"
 ]
 
 # =========================================================
-# WELCOME PAGE
+# SESSION STATES
 # =========================================================
 
-if st.session_state.page == "welcome":
+if "page" not in st.session_state:
+    st.session_state.page = "home"
 
-    st.markdown(
-        """
-        <div class='main-title'>
-        Hi! I'm 
-        <span style='color:#2F5D3A;'>SCA</span><span style='color:#A8C256;'>le</span>.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+if "generated_idea" not in st.session_state:
+    st.session_state.generated_idea = ""
 
-    st.markdown(
-        """
-        <div class='sub-title'>
+# =========================================================
+# HOME PAGE
+# =========================================================
+
+if st.session_state.page == "home":
+
+    st.markdown("""
+    <div class="scale-logo">
+        <span class="scale-green">SCA</span><span class="scale-dark">le</span>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="main-title">
+        Hi! I'm SCAle.
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="sub-title">
         I will help you explore sustainability project ideas tailored to your diploma and interests.
-        Let's get started.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    </div>
+    """, unsafe_allow_html=True)
 
     st.image(
-        "https://cdn-icons-png.flaticon.com/512/4712/4712109.png",
-        width=300
+        "https://cdn-icons-png.flaticon.com/512/4149/4149670.png",
+        width=320
     )
 
-    st.markdown("<br><br>", unsafe_allow_html=True)
+    st.write("")
 
-    col1, col2, col3 = st.columns([1,2,1])
+    center = st.columns([1, 1, 1])
 
-    with col2:
-        if st.button("Start Your Project Ideas"):
-            st.session_state.page = "solution"
+    with center[1]:
+        if st.button("Start Your Project Ideas", use_container_width=True):
+            st.session_state.page = "form"
             st.rerun()
 
 # =========================================================
-# SOLUTION PAGE
+# FORM PAGE
 # =========================================================
 
-elif st.session_state.page == "solution":
+elif st.session_state.page == "form":
 
-    st.markdown(
-        "<div class='question-title'>Which solution format are you interested in developing?</div>",
-        unsafe_allow_html=True
-    )
+    st.markdown("""
+    <div class="section-header">
+        Generate Sustainability Project Ideas
+    </div>
+    """, unsafe_allow_html=True)
 
-    st.markdown(
-        "<div class='question-subtitle'>This helps me suggest the right type of project for you.</div>",
-        unsafe_allow_html=True
-    )
+    st.markdown("""
+    <div class="section-desc">
+        Fill in the information below and SCAle will generate a personalized sustainability project idea.
+    </div>
+    """, unsafe_allow_html=True)
 
-    solution = st.selectbox(
-        "Select Solution Type",
-        solution_types
-    )
-
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    if st.button("Continue →"):
-        st.session_state.solution_type = solution
-        st.session_state.page = "concern"
-        st.rerun()
-
-# =========================================================
-# CONCERN PAGE
-# =========================================================
-
-elif st.session_state.page == "concern":
-
-    st.markdown(
-        "<div class='question-title'>What sustainability problem would you like to solve?</div>",
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        "<div class='question-subtitle'>Share a problem or challenge you have noticed in school, community, or daily life.</div>",
-        unsafe_allow_html=True
-    )
-
-    concern = st.text_area(
-        "Sustainability Concern",
-        max_chars=200,
-        height=220
-    )
-
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    if st.button("Continue →"):
-        st.session_state.concern = concern
-        st.session_state.page = "category"
-        st.rerun()
-
-# =========================================================
-# CATEGORY PAGE
-# =========================================================
-
-elif st.session_state.page == "category":
-
-    st.markdown(
-        "<div class='question-title'>What sustainability category interests you?</div>",
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        "<div class='question-subtitle'>This allows sustainability project ideas align to your focus areas.</div>",
-        unsafe_allow_html=True
+    diploma = st.selectbox(
+        "Select your diploma",
+        diplomas
     )
 
     category = st.selectbox(
@@ -365,86 +245,69 @@ elif st.session_state.page == "category":
         categories
     )
 
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    if st.button("Continue →"):
-        st.session_state.category = category
-        st.session_state.page = "diploma"
-        st.rerun()
-
-# =========================================================
-# DIPLOMA PAGE
-# =========================================================
-
-elif st.session_state.page == "diploma":
-
-    st.markdown(
-        "<div class='question-title'>What is your diploma?</div>",
-        unsafe_allow_html=True
+    concern = st.text_area(
+        "Describe your sustainability concern",
+        height=180,
+        max_chars=300,
+        placeholder="Example: Food waste in hawker centres, excessive electricity consumption, poor recycling habits..."
     )
 
-    st.markdown(
-        "<div class='question-subtitle'>This helps me tailor sustainability project ideas to your field of study.</div>",
-        unsafe_allow_html=True
+    solution_type = st.selectbox(
+        "Select solution type",
+        solution_types
     )
 
-    diploma = st.selectbox(
-        "Select your diploma",
-        diplomas
-    )
+    st.write("")
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    col1, col2, col3 = st.columns([1, 1, 1])
 
-    if st.button("Generate Ideas"):
+    with col2:
 
-        st.session_state.diploma = diploma
+        if st.button("Generate Idea", use_container_width=True):
 
-        prompt = f"""
-        Generate 3 sustainability project ideas.
+            if concern.strip() == "":
+                st.warning("Please enter your sustainability concern.")
+            else:
 
-        Requirements:
-        - Tailored to the diploma
-        - Related to sustainability category
-        - Match the solution type
-        - Practical and achievable for diploma students
-        - Innovative but realistic
-        - Around 120-160 words each
+                with st.spinner("Generating sustainability idea..."):
 
-        Diploma:
-        {st.session_state.diploma}
+                    prompt = f"""
+You are SCAle, an AI assistant that generates sustainability project ideas for diploma students.
 
-        Sustainability Category:
-        {st.session_state.category}
+Generate ONE innovative but achievable sustainability project idea.
 
-        Sustainability Concern:
-        {st.session_state.concern}
+Student Information:
+- Diploma: {diploma}
+- Sustainability Category: {category}
+- Sustainability Concern: {concern}
+- Preferred Solution Type: {solution_type}
 
-        Solution Type:
-        {st.session_state.solution_type}
+Requirements:
+- Tailor the project to the student's diploma skills
+- Ensure the idea is realistic for diploma students
+- Focus on sustainability impact
+- Keep the explanation concise but complete
+- Avoid overly technical or unrealistic ideas
+- Do not generate mobile app names or campaign names
+- Output only the project idea title and description
 
-        Format:
+Format:
 
-        1. Title
-        Description
+Project Title
 
-        2. Title
-        Description
+Project Description
+"""
 
-        3. Title
-        Description
-        """
+                    try:
 
-        with st.spinner("Generating sustainability project ideas..."):
+                        response = model.generate_content(prompt)
 
-            response = model.generate_content(prompt)
+                        st.session_state.generated_idea = response.text
+                        st.session_state.page = "result"
+                        st.rerun()
 
-            ideas = response.text.split("\n\n")
-
-            st.session_state.ideas = ideas
-            st.session_state.idea_index = 0
-            st.session_state.page = "result"
-
-            st.rerun()
+                    except Exception as e:
+                        st.error(f"Error generating response: {e}")
 
 # =========================================================
 # RESULT PAGE
@@ -452,51 +315,56 @@ elif st.session_state.page == "diploma":
 
 elif st.session_state.page == "result":
 
-    st.markdown(
-        "<div class='result-title'>Here are your</div>",
-        unsafe_allow_html=True
-    )
+    st.markdown("""
+    <div class="scale-logo">
+        <span class="scale-green">SCA</span><span class="scale-dark">le</span>
+    </div>
+    """, unsafe_allow_html=True)
 
-    st.markdown(
-        """
-        <div class='result-heading'>
-        Project <span style='color:#A8C256;'>Ideas!</span>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown("""
+    <div class="main-title">
+        Your Project Idea
+    </div>
+    """, unsafe_allow_html=True)
 
-    current_idea = st.session_state.ideas[st.session_state.idea_index]
+    formatted_response = st.session_state.generated_idea.replace("\n", "<br>")
 
     st.markdown(
         f"""
-        <div class='idea-box'>
-            <div class='idea-content'>
-                {current_idea.replace('\n', '<br>')}
+        <div class="result-card">
+
+            <div style="
+                color:#2F5D3A;
+                font-size:34px;
+                font-weight:700;
+                margin-bottom:25px;
+                text-align:center;
+            ">
+                🌱 Sustainability Project Idea
             </div>
+
+            <div style="
+                font-size:20px;
+                line-height:1.9;
+                color:#2E2E2E;
+                text-align:justify;
+            ">
+                {formatted_response}
+            </div>
+
         </div>
         """,
         unsafe_allow_html=True
     )
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.write("")
+    st.write("")
 
-    col1, col2, col3 = st.columns([1,1,1])
-
-    with col1:
-        if st.button("⬅ Previous"):
-            if st.session_state.idea_index > 0:
-                st.session_state.idea_index -= 1
-                st.rerun()
+    col1, col2, col3 = st.columns([1, 1, 1])
 
     with col2:
-        if st.button("Start Over"):
-            st.session_state.page = "welcome"
-            st.session_state.idea_index = 0
-            st.rerun()
 
-    with col3:
-        if st.button("Next ➡"):
-            if st.session_state.idea_index < len(st.session_state.ideas) - 1:
-                st.session_state.idea_index += 1
-                st.rerun()
+        if st.button("Start Over", use_container_width=True):
+            st.session_state.page = "home"
+            st.session_state.generated_idea = ""
+            st.rerun()
