@@ -410,30 +410,16 @@ div[data-testid="stTextArea"] textarea {
     border: 1px solid black !important;
 }
 
-/* FOCUS */
-
-textarea:focus {
-
-    background-color: white !important;
-
-    color: black !important;
-
-    border: 1px solid black !important;
-
-    outline: none !important;
-
-    box-shadow: none !important;
-}
 
 /* WORD COUNT */
 
 div[data-testid="stTextArea"] small {
 
-    color: #6B7280 !important;
+    color: black !important;
 
     font-size: 14px !important;
 
-    opacity: 1 !important;
+    opacity: 0 !important;
 }
 /* =========================================================
 IDEA CARD
