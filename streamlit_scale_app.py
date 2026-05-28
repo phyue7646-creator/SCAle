@@ -146,7 +146,7 @@ QUESTION SECTION
 GREEN BUTTONS
 ========================================================= */
 
-div.stButton > button:not([kind="secondary"]) {
+button[kind="primary"] {
     background-color: #1F6F43 !important;
 
     color: white !important;
@@ -169,20 +169,20 @@ div.stButton > button:not([kind="secondary"]) {
     transition: none !important; 
 }
 
-div.stButton > button:not([kind="secondary"]):hover {
+button[kind="primary"]:hover {
     background-color: #1F6F43  !important;
     color: white !important;                /* UPDATED */
 
     border: none !important; 
 }
 
-div.stButton > button:not([kind="secondary"]):active {
+button[kind="primary"]:active {
     background-color: #1F6F43 !important;
     color: white !important;
     border: none !important;
 }
 
-div.stButton > button:not([kind="secondary"]):focus {
+button[kind="primary"]:focus {
 
     background-color: #1F6F43 !important;   /* UPDATED */
 
@@ -450,7 +450,7 @@ if st.session_state.page == "welcome":
     c1, c2, c3 = st.columns([1.2,1,1.2])
 
     with c2:
-        if st.button("Start Your Project Ideas"):
+        if st.button("Start Your Project Ideas", type="primary"):
             st.session_state.page = "diploma"
             st.rerun()
 
@@ -491,7 +491,7 @@ elif st.session_state.page == "diploma":
     c1, c2, c3 = st.columns([1.2,1,1.2])
 
     with c2:
-        if st.button("Continue →"):
+        if st.button("Continue →", type="primary"):
             st.session_state.page = "category"
             st.rerun()
 
@@ -538,7 +538,7 @@ elif st.session_state.page == "category":
     c1, c2, c3 = st.columns([1.2,1,1.2])
 
     with c2:
-        if st.button("Continue →"):
+        if st.button("Continue →", type="primary"):
             st.session_state.page = "concern"
             st.rerun()
 
@@ -585,7 +585,7 @@ elif st.session_state.page == "concern":
     c1, c2, c3 = st.columns([1.2,1,1.2])
 
     with c2:
-        if st.button("Continue →"):
+        if st.button("Continue →", type="primary"):
             st.session_state.page = "solution"
             st.rerun()
 
@@ -631,7 +631,7 @@ elif st.session_state.page == "solution":
     c1, c2, c3 = st.columns([1.2,1,1.2])
 
     with c2:
-        if st.button("Submit"):
+        if st.button("Submit", type="primary"):
 
             prompt = f"""
 Generate 3 sustainability project ideas.
@@ -683,7 +683,7 @@ elif st.session_state.page == "results":
 
     with col1:
         if current > 0:
-            if st.button("←", key="prev"):
+            if st.button("←", key="prev", type="primary"):
                 st.session_state.idea_index -= 1
                 st.rerun()
 
@@ -708,7 +708,7 @@ elif st.session_state.page == "results":
 
     with col3:
         if current < len(st.session_state.ideas) - 1:
-            if st.button("→", key="next"):
+            if st.button("→", key="next", type="primary"):
                 st.session_state.idea_index += 1
                 st.rerun()
 
@@ -717,7 +717,7 @@ elif st.session_state.page == "results":
     c1, c2, c3 = st.columns([1.2,1,1.2])
 
     with c2:
-        if st.button("Start Over"):
+        if st.button("Start Over", type="primary"):
 
             st.session_state.page = "welcome"
             st.session_state.idea_index = 0
