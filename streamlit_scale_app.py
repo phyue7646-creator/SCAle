@@ -469,7 +469,7 @@ if st.session_state.page == 0:
     )
 
     st.markdown(
-        '<div class="hero-subtitle">I will help you explore sustainability project ideas tailored to your diploma and interests. Let\\'s get started.</div>',
+        "<div class='hero-subtitle'>I will help you explore sustainability project ideas tailored to your diploma and interests. Let's get started.</div>",
         unsafe_allow_html=True
     )
 
