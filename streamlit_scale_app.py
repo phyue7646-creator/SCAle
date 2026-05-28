@@ -166,11 +166,14 @@ div.stButton > button:not([kind="secondary"]) {
     min-width: 260px !important;
 
     box-shadow: none !important;
+    transition: none !important; 
 }
 
 div.stButton > button:not([kind="secondary"]):hover {
     background-color: #1F6F43  !important;
-    color: #1F6F43 !important;
+    color: white !important;                /* UPDATED */
+
+    border: none !important; 
 }
 
 div.stButton > button:not([kind="secondary"]):active {
