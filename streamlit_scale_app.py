@@ -1,3 +1,7 @@
+# =========================================================
+# IMPORTS
+# =========================================================
+
 import streamlit as st
 import json
 import google.generativeai as genai
@@ -24,31 +28,30 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 # =========================================================
 
 SYSTEM_PROMPT = """
-You are SCAle, an AI sustainability project idea assistant.
+You are SCAle, an AI sustainability project assistant.
 
 Generate EXACTLY 3 sustainability project ideas.
 
 Requirements:
-- Tailor ideas to the student's diploma.
-- Align ideas to the selected sustainability category.
-- Address the user's sustainability concern.
-- Match the preferred solution type.
-- Ideas must be innovative but achievable for diploma students.
-- Keep descriptions concise but meaningful.
-- Each idea should be around 120-180 words.
+- Tailored to the diploma
+- Aligned to sustainability category
+- Match the preferred solution type
+- Practical for diploma students
+- Innovative but achievable
+- Professional and concise
+- Around 120-180 words each
 
 IMPORTANT:
 Return ONLY valid JSON.
-Do NOT include markdown.
-Do NOT include explanation text.
-Do NOT include ```json.
+No markdown.
+No explanation.
 
 Format:
 
 [
   {
-    "title": "Project Title",
-    "idea": "Project description"
+    "title": "Project title",
+    "idea": "Project paragraph"
   }
 ]
 """
@@ -117,7 +120,7 @@ SOLUTION_TYPES = [
 ]
 
 # =========================================================
-# SESSION STATES
+# SESSION STATE
 # =========================================================
 
 if "page" not in st.session_state:
@@ -152,10 +155,14 @@ footer {
 }
 
 .page-wrapper {
-    padding-left: 14%;
-    padding-right: 14%;
-    padding-top: 20px;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 10px;
 }
+
+/* =========================================================
+LOGO
+========================================================= */
 
 .scale-logo {
     font-size: 52px;
@@ -170,12 +177,16 @@ footer {
     color: #8BC34A;
 }
 
+/* =========================================================
+WELCOME
+========================================================= */
+
 .hero-title {
     text-align: center;
     font-size: 58px;
     font-weight: 700;
-    margin-top: 30px;
     color: #1A1A1A;
+    margin-top: 20px;
 }
 
 .hero-subtitle {
@@ -190,25 +201,35 @@ footer {
     display: flex;
     justify-content: center;
     margin-top: 35px;
+    margin-bottom: 20px;
 }
 
 .hero-image img {
-    width: 230px;
+    width: 220px;
 }
+
+/* =========================================================
+PAGE TITLES
+========================================================= */
 
 .page-title {
     font-size: 46px;
     font-weight: 700;
     color: #1A1A1A;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .page-subtitle {
     font-size: 20px;
     color: #666666;
     margin-top: 12px;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
+    line-height: 1.8;
 }
+
+/* =========================================================
+LABELS
+========================================================= */
 
 label {
     color: black !important;
@@ -216,14 +237,18 @@ label {
     font-weight: 600 !important;
 }
 
+/* =========================================================
+TEXT AREA
+========================================================= */
+
 .stTextArea textarea {
-    background-color: white !important;
+    background-color: rgba(255,255,255,1) !important;
     color: black !important;
-    border: 1px solid #D0D0D0 !important;
-    border-radius: 8px !important;
+    border: 1px solid #D6D6D6 !important;
+    border-radius: 10px !important;
     font-size: 18px !important;
-    padding: 18px !important;
     min-height: 240px !important;
+    padding: 18px !important;
 
     -webkit-text-fill-color: black !important;
     caret-color: black !important;
@@ -234,50 +259,83 @@ label {
     box-shadow: none !important;
 }
 
+/* =========================================================
+SELECTBOX
+========================================================= */
+
 div[data-baseweb="select"] > div {
-    background: white !important;
-    border: 1px solid #D0D0D0 !important;
-    min-height: 58px !important;
-    border-radius: 8px !important;
+    background: rgba(255,255,255,1) !important;
+    border: 1px solid #D6D6D6 !important;
+    border-radius: 10px !important;
+    min-height: 62px !important;
+
+    display: flex !important;
+    align-items: center !important;
 }
 
-div[data-baseweb="select"] * {
+div[data-baseweb="select"] span {
     color: black !important;
     font-size: 18px !important;
 }
 
-ul {
+div[data-baseweb="select"] input {
+    color: black !important;
+}
+
+div[role="listbox"] {
     background-color: white !important;
 }
 
-li:hover {
-    background-color: #E7F3EC !important;
+div[role="option"] {
+    background-color: white !important;
+    color: black !important;
 }
+
+div[role="option"]:hover {
+    background-color: #E7F3EC !important;
+    color: black !important;
+}
+
+/* =========================================================
+BUTTONS
+========================================================= */
 
 .stButton > button {
     background-color: #14532D;
-    color: white;
+    color: white !important;
     border: none;
-    border-radius: 12px;
-    height: 56px;
+    border-radius: 14px;
+    height: 58px;
     width: 320px;
     font-size: 20px;
     font-weight: 600;
 }
 
 .stButton > button:hover {
-    background-color: #1F6F43;
-    color: white;
+    background-color: #1F6F43 !important;
+    color: white !important;
 }
+
+.stButton > button:focus {
+    color: white !important;
+}
+
+/* =========================================================
+BACK ARROW
+========================================================= */
 
 .back-arrow button {
     background: transparent !important;
     border: none !important;
     color: black !important;
-    font-size: 56px !important;
+    font-size: 60px !important;
+
     width: auto !important;
     height: auto !important;
+
     padding: 0 !important;
+    margin: 0 !important;
+
     box-shadow: none !important;
 }
 
@@ -285,6 +343,10 @@ li:hover {
     background: transparent !important;
     color: black !important;
 }
+
+/* =========================================================
+RESULT PAGE
+========================================================= */
 
 .result-small {
     text-align: center;
@@ -295,7 +357,7 @@ li:hover {
 
 .result-big {
     text-align: center;
-    font-size: 62px;
+    font-size: 64px;
     font-weight: 800;
     margin-bottom: 35px;
 }
@@ -304,8 +366,9 @@ li:hover {
     background: white;
     border: 1px solid #DDDDDD;
     border-radius: 18px;
-    padding: 38px 48px;
+    padding: 45px;
     min-height: 460px;
+    box-shadow: 0px 1px 5px rgba(0,0,0,0.05);
 }
 
 .idea-title {
@@ -313,38 +376,49 @@ li:hover {
     font-size: 34px;
     font-weight: 700;
     color: #1A1A1A;
-    margin-bottom: 32px;
+    margin-bottom: 30px;
 }
 
 .idea-text {
     font-size: 21px;
     line-height: 2;
     color: #333333;
-    text-align: left;
+    white-space: pre-line;
 }
 
 .idea-counter {
     text-align: center;
     margin-top: 35px;
     font-size: 18px;
-    color: #222222;
+    color: #1A1A1A;
 }
 
-.arrow-only button {
+/* =========================================================
+SIDE ARROWS
+========================================================= */
+
+.arrow-btn button {
     background: transparent !important;
     border: none !important;
     color: #14532D !important;
     font-size: 72px !important;
+
     width: auto !important;
     height: auto !important;
+
     padding: 0 !important;
+
     box-shadow: none !important;
 }
 
-.arrow-only button:hover {
+.arrow-btn button:hover {
     background: transparent !important;
     color: #14532D !important;
 }
+
+/* =========================================================
+MOBILE
+========================================================= */
 
 @media (max-width: 768px) {
 
@@ -358,7 +432,7 @@ li:hover {
 }
 
 .page-title {
-    font-size: 34px;
+    font-size: 36px;
 }
 
 .result-big {
@@ -397,12 +471,12 @@ def generate_ideas(diploma, category, concern, solution_type):
     user_prompt = f"""
 Diploma: {diploma}
 
-Sustainability Category: {category}
+Category: {category}
 
-Sustainability Concern:
+Concern:
 {concern}
 
-Preferred Solution Type:
+Solution Type:
 {solution_type}
 """
 
@@ -412,6 +486,7 @@ Preferred Solution Type:
 
     text = response.text.strip()
 
+    # REMOVE MARKDOWN IF EXISTS
     if text.startswith("```json"):
         text = text.replace("```json", "").replace("```", "").strip()
 
@@ -457,9 +532,9 @@ if st.session_state.page == 0:
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([1,1,1])
+    c1, c2, c3 = st.columns([1,1,1])
 
-    with col2:
+    with c2:
         if st.button("Start Your Project Ideas"):
             next_page()
             st.rerun()
@@ -478,10 +553,13 @@ elif st.session_state.page == 1:
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-    st.markdown('<div class="page-title">What is your diploma?</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="page-title">What is your diploma?</div>',
+        unsafe_allow_html=True
+    )
 
     st.markdown(
-        '<div class="page-subtitle">Select your diploma to personalize your sustainability project ideas.</div>',
+        '<div class="page-subtitle">This helps me tailor sustainability project ideas to your field of study.</div>',
         unsafe_allow_html=True
     )
 
@@ -515,7 +593,10 @@ elif st.session_state.page == 2:
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-    st.markdown('<div class="page-title">What sustainability category interests you?</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="page-title">What sustainability category interests you?</div>',
+        unsafe_allow_html=True
+    )
 
     st.markdown(
         '<div class="page-subtitle">Choose a sustainability category you want to focus on.</div>',
@@ -534,7 +615,7 @@ elif st.session_state.page == 2:
     c1, c2, c3 = st.columns([1,1,1])
 
     with c2:
-        if st.button("Continue →", key="cat_btn"):
+        if st.button("Continue →"):
             next_page()
             st.rerun()
 
@@ -558,7 +639,7 @@ elif st.session_state.page == 3:
     )
 
     st.markdown(
-        '<div class="page-subtitle">Share a challenge you noticed in school, community, or daily life.</div>',
+        '<div class="page-subtitle">Share a sustainability challenge you noticed in school, community, or daily life.</div>',
         unsafe_allow_html=True
     )
 
@@ -575,7 +656,8 @@ elif st.session_state.page == 3:
     c1, c2, c3 = st.columns([1,1,1])
 
     with c2:
-        if st.button("Continue →", key="concern_btn"):
+
+        if st.button("Continue →"):
 
             if concern.strip() == "":
                 st.warning("Please enter your sustainability concern.")
@@ -648,12 +730,6 @@ elif st.session_state.page == 5:
 
     idea = ideas[current]
 
-    st.markdown("""
-    <div class="hero-image">
-        <img src="https://raw.githubusercontent.com/phyu7646-creator/SCAle/main/assets/robot.png">
-    </div>
-    """, unsafe_allow_html=True)
-
     st.markdown(
         '<div class="result-small">Here are your</div>',
         unsafe_allow_html=True
@@ -666,9 +742,10 @@ elif st.session_state.page == 5:
 
     left, center, right = st.columns([1,8,1])
 
+    # LEFT
     with left:
 
-        st.markdown('<div class="arrow-only">', unsafe_allow_html=True)
+        st.markdown('<div class="arrow-btn">', unsafe_allow_html=True)
 
         if st.button("‹", key="left_arrow"):
 
@@ -678,18 +755,22 @@ elif st.session_state.page == 5:
 
         st.markdown('</div>', unsafe_allow_html=True)
 
+    # CARD
     with center:
+
+        title = idea.get("title", "")
+        paragraph = idea.get("idea", "")
 
         st.markdown(
             f"""
             <div class="result-card">
 
                 <div class="idea-title">
-                    {idea["title"]}
+                    {title}
                 </div>
 
                 <div class="idea-text">
-                    {idea["idea"]}
+                    {paragraph}
                 </div>
 
                 <div class="idea-counter">
@@ -701,9 +782,10 @@ elif st.session_state.page == 5:
             unsafe_allow_html=True
         )
 
+    # RIGHT
     with right:
 
-        st.markdown('<div class="arrow-only">', unsafe_allow_html=True)
+        st.markdown('<div class="arrow-btn">', unsafe_allow_html=True)
 
         if st.button("›", key="right_arrow"):
 
