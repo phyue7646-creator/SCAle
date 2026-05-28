@@ -491,7 +491,7 @@ div[data-testid="stTextArea"] textarea:focus {
 
     color: black !important;
 
-    border: 2px solid black !important;
+    border: 0.5px solid black !important;
 
     outline: none !important;
 
