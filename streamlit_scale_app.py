@@ -80,6 +80,15 @@ html, body, [class*="css"] {
     background-color: #F5F5F5;
 }
 
+.main .block-container {
+
+    max-width: 1100px !important;
+
+    padding-top: 0.8rem !important;
+
+    padding-bottom: 2rem !important;
+}
+
 /* =========================================================
 LOGO
 ========================================================= */
@@ -123,16 +132,16 @@ QUESTION SECTION
 ========================================================= */
 
 .question-title {
-    font-size: 52px;
+    font-size: 40px;
     font-weight: 700;
     color: black;
     margin-bottom: 15px;
 }
 
 .question-subtitle {
-    font-size: 22px;
+    font-size: 20px;
     color: #6B7280;
-    margin-bottom: 45px;
+    margin-bottom: 28px;
 }
 
 .question-label {
@@ -479,14 +488,14 @@ if st.session_state.page == "welcome":
         unsafe_allow_html=True
     )
 
-    st.markdown("<br><br>", unsafe_allow_html=True)
+    st.markdown("<div style='height:25px'></div>", unsafe_allow_html=True)
 
     st.markdown(
         '<div style="text-align:center;"><div class="page-title">Hi! I\'m SCAle.</div><br><div class="page-subtitle">I will help you to explore sustainability project ideas tailored to your diploma and interests. Let\'s get started.</div></div>',
         unsafe_allow_html=True
     )
 
-    st.markdown("<br><br>", unsafe_allow_html=True)
+    st.markdown("<div style='height:25px'></div>", unsafe_allow_html=True)
 
     image = Image.open("d06d65c5-67c9-4a99-b853-40525a2c4d2c.png")
 
@@ -495,7 +504,7 @@ if st.session_state.page == "welcome":
     with c2:
         st.image(image, width=430)
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<div style='height:25px'></div>", unsafe_allow_html=True)
 
     c1, c2, c3 = st.columns([1.2,1,1.2])
 
@@ -519,7 +528,7 @@ elif st.session_state.page == "diploma":
             st.session_state.page = "welcome"
             st.rerun()
 
-    st.markdown("<br><br>", unsafe_allow_html=True)
+    st.markdown("<div style='height:25px'></div>", unsafe_allow_html=True)
 
     st.markdown('<div class="question-title">What is your diploma?</div>', unsafe_allow_html=True)
 
@@ -530,14 +539,18 @@ elif st.session_state.page == "diploma":
 
     st.markdown('<div class="question-label">Select your diploma</div>', unsafe_allow_html=True)
 
-    st.session_state.diploma = st.selectbox(
-        "Select Diploma",
-        diplomas,
-        index=0,
-        label_visibility="collapsed"
-    )
+    left, center, right = st.columns([1,4,1])
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    with center:
+    
+        st.session_state.diploma = st.selectbox(
+            "Select Diploma",
+            diplomas,
+            index=0,
+            label_visibility="collapsed"
+        )
+
+    st.markdown("<div style='height:25px'></div>", unsafe_allow_html=True)
 
     c1, c2, c3 = st.columns([1.2,1,1.2])
 
@@ -561,7 +574,7 @@ elif st.session_state.page == "category":
             st.session_state.page = "diploma"
             st.rerun()
 
-    st.markdown("<br><br>", unsafe_allow_html=True)
+    st.markdown("<div style='height:25px'></div>", unsafe_allow_html=True)
 
     st.markdown(
         '<div class="question-title">What sustainability category interests you?</div>',
@@ -578,14 +591,18 @@ elif st.session_state.page == "category":
         unsafe_allow_html=True
     )
     
-    st.session_state.category = st.selectbox(
-        "Select Category",
-        categories,
-        index=0,
-        label_visibility="collapsed"
-    )
+    left, center, right = st.columns([1,4,1])
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    with center:
+    
+        st.session_state.category = st.selectbox(
+            "Select Category",
+            categories,
+            index=0,
+            label_visibility="collapsed"
+        )
+
+    st.markdown("<div style='height:25px'></div>", unsafe_allow_html=True)
 
     c1, c2, c3 = st.columns([1.2,1,1.2])
 
@@ -608,7 +625,7 @@ elif st.session_state.page == "concern":
         if st.button("←", key="back3", type="secondary"):
             st.session_state.page = "category"
             st.rerun()
-    st.markdown("<br><br>", unsafe_allow_html=True)
+    st.markdown("<div style='height:25px'></div>", unsafe_allow_html=True)
 
     st.markdown(
         '<div class="question-title">What sustainability problem would you like to solve?</div>',
@@ -625,12 +642,16 @@ elif st.session_state.page == "concern":
         unsafe_allow_html=True
     )
 
-    st.session_state.concern = st.text_area(
-        "",
-        height=220,
-        max_chars=200,
-        label_visibility="collapsed"
-    )
+    left, center, right = st.columns([1,4,1])
+
+    with center:
+
+        st.session_state.concern = st.text_area(
+            "",
+            height=140,
+            max_chars=200,
+            label_visibility="collapsed"
+        )
 
     st.markdown("<br>", unsafe_allow_html=True)
 
@@ -655,7 +676,7 @@ elif st.session_state.page == "solution":
             st.session_state.page = "concern"
             st.rerun()
 
-    st.markdown("<br><br>", unsafe_allow_html=True)
+    st.markdown("<div style='height:25px'></div>", unsafe_allow_html=True)
 
     st.markdown(
         '<div class="question-title">Which solution format are you interested in developing?</div>',
@@ -671,13 +692,16 @@ elif st.session_state.page == "solution":
         '<div class="question-label">Select Solution Type</div>',
         unsafe_allow_html=True
     )
-
-    st.session_state.solution = st.selectbox(
-        "Select Solution",
-        solutions,
-        index=0,
-        label_visibility="collapsed"
-    )
+    
+    left, center, right = st.columns([1,4,1])
+    with center:
+    
+        st.session_state.solution = st.selectbox(
+            "Select Solution",
+            solutions,
+            index=0,
+            label_visibility="collapsed"
+        )
 
     st.markdown("<br>", unsafe_allow_html=True)
 
@@ -732,7 +756,7 @@ elif st.session_state.page == "results":
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([1,8,1])
+    col1, col2, col3 = st.columns([1.5,6,1.5])
 
     with col1:
         if current > 0:
