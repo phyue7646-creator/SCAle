@@ -529,16 +529,18 @@ IDEA CARD
 
     border-radius: 24px;
 
-    padding: 50px;
+    padding: 40px;
 
-    min-height: 520px;
+    height: 520px;
 
     position: relative;
+
+    overflow: hidden;
 }
 
 .idea-title {
 
-    font-size: 34px;
+    font-size: 32px;
 
     font-weight: 700;
 
@@ -546,31 +548,47 @@ IDEA CARD
 
     text-align: center;
 
-    margin-bottom: 30px;
+    margin-bottom: 24px;
 }
 
 .idea-text {
 
-    font-size: 20px;
+    font-size: 19px;
 
-    line-height: 1.9;
+    line-height: 1.8;
 
     color: black;
 
     text-align: left;
 
-    max-height: 420px;
+    height: 320px;
 
     overflow-y: auto;
 
-    padding-right: 10px;
+    padding-right: 12px;
+
+    margin-bottom: 40px;
+}
+
+/* SCROLLBAR */
+
+.idea-text::-webkit-scrollbar {
+
+    width: 8px;
+}
+
+.idea-text::-webkit-scrollbar-thumb {
+
+    background-color: #CFCFCF;
+
+    border-radius: 10px;
 }
 
 .idea-counter {
 
     position: absolute;
 
-    bottom: 20px;
+    bottom: 18px;
 
     left: 50%;
 
@@ -1015,9 +1033,7 @@ elif st.session_state.page == "results":
         '<div class="page-title"><span style="color:#14532D;">Project Ideas!</span></div>',
         unsafe_allow_html=True
     )
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
+   
     st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns([1,6,1])
