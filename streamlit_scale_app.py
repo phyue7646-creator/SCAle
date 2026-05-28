@@ -137,7 +137,7 @@ LOGO
 .logo {
     font-size: 46px;
     font-weight: 700;
-    margin-top: 10px;
+    margin-top: 0px;
     margin-left: 40px;
 }
 
