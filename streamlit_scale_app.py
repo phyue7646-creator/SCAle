@@ -158,7 +158,7 @@ QUESTION SECTION
 
 .form-section {
 
-    width: 760px;
+    width: 200px;
 
     max-width: 90%;
 }
