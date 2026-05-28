@@ -146,7 +146,7 @@ QUESTION SECTION
 GREEN BUTTONS
 ========================================================= */
 
-div.stButton > button:not([kind="secondary"]) {
+div.stButton > button {
     background-color: #1F6F43 !important;
 
     color: white !important;
@@ -169,20 +169,20 @@ div.stButton > button:not([kind="secondary"]) {
     transition: none !important; 
 }
 
-div.stButton > button:not([kind="secondary"]):hover {
+div.stButton > button:hover {
     background-color: #1F6F43  !important;
     color: white !important;                /* UPDATED */
 
     border: none !important; 
 }
 
-div.stButton > button:not([kind="secondary"]):active {
+div.stButton > button:active {
     background-color: #1F6F43 !important;
     color: white !important;
     border: none !important;
 }
 
-div.stButton > button:not([kind="secondary"]):focus {
+div.stButton > button:focus {
 
     background-color: #1F6F43 !important;   /* UPDATED */
 
@@ -284,26 +284,7 @@ div[data-baseweb="select"] > div {
 div[data-baseweb="select"] span {
     color: black !important;
     font-size: 18px !important;
-}
-
-/* dropdown popup */
-
-ul {
-    background-color: white !important;
-}
-
-ul li {
-    background-color: white !important;
-    color: black !important;
-
-    font-size: 18px !important;
-}
-
-/* hover */
-
-ul li:hover {
-    background-color: #E7F3EC !important;
-    color: black !important;
+    opacity: 1 !important;
 }
 
 /* selected value shown in box */
@@ -326,6 +307,34 @@ div[data-baseweb="select"] div[role="button"] {
     opacity: 1 !important;            /* UPDATED */
 }
 
+div[data-baseweb="select"] > div:focus-within {
+
+    border: 1px solid #D9D9D9 !important;
+
+    box-shadow: none !important;
+}
+
+/* dropdown popup */
+
+ul {
+    background-color: white !important;
+}
+
+ul li {
+    background-color: white !important;
+    color: black !important;
+
+    font-size: 18px !important;
+}
+
+/* hover */
+
+ul li:hover {
+    background-color: #E7F3EC !important;
+    color: black !important;
+}
+
+
 /* selected */
 
 [aria-selected="true"] {
@@ -347,7 +356,14 @@ textarea {
 
     border: 1px solid #D9D9D9 !important;
 }
+textarea:focus {
 
+    border: 1px solid #D9D9D9 !important;
+
+    outline: none !important;
+
+    box-shadow: none !important;
+}
 /* =========================================================
 IDEA CARD
 ========================================================= */
@@ -465,7 +481,7 @@ elif st.session_state.page == "diploma":
     with st.container():
         st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
 
-        if st.button("←", key="back1", type="secondary"):
+        if st.button("←", key="back1"):
             st.session_state.page = "welcome"
             st.rerun()
 
@@ -505,7 +521,7 @@ elif st.session_state.page == "category":
 
     st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
 
-    if st.button("←", key="back2", type="secondary"):
+    if st.button("←", key="back2"):
         st.session_state.page = "diploma"
         st.rerun()
 
@@ -551,7 +567,7 @@ elif st.session_state.page == "concern":
 
     st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
 
-    if st.button("←", key="back3", type="secondary"):
+    if st.button("←", key="back3"):
         st.session_state.page = "category"
         st.rerun()
 
@@ -598,7 +614,7 @@ elif st.session_state.page == "solution":
 
     st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
 
-    if st.button("←", key="back4", type="secondary"):
+    if st.button("←", key="back4"):
         st.session_state.page = "concern"
         st.rerun()
 
