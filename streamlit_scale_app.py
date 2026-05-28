@@ -146,7 +146,7 @@ QUESTION SECTION
 GREEN BUTTONS
 ========================================================= */
 
-div.stButton:not(.back-arrow) > button {
+div.stButton > button:not([kind="secondary"]) {
     background-color: #1F6F43 !important;
 
     color: white !important;
@@ -169,20 +169,20 @@ div.stButton:not(.back-arrow) > button {
     transition: none !important; 
 }
 
-div.stButton:not(.back-arrow) > button:hover {
+div.stButton > button:not([kind="secondary"]):hover {
     background-color: #1F6F43  !important;
     color: white !important;                /* UPDATED */
 
     border: none !important; 
 }
 
-div.stButton:not(.back-arrow) > button:active {
+div.stButton > button:not([kind="secondary"]):active {
     background-color: #1F6F43 !important;
     color: white !important;
     border: none !important;
 }
 
-div.stButton:not(.back-arrow) > button:focus {
+div.stButton > button:not([kind="secondary"]):focus {
 
     background-color: #1F6F43 !important;   /* UPDATED */
 
@@ -197,24 +197,17 @@ div.stButton:not(.back-arrow) > button:focus {
 BACK ARROW
 ========================================================= */
 
-.back-arrow div.stButton > button {
+/* =========================================================
+BACK ARROW
+========================================================= */
 
-    background-color: transparent !important;   /* UPDATED */
+button[kind="secondary"] {
 
-    background: transparent !important;         /* UPDATED */
+    background: transparent !important;
 
     border: none !important;
 
     box-shadow: none !important;
-
-    width: auto !important;
-    min-width: auto !important;
-
-    height: auto !important;
-    min-height: auto !important;
-
-    padding: 0 !important;
-    margin: 0 !important;
 
     color: black !important;
 
@@ -222,45 +215,39 @@ BACK ARROW
 
     font-weight: 300 !important;
 
-    border-radius: 0 !important;               /* UPDATED */
+    padding: 0 !important;
+
+    margin: 0 !important;
+
+    min-width: auto !important;
+
+    width: auto !important;
+
+    height: auto !important;
+
+    border-radius: 0 !important;
 }
 
-.back-arrow div.stButton > button:hover {
+button[kind="secondary"]:hover,
+button[kind="secondary"]:active,
+button[kind="secondary"]:focus {
 
-    background-color: transparent !important;  /* UPDATED */
-
-    background: transparent !important;        /* UPDATED */
+    background: transparent !important;
 
     color: black !important;
-}
 
-.back-arrow div.stButton > button:active {
-
-    background-color: transparent !important;  /* UPDATED */
-
-    background: transparent !important;        /* UPDATED */
-
-    color: black !important;
-}
-
-.back-arrow div.stButton > button:focus {
-
-    background-color: transparent !important;  /* UPDATED */
-
-    background: transparent !important;        /* UPDATED */
-
-    outline: none !important;
+    border: none !important;
 
     box-shadow: none !important;
 
-    color: black !important;
+    outline: none !important;
 }
 
-.back-arrow div.stButton > button p {
-
-    font-size: 70px !important;
+button[kind="secondary"] p {
 
     color: black !important;
+
+    font-size: 70px !important;
 
     margin: 0 !important;
 }
@@ -519,13 +506,14 @@ elif st.session_state.page == "diploma":
 
 elif st.session_state.page == "category":
 
-    st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
+    with st.container():
+        back_col, _ = st.columns([1, 20])
 
-    if st.button("←", key="back2"):
-        st.session_state.page = "diploma"
-        st.rerun()
-
-    st.markdown('</div>', unsafe_allow_html=True)
+    with back_col:
+    
+        if st.button("←", key="back2", type="secondary"):
+            st.session_state.page = "diploma"
+            st.rerun()
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
@@ -565,14 +553,14 @@ elif st.session_state.page == "category":
 
 elif st.session_state.page == "concern":
 
-    st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
+    with st.container():
+        back_col, _ = st.columns([1, 20])
 
-    if st.button("←", key="back3"):
-        st.session_state.page = "category"
-        st.rerun()
-
-    st.markdown('</div>', unsafe_allow_html=True)
-
+    with back_col:
+    
+        if st.button("←", key="back3", type="secondary"):
+            st.session_state.page = "category"
+            st.rerun()
     st.markdown("<br><br>", unsafe_allow_html=True)
 
     st.markdown(
@@ -612,13 +600,13 @@ elif st.session_state.page == "concern":
 
 elif st.session_state.page == "solution":
 
-    st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
+    back_col, _ = st.columns([1, 20])
 
-    if st.button("←", key="back4"):
-        st.session_state.page = "concern"
-        st.rerun()
-
-    st.markdown('</div>', unsafe_allow_html=True)
+    with back_col:
+    
+        if st.button("←", key="back4", type="secondary"):
+            st.session_state.page = "concern"
+            st.rerun()
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
