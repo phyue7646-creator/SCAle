@@ -282,6 +282,19 @@ div[data-baseweb="select"] input {
     opacity: 1 !important;            /* UPDATED */
 }
 
+/* SHOW SELECTED ITEM */
+
+div[data-baseweb="select"] div[class*="singleValue"] {
+
+    color: black !important;
+
+    opacity: 1 !important;
+
+    font-size: 18px !important;
+
+    font-weight: 400 !important;
+}
+
 div[data-baseweb="select"] div[role="button"] {
 
     color: black !important;          /* UPDATED */
