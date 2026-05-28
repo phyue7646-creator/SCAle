@@ -82,15 +82,15 @@ html, body, [class*="css"] {
 
 .main .block-container {
 
-    max-width: 900px !important;
+    max-width: 1200px !important;
 
-    padding-top: 1.2rem !important;
+    padding-top: 0.8rem !important;
 
     padding-bottom: 1rem !important;
 
-    padding-left: 3rem !important;
+    padding-left: 4rem !important;
 
-    padding-right: 3rem !important;
+    padding-right: 4rem !important;
 }
 
 /* =========================================================
