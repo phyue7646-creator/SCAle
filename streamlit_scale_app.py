@@ -165,7 +165,7 @@ QUESTION SECTION
 
     margin-right: auto;
 
-    margin-top: 40px;
+    margin-top: 20px;
 }
 .page-wrap {
 
