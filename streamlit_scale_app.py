@@ -75,10 +75,11 @@ GLOBAL
 
 html, body, [class*="css"] {
     font-family: "Segoe UI", sans-serif;
+    background-color: white !important;
 }
 
 .stApp {
-    background-color: #F5F5F5;
+    background-color: white !important;
 }
 
 /* =========================================================
@@ -147,7 +148,8 @@ QUESTION
 GREEN BUTTON
 ========================================================= */
 
-div.stButton > button {
+div.stButton > button:not([kind="secondary"]) {
+
     background-color: #1F6F43 !important;
 
     color: white !important;
@@ -165,22 +167,38 @@ div.stButton > button {
     min-width: 260px !important;
 
     box-shadow: none !important;
+
+    transition: none !important;
 }
 
-div.stButton > button:hover {
-    background-color: #1F6F43 !important;
-    color: white !important;
-}
+div.stButton > button:not([kind="secondary"]):hover {
 
-div.stButton > button:active {
     background-color: #1F6F43 !important;
-    color: white !important;
-}
 
-div.stButton > button:focus {
-    background-color: #1F6F43 !important;
     color: white !important;
+
     border: none !important;
+}
+
+div.stButton > button:not([kind="secondary"]):active {
+
+    background-color: #1F6F43 !important;
+
+    color: white !important;
+
+    border: none !important;
+}
+
+div.stButton > button:not([kind="secondary"]):focus {
+
+    background-color: #1F6F43 !important;
+
+    color: white !important;
+
+    border: none !important;
+
+    outline: none !important;
+
     box-shadow: none !important;
 }
 
@@ -189,9 +207,10 @@ BACK ARROW
 ========================================================= */
 
 .back-arrow button {
-    background-color: transparent !important;
 
-    color: black !important;
+    background-color: #1F6F43 !important;
+
+    color: white !important;
 
     border: none !important;
 
@@ -203,32 +222,45 @@ BACK ARROW
 
     height: auto !important;
 
-    padding: 0 !important;
+    padding: 0px 16px !important;
 
-    font-size: 72px !important;
+    font-size: 70px !important;
 
     font-weight: 300 !important;
+
+    border-radius: 14px !important;
 }
 
 .back-arrow button:hover {
-    background-color: transparent !important;
-    color: black !important;
+
+    background-color: #1F6F43 !important;
+
+    color: white !important;
 }
 
 .back-arrow button:active {
-    background-color: transparent !important;
-    color: black !important;
+
+    background-color: #1F6F43 !important;
+
+    color: white !important;
 }
 
 .back-arrow button:focus {
-    background-color: transparent !important;
-    color: black !important;
+
+    background-color: #1F6F43 !important;
+
+    color: white !important;
+
     box-shadow: none !important;
+
+    outline: none !important;
 }
 
-.back-arrow p {
-    font-size: 72px !important;
-    color: black !important;
+.back-arrow button p {
+
+    font-size: 70px !important;
+
+    color: white !important;
 }
 
 /* =========================================================
@@ -236,6 +268,7 @@ SELECT BOX
 ========================================================= */
 
 div[data-baseweb="select"] > div {
+
     background-color: white !important;
 
     border: 1px solid #D9D9D9 !important;
@@ -251,49 +284,66 @@ div[data-baseweb="select"] > div {
     align-items: center !important;
 }
 
-/* selected value */
+/* REMOVE RED BORDER */
+
+div[data-baseweb="select"] > div:focus-within {
+
+    border: 1px solid #D9D9D9 !important;
+
+    box-shadow: none !important;
+}
+
+/* SELECTED VALUE */
 
 div[data-baseweb="select"] span {
+
+    color: black !important;
+
+    font-size: 18px !important;
+
+    width: 100% !important;
+
+    text-align: center !important;
+}
+
+/* DROPDOWN */
+
+ul {
+
+    background-color: white !important;
+}
+
+/* OPTIONS */
+
+ul li {
+
+    background-color: white !important;
+
     color: black !important;
 
     font-size: 18px !important;
 
     text-align: center !important;
-
-    width: 100% !important;
 }
 
-/* dropdown popup */
-
-ul {
-    background-color: white !important;
-}
-
-/* options */
-
-ul li {
-    background-color: white !important;
-
-    color: black !important;
-
-    font-size: 18px !important;
-}
-
-/* hover */
+/* HOVER */
 
 ul li:hover {
+
     background-color: #DDEEE3 !important;
 
     color: black !important;
 }
 
-/* selected */
+/* SELECTED */
 
 [aria-selected="true"] {
+
     background-color: #1F6F43 !important;
 }
 
 [aria-selected="true"] * {
+
     color: white !important;
 }
 
@@ -302,6 +352,7 @@ TEXT AREA
 ========================================================= */
 
 textarea {
+
     background-color: white !important;
 
     color: black !important;
@@ -311,6 +362,19 @@ textarea {
     border-radius: 0px !important;
 
     border: 1px solid #D9D9D9 !important;
+
+    box-shadow: none !important;
+}
+
+/* REMOVE RED BORDER */
+
+textarea:focus {
+
+    border: 1px solid #D9D9D9 !important;
+
+    box-shadow: none !important;
+
+    outline: none !important;
 }
 
 /* =========================================================
@@ -318,6 +382,7 @@ IDEA CARD
 ========================================================= */
 
 .idea-card {
+
     background-color: white;
 
     border: 1px solid #E5E7EB;
@@ -332,16 +397,16 @@ IDEA CARD
 }
 
 .idea-text {
+
     font-size: 22px;
 
     line-height: 1.9;
 
     color: black;
-
-    margin-top: 20px;
 }
 
 .idea-counter {
+
     text-align: center;
 
     font-size: 18px;
@@ -352,10 +417,11 @@ IDEA CARD
 }
 
 /* =========================================================
-RESULT ARROW
+RESULT ARROWS
 ========================================================= */
 
 .arrow-btn button {
+
     background-color: white !important;
 
     color: black !important;
@@ -378,18 +444,27 @@ RESULT ARROW
 }
 
 .arrow-btn button:hover {
+
     background-color: white !important;
+
     color: black !important;
 }
 
 .arrow-btn button:focus {
+
     background-color: white !important;
+
     color: black !important;
+
     box-shadow: none !important;
+
+    outline: none !important;
 }
 
 .arrow-btn button:active {
+
     background-color: white !important;
+
     color: black !important;
 }
 
@@ -466,7 +541,11 @@ solutions = [
 if st.session_state.page == "welcome":
 
     st.markdown(
-        '<div class="logo"><span class="logo-sca">SCA</span><span class="logo-le">le</span></div>',
+        '''
+        <div class="logo">
+            <span class="logo-sca">SCA</span><span class="logo-le">le</span>
+        </div>
+        ''',
         unsafe_allow_html=True
     )
 
@@ -475,8 +554,10 @@ if st.session_state.page == "welcome":
     st.markdown(
         """
         <div style="text-align:center;">
+
             <div class="page-title">
-                Hi! I'm SCAle.
+                Hi! I'm
+                <span class="logo-sca">SCA</span><span class="logo-le">le</span>.
             </div>
 
             <br>
@@ -484,6 +565,7 @@ if st.session_state.page == "welcome":
             <div class="page-subtitle">
                 I will help you to explore sustainability project ideas tailored to your diploma and interests. Let's get started.
             </div>
+
         </div>
         """,
         unsafe_allow_html=True
@@ -761,26 +843,30 @@ elif st.session_state.page == "results":
 
         idea = st.session_state.ideas[current]
 
-        st.markdown(
-            f"""
-            <div class="idea-card">
+        left, center, right = st.columns([1,14,1])
 
-                <div class="idea-text">
-                    {idea}
+        with center:
+
+            st.markdown(
+                f"""
+                <div class="idea-card">
+
+                    <div class="idea-text">
+                        {idea}
+                    </div>
+
+                    <div class="idea-counter">
+                        Idea {current + 1} of {len(st.session_state.ideas)}
+                    </div>
+
                 </div>
+                """,
+                unsafe_allow_html=True
+            )
 
-                <div class="idea-counter">
-                    Idea {current + 1} of {len(st.session_state.ideas)}
-                </div>
+        nav1, nav2, nav3 = st.columns([1,12,1])
 
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-        inner1, inner2, inner3 = st.columns([1,8,1])
-
-        with inner1:
+        with nav1:
 
             st.markdown('<div class="arrow-btn">', unsafe_allow_html=True)
 
@@ -791,7 +877,7 @@ elif st.session_state.page == "results":
 
             st.markdown('</div>', unsafe_allow_html=True)
 
-        with inner3:
+        with nav3:
 
             st.markdown('<div class="arrow-btn">', unsafe_allow_html=True)
 
