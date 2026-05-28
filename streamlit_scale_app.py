@@ -1046,17 +1046,17 @@ elif st.session_state.page == "results":
 f"""
 <div class="idea-card">
 
-    <div class="idea-title">
-        {title}
-    </div>
+<div class="idea-title">
+{title}
+</div>
 
-    <div class="idea-text">
-        {idea_body}
-    </div>
+<div class="idea-text">
+{idea_body}
+</div>
 
-    <div class="idea-counter">
-        {current + 1} / {len(st.session_state.ideas)}
-    </div>
+<div class="idea-counter">
+{current + 1} / {len(st.session_state.ideas)}
+</div>
 
 </div>
 """,
