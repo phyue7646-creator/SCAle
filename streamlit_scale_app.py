@@ -1,4 +1,4 @@
-````python
+
 import streamlit as st
 import google.generativeai as genai
 import json
@@ -690,4 +690,3 @@ elif st.session_state.page == "results":
             st.session_state.current_idea = 0
 
             st.rerun()
-````
