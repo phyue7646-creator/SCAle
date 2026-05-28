@@ -764,8 +764,10 @@ elif st.session_state.page == "diploma":
         if st.button("Continue →", type="primary"):
             st.session_state.page = "category"
             st.rerun()
-    
     st.markdown('</div></div>', unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
 
 # =========================================================
 # CATEGORY PAGE
