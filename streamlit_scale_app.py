@@ -189,7 +189,7 @@ div.stButton > button:not([kind="secondary"]):focus {
 
     outline: none !important;
 
-    box-shadow: none !important;
+    box-shadow: none !important;}
 /* =========================================================
 BACK ARROW
 ========================================================= */
