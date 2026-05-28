@@ -618,14 +618,16 @@ if st.session_state.page == "welcome":
     )
 
     #st.markdown("<div style='height:28px'></div>", unsafe_allow_html=True)
-
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
     image = Image.open("d06d65c5-67c9-4a99-b853-40525a2c4d2c.png")
 
     c1, c2, c3 = st.columns([1.2,1.6,1.2])
-
+    
     #with c2:
         #st.image(image, width=430)
-
+    
     button_left, button_center, button_right = st.columns([2.2,1,2.2])
 
     with button_center:
