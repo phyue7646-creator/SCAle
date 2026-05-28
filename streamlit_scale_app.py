@@ -165,7 +165,7 @@ QUESTION SECTION
 
     margin-right: auto;
 
-    margin-top: 20px;
+    margin-top: 0px;
 }
 .page-wrap {
 
@@ -175,7 +175,7 @@ QUESTION SECTION
 
     flex-direction: column;
 
-    justify-content: flex-start;
+    justify-content: start;
 }
 /* =========================================================
 GREEN BUTTONS
