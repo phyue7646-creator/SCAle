@@ -84,7 +84,7 @@ html, body, [class*="css"] {
 
     max-width: 1200px !important;
 
-    padding-top: 0.8rem !important;
+    padding-top: 0rem !important;
 
     padding-bottom: 1rem !important;
 
@@ -164,7 +164,7 @@ QUESTION SECTION
 
     margin-right: auto;
 
-    margin-top: 110px;
+    margin-top: 40px;
 }
 
 /* =========================================================
@@ -243,6 +243,9 @@ button[kind="secondary"]  {
     height: auto !important;
 
     border-radius: 0 !important;
+    position: relative !important;
+
+    top: -10px !important;
 }
 
 /* BIG ARROWS */
