@@ -169,13 +169,13 @@ QUESTION SECTION
 }
 .page-wrap {
 
-    min-height: 10vh;
+    padding-top: 20px;
 
     display: flex;
 
     flex-direction: column;
 
-    justify-content: center;
+    justify-content: flex-start;
 }
 /* =========================================================
 GREEN BUTTONS
