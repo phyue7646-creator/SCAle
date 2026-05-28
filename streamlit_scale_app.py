@@ -28,7 +28,7 @@ GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
 
 genai.configure(api_key=GOOGLE_API_KEY)
 
-model = genai.GenerativeModel("models/gemini-1.5-flash")
+model = genai.GenerativeModel("gemini-2.5-flash-lite")
 
 # =========================================================
 # LOAD SYSTEM PROMPT
