@@ -476,7 +476,7 @@ div[data-testid="stTextArea"] textarea {
 
     line-height: 1.6 !important;
 
-    border-radius: 12px !important;
+    border-radius: 6px !important;
 
     border: 0.5px solid black !important;
 
