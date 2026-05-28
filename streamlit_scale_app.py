@@ -146,7 +146,7 @@ QUESTION SECTION
 GREEN BUTTONS
 ========================================================= */
 
-div.stButton > button {
+div.stButton:not(.back-arrow) > button {
     background-color: #1F6F43 !important;
 
     color: white !important;
