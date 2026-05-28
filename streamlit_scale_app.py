@@ -128,6 +128,32 @@ div[data-testid="stVerticalBlock"] > div:first-child {
 
 section.main > div {
     padding-top: 0rem !important;
+}/* REMOVE DEFAULT STREAMLIT TOP SPACE */
+
+section.main > div {
+    padding-top: 0rem !important;
+}
+
+/* REMOVE TRUE ROOT TOP SPACE */
+
+[data-testid="stAppViewContainer"] {
+    padding-top: 0rem !important;
+    margin-top: 0rem !important;
+}
+
+[data-testid="stAppViewContainer"] > .main {
+    padding-top: 0rem !important;
+    margin-top: 0rem !important;
+}
+
+.main .block-container {
+    padding-top: 0px !important;
+    margin-top: 0px !important;
+}
+
+.element-container:first-child {
+    margin-top: 0rem !important;
+    padding-top: 0rem !important;
 }
 
 /* =========================================================
