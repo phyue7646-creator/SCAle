@@ -169,20 +169,20 @@ div.stButton:not(.back-arrow) > button {
     transition: none !important; 
 }
 
-div.stButton > button:hover {
+div.stButton:not(.back-arrow) > button:hover {
     background-color: #1F6F43  !important;
     color: white !important;                /* UPDATED */
 
     border: none !important; 
 }
 
-div.stButton > button:active {
+div.stButton:not(.back-arrow) > button:active {
     background-color: #1F6F43 !important;
     color: white !important;
     border: none !important;
 }
 
-div.stButton > button:focus {
+div.stButton:not(.back-arrow) > button:focus {
 
     background-color: #1F6F43 !important;   /* UPDATED */
 
