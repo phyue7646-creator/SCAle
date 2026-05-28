@@ -1,7 +1,6 @@
 import streamlit as st
 import json
-import os
-from openai import OpenAI
+import google.generativeai as genai
 
 # =========================================================
 # PAGE CONFIG
@@ -13,12 +12,12 @@ st.set_page_config(
 )
 
 # =========================================================
-# OPENAI CLIENT
+# GEMINI CONFIG
 # =========================================================
 
-client = OpenAI(
-    api_key=st.secrets["OPENAI_API_KEY"]
-)
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 # =========================================================
 # LOAD SYSTEM PROMPT
@@ -91,7 +90,7 @@ SOLUTION_TYPES = [
 ]
 
 # =========================================================
-# SESSION STATES
+# SESSION STATE
 # =========================================================
 
 if "page" not in st.session_state:
@@ -110,19 +109,11 @@ if "current_idea" not in st.session_state:
 st.markdown("""
 <style>
 
-/* =========================================================
-HIDE STREAMLIT
-========================================================= */
-
 #MainMenu,
 header,
 footer {
     visibility: hidden;
 }
-
-/* =========================================================
-APP
-========================================================= */
 
 .stApp {
     background-color: #F3F3F3;
@@ -132,10 +123,6 @@ APP
     padding-top: 0rem;
     max-width: 100%;
 }
-
-/* =========================================================
-TOP BAR
-========================================================= */
 
 .topbar {
     background: #742774;
@@ -147,19 +134,11 @@ TOP BAR
     z-index: 999;
 }
 
-/* =========================================================
-LAYOUT
-========================================================= */
-
 .page-wrapper {
     margin-top: 110px;
     padding-left: 17%;
     padding-right: 17%;
 }
-
-/* =========================================================
-WELCOME
-========================================================= */
 
 .logo {
     font-size: 52px;
@@ -194,10 +173,6 @@ WELCOME
     width: 350px;
 }
 
-/* =========================================================
-PAGE TITLES
-========================================================= */
-
 .page-title {
     font-size: 44px;
     font-weight: 700;
@@ -212,19 +187,11 @@ PAGE TITLES
     margin-bottom: 35px;
 }
 
-/* =========================================================
-INPUT LABELS
-========================================================= */
-
 label {
     color: black !important;
     font-size: 18px !important;
     font-weight: 600 !important;
 }
-
-/* =========================================================
-TEXT AREA
-========================================================= */
 
 .stTextArea textarea {
     background-color: white !important;
@@ -245,10 +212,6 @@ TEXT AREA
     outline: none !important;
 }
 
-/* =========================================================
-SELECT BOX
-========================================================= */
-
 div[data-baseweb="select"] > div {
     background: white !important;
     color: black !important;
@@ -261,10 +224,6 @@ div[data-baseweb="select"] > div {
 div[data-baseweb="select"] * {
     color: black !important;
 }
-
-/* =========================================================
-BUTTONS
-========================================================= */
 
 .stButton > button {
     background: #4C7A46;
@@ -282,10 +241,6 @@ BUTTONS
     color: white;
 }
 
-/* =========================================================
-BACK BUTTON
-========================================================= */
-
 .back-btn button {
     background: transparent !important;
     border: none !important;
@@ -300,10 +255,6 @@ BACK BUTTON
     background: transparent !important;
     color: black !important;
 }
-
-/* =========================================================
-RESULT
-========================================================= */
 
 .result-small {
     text-align: center;
@@ -349,10 +300,6 @@ RESULT
     font-size: 18px;
 }
 
-/* =========================================================
-RESULT ARROWS
-========================================================= */
-
 .arrow-btn button {
     background: transparent !important;
     border: none !important;
@@ -367,10 +314,6 @@ RESULT ARROWS
     background: transparent !important;
     color: #4C7A46 !important;
 }
-
-/* =========================================================
-MOBILE
-========================================================= */
 
 @media (max-width: 768px) {
 
@@ -430,22 +373,13 @@ Preferred Solution Type:
 {solution_type}
 """
 
-    response = client.chat.completions.create(
-        model="gpt-4.1-mini",
-        temperature=1,
-        messages=[
-            {
-                "role": "system",
-                "content": SYSTEM_PROMPT
-            },
-            {
-                "role": "user",
-                "content": user_prompt
-            }
-        ]
-    )
+    final_prompt = SYSTEM_PROMPT + "\n\n" + user_prompt
 
-    text = response.choices[0].message.content
+    response = model.generate_content(final_prompt)
+
+    text = response.text
+
+    text = text.replace("```json", "").replace("```", "").strip()
 
     return json.loads(text)
 
@@ -456,7 +390,7 @@ Preferred Solution Type:
 st.markdown('<div class="page-wrapper">', unsafe_allow_html=True)
 
 # =========================================================
-# PAGE 0 - WELCOME
+# PAGE 0
 # =========================================================
 
 if st.session_state.page == 0:
@@ -464,7 +398,7 @@ if st.session_state.page == 0:
     st.markdown('<div class="logo">SCAle</div>', unsafe_allow_html=True)
 
     st.markdown(
-         "<div class='hero-title'>Hi! I'm SCAle.</div>",
+        "<div class='hero-title'>Hi! I'm SCAle.</div>",
         unsafe_allow_html=True
     )
 
@@ -482,284 +416,9 @@ if st.session_state.page == 0:
         unsafe_allow_html=True
     )
 
-    st.markdown("<br>", unsafe_allow_html=True)
-
     col1, col2, col3 = st.columns([1,1,1])
 
     with col2:
         if st.button("Start Your Project Ideas"):
             next_page()
             st.rerun()
-
-# =========================================================
-# PAGE 1
-# =========================================================
-
-elif st.session_state.page == 1:
-
-    st.markdown('<div class="back-btn">', unsafe_allow_html=True)
-
-    if st.button("←", key="back1"):
-        previous_page()
-        st.rerun()
-
-    st.markdown('</div>', unsafe_allow_html=True)
-
-    st.markdown(
-        '<div class="page-title">What is your diploma?</div>',
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        '<div class="page-subtitle">This helps me to tailor sustainability project ideas to your field of study.</div>',
-        unsafe_allow_html=True
-    )
-
-    diploma = st.selectbox(
-        "Select your diploma",
-        DIPLOMAS
-    )
-
-    st.session_state.diploma = diploma
-
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    col1, col2, col3 = st.columns([1,1,1])
-
-    with col2:
-        if st.button("Continue →"):
-            next_page()
-            st.rerun()
-
-# =========================================================
-# PAGE 2
-# =========================================================
-
-elif st.session_state.page == 2:
-
-    st.markdown('<div class="back-btn">', unsafe_allow_html=True)
-
-    if st.button("←", key="back2"):
-        previous_page()
-        st.rerun()
-
-    st.markdown('</div>', unsafe_allow_html=True)
-
-    st.markdown(
-        '<div class="page-title">What sustainability category interests you?</div>',
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        '<div class="page-subtitle">This allows sustainability project ideas align to your focus areas.</div>',
-        unsafe_allow_html=True
-    )
-
-    category = st.selectbox(
-        "Select sustainability category",
-        CATEGORIES
-    )
-
-    st.session_state.category = category
-
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    col1, col2, col3 = st.columns([1,1,1])
-
-    with col2:
-        if st.button("Continue →"):
-            next_page()
-            st.rerun()
-
-# =========================================================
-# PAGE 3
-# =========================================================
-
-elif st.session_state.page == 3:
-
-    st.markdown('<div class="back-btn">', unsafe_allow_html=True)
-
-    if st.button("←", key="back3"):
-        previous_page()
-        st.rerun()
-
-    st.markdown('</div>', unsafe_allow_html=True)
-
-    st.markdown(
-        '<div class="page-title">What sustainability problem would you like to solve?</div>',
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        '<div class="page-subtitle">Share a problem or challenge you have noticed in school, community, or daily life.</div>',
-        unsafe_allow_html=True
-    )
-
-    concern = st.text_area(
-        "Sustainability concern",
-        height=250,
-        max_chars=200,
-        key="concern_box"
-    )
-
-    st.session_state.concern = concern
-
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    col1, col2, col3 = st.columns([1,1,1])
-
-    with col2:
-        if st.button("Continue →"):
-
-            if concern.strip() == "":
-                st.warning("Please enter your sustainability concern.")
-            else:
-                next_page()
-                st.rerun()
-
-# =========================================================
-# PAGE 4
-# =========================================================
-
-elif st.session_state.page == 4:
-
-    st.markdown('<div class="back-btn">', unsafe_allow_html=True)
-
-    if st.button("←", key="back4"):
-        previous_page()
-        st.rerun()
-
-    st.markdown('</div>', unsafe_allow_html=True)
-
-    st.markdown(
-        '<div class="page-title">Which solution format are you interested in developing?</div>',
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        '<div class="page-subtitle">This helps me to suggest the right type of project for you.</div>',
-        unsafe_allow_html=True
-    )
-
-    solution_type = st.selectbox(
-        "Select Solution Type",
-        SOLUTION_TYPES
-    )
-
-    st.session_state.solution_type = solution_type
-
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    col1, col2, col3 = st.columns([1,1,1])
-
-    with col2:
-
-        if st.button("Submit"):
-
-            with st.spinner("Generating sustainability ideas..."):
-
-                ideas = generate_ideas(
-                    st.session_state.diploma,
-                    st.session_state.category,
-                    st.session_state.concern,
-                    solution_type
-                )
-
-                st.session_state.ideas = ideas
-                st.session_state.current_idea = 0
-
-            next_page()
-            st.rerun()
-
-# =========================================================
-# PAGE 5 - RESULT
-# =========================================================
-
-elif st.session_state.page == 5:
-
-    ideas = st.session_state.ideas
-    current = st.session_state.current_idea
-
-    idea = ideas[current]
-
-    st.markdown(
-        '<div class="result-small">Here are your</div>',
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        '<div class="result-big">Project Ideas!</div>',
-        unsafe_allow_html=True
-    )
-
-    col1, col2, col3 = st.columns([1,10,1])
-
-    # LEFT
-    with col1:
-
-        st.markdown('<div class="arrow-btn">', unsafe_allow_html=True)
-
-        if st.button("◀", key="left_arrow"):
-
-            if current > 0:
-                st.session_state.current_idea -= 1
-                st.rerun()
-
-        st.markdown('</div>', unsafe_allow_html=True)
-
-    # CARD
-    with col2:
-
-        st.markdown(
-            f"""
-            <div class="result-card">
-
-                <div class="idea-title">
-                    {idea['title']}
-                </div>
-
-                <div class="idea-text">
-                    {idea['idea']}
-                </div>
-
-                <div class="idea-counter">
-                    {current + 1} / {len(ideas)}
-                </div>
-
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-    # RIGHT
-    with col3:
-
-        st.markdown('<div class="arrow-btn">', unsafe_allow_html=True)
-
-        if st.button("▶", key="right_arrow"):
-
-            if current < len(ideas) - 1:
-                st.session_state.current_idea += 1
-                st.rerun()
-
-        st.markdown('</div>', unsafe_allow_html=True)
-
-    st.markdown("<br><br>", unsafe_allow_html=True)
-
-    col1, col2, col3 = st.columns([1,1,1])
-
-    with col2:
-
-        if st.button("Start Over"):
-
-            st.session_state.page = 0
-            st.session_state.current_idea = 0
-            st.session_state.ideas = []
-
-            st.rerun()
-
-# =========================================================
-# END WRAPPER
-# =========================================================
-
-st.markdown('</div>', unsafe_allow_html=True)
