@@ -169,7 +169,7 @@ QUESTION SECTION
 }
 .page-wrap {
 
-    min-height: 78vh;
+    min-height: 30vh;
 
     display: flex;
 
