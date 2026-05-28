@@ -859,12 +859,42 @@ elif st.session_state.page == "concern":
         unsafe_allow_html=True
     )
     st.markdown("<br>", unsafe_allow_html=True)
+    # st.session_state.concern = st.text_area(
+    #     "",
+    #     height=140,
+    #     max_chars=200,
+    #     label_visibility="collapsed"
+    # ) 
     st.session_state.concern = st.text_area(
-        "",
-        height=140,
-        max_chars=200,
-        label_visibility="collapsed"
-    ) 
+    "",
+    height=140,
+    max_chars=200,
+    label_visibility="collapsed"
+    )
+    
+    word_count = len(
+        [
+            word for word in st.session_state.concern.strip().split()
+            if word
+        ]
+    )
+    
+    st.markdown(
+        f"""
+        <div style="
+            text-align:right;
+            color:black;
+            font-size:13px;
+            margin-top:-32px;
+            margin-right:12px;
+            position:relative;
+            z-index:10;
+        ">
+            {word_count} / 200
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
