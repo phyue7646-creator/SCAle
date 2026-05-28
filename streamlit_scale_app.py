@@ -249,7 +249,7 @@ QUESTION SECTION
     width: 100px;
 
     max-width: 90%;
-    padding-left: 2rem;
+    padding-left: 10rem;
 }
 .page-wrap {
 
@@ -730,21 +730,16 @@ elif st.session_state.page == "diploma":
         unsafe_allow_html=True
     )
     st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
+
     st.markdown(
         '<div class="question-subtitle">This helps me to tailor sustainability project ideas to your field of study.</div>',
         unsafe_allow_html=True
     )
     st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
     st.markdown(
         '<div class="question-label">Select your diploma</div>',
         unsafe_allow_html=True
     )
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
     st.session_state.diploma = st.selectbox(
         "Select Diploma",
