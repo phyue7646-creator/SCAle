@@ -158,11 +158,13 @@ QUESTION SECTION
 
 .form-section {
 
-    max-width: 680px;
+    width: 680px;
 
-    margin: 0 auto;
+    margin-left: auto;
 
-    padding-top: 24px;
+    margin-right: auto;
+
+    margin-top: 110px;
 }
 
 /* =========================================================
@@ -518,9 +520,7 @@ if st.session_state.page == "welcome":
     with c2:
         st.image(image, width=430)
 
-    st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
-
-    button_left, button_center, button_right = st.columns([1.5,1,1.5])
+    button_left, button_center, button_right = st.columns([2.2,1,2.2])
 
     with button_center:
         if st.button("Start Your Project Ideas", type="primary"):
@@ -533,16 +533,13 @@ if st.session_state.page == "welcome":
 
 elif st.session_state.page == "diploma":
 
-    with st.container():
-        back_col, _ = st.columns([1, 20])
+    back_left, back_right = st.columns([0.08, 0.92])
 
-    with back_col:
-    
+    with back_left:
         if st.button("←", key="back1", type="secondary"):
             st.session_state.page = "welcome"
             st.rerun()
 
-    st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
     st.markdown('<div class="form-section">', unsafe_allow_html=True)
 
     st.markdown(
@@ -569,7 +566,7 @@ elif st.session_state.page == "diploma":
     
     st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
     
-    button_left, button_center, button_right = st.columns([1.5,1,1.5])
+    button_left, button_center, button_right = st.columns([2.2,1,2.2])
     
     with button_center:
         if st.button("Continue →", type="primary"):
@@ -584,16 +581,12 @@ elif st.session_state.page == "diploma":
 
 elif st.session_state.page == "category":
 
-    with st.container():
-        back_col, _ = st.columns([1, 20])
+    back_left, back_right = st.columns([0.08, 0.92])
 
-    with back_col:
-    
+    with back_left:
         if st.button("←", key="back2", type="secondary"):
             st.session_state.page = "diploma"
             st.rerun()
-
-    st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
     st.markdown('<div class="form-section">', unsafe_allow_html=True)
     st.markdown(
         '<div class="question-title">What sustainability category interests you?</div>',
@@ -619,7 +612,7 @@ elif st.session_state.page == "category":
     )
     st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
 
-    button_left, button_center, button_right = st.columns([1.5,1,1.5])
+    button_left, button_center, button_right = st.columns([2.2,1,2.2])
     
     with button_center:
         if st.button("Continue →", type="primary"):
@@ -633,15 +626,12 @@ elif st.session_state.page == "category":
 
 elif st.session_state.page == "concern":
 
-    with st.container():
-        back_col, _ = st.columns([1, 20])
+    back_left, back_right = st.columns([0.08, 0.92])
 
-    with back_col:
-    
+    with back_left:
         if st.button("←", key="back3", type="secondary"):
             st.session_state.page = "category"
             st.rerun()
-    st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
     st.markdown('<div class="form-section">', unsafe_allow_html=True)
     st.markdown(
         '<div class="question-title">What sustainability problem would you like to solve?</div>',
@@ -665,7 +655,7 @@ elif st.session_state.page == "concern":
         label_visibility="collapsed"
     ) 
 
-    button_left, button_center, button_right = st.columns([1.5,1,1.5])
+    button_left, button_center, button_right = st.columns([2.2,1,2.2])
 
     with button_center:
         if st.button("Continue →", type="primary"):
@@ -679,15 +669,13 @@ elif st.session_state.page == "concern":
 
 elif st.session_state.page == "solution":
 
-    back_col, _ = st.columns([1, 20])
+    back_left, back_right = st.columns([0.08, 0.92])
 
-    with back_col:
-    
+    with back_left:
         if st.button("←", key="back4", type="secondary"):
             st.session_state.page = "concern"
             st.rerun()
 
-    st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
     st.markdown('<div class="form-section">', unsafe_allow_html=True)
     st.markdown(
         '<div class="question-title">Which solution format are you interested in developing?</div>',
@@ -714,7 +702,7 @@ elif st.session_state.page == "solution":
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    button_left, button_center, button_right = st.columns([1.5,1,1.5])
+    button_left, button_center, button_right = st.columns([2.2,1,2.2])
 
     with button_center:
         if st.button("Submit", type="primary"):
@@ -800,7 +788,7 @@ elif st.session_state.page == "results":
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    button_left, button_center, button_right = st.columns([1.5,1,1.5])
+    button_left, button_center, button_right = st.columns([2.2,1,2.2])
 
     with button_center:
         if st.button("Start Over", type="primary"):
