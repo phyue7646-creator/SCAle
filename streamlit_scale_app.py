@@ -197,7 +197,7 @@ div.stButton > button:not([kind="secondary"]):focus {
 BACK ARROW ONLY
 ========================================================= */
 
-button[data-testid="baseButton-secondary"] {
+button[kind="secondary"]  {
 
     background: transparent !important;
 
@@ -222,7 +222,7 @@ button[data-testid="baseButton-secondary"] {
 
 /* BIG ARROWS */
 
-button[data-testid="baseButton-secondary"] p {
+button[kind="secondary"] p {
 
     color: black !important;
 
@@ -233,9 +233,9 @@ button[data-testid="baseButton-secondary"] p {
     margin: 0 !important;
 }
 
-button[data-testid="baseButton-secondary"]:hover,
-button[data-testid="baseButton-secondary"]:active,
-button[data-testid="baseButton-secondary"]:focus {
+button[kind="secondary"]:hover,
+button[kind="secondary"]:active,
+button[kind="secondary"]:focus  {
 
     background: transparent !important;
 
