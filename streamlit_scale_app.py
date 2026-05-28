@@ -164,277 +164,266 @@ Preferred Solution Type:
 # CSS
 # =========================================================
 
-st.markdown(
-    """
-    <style>
-
-    #MainMenu,
-    header,
-    footer {
-        visibility: hidden;
-    }
-
-    .stApp {
-        background-color: #F5F5F5;
-    }
-
-    .block-container {
-        max-width: 1180px;
-        padding-top: 1rem;
-        padding-bottom: 2rem;
-    }
-
-    /* =========================================================
-    LOGO
-    ========================================================= */
-
-    .scale-logo {
-        font-size: 42px;
-        font-weight: 700;
-    }
-
-    /* =========================================================
-    TEXT
-    ========================================================= */
-
-    .page-title {
-        font-size: 56px;
-        font-weight: 700;
-        color: #161616;
-        line-height: 1.2;
-    }
-
-    .page-subtitle {
-        font-size: 24px;
-        color: #666666;
-        line-height: 1.7;
-    }
-
-    /* =========================================================
-    LABELS
-    ========================================================= */
-
-    label,
-    .stSelectbox label,
-    .stTextArea label {
-        color: black !important;
-        font-size: 18px !important;
-        font-weight: 700 !important;
-    }
-
-    /* =========================================================
-    BUTTONS
-    ========================================================= */
-
-    .stButton > button {
-        background: #1F6F43 !important;
-        color: white !important;
-
-        border: none !important;
-        border-radius: 14px !important;
-
-        min-height: 60px !important;
-        width: 340px !important;
-
-        font-size: 22px !important;
-        font-weight: 700 !important;
-
-        transition: 0.2s;
-    }
-
-    .stButton > button:hover {
-        background: #1F6F43 !important;
-        color: white !important;
-    }
-
-    .stButton > button:active {
-        background: #1F6F43 !important;
-        color: white !important;
-    }
+st.markdown("""
+<style>
+
+#MainMenu,
+header,
+footer {
+    visibility: hidden;
+}
+
+.stApp {
+    background-color: #F5F5F5;
+}
+
+.block-container {
+    max-width: 1200px;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+/* =========================================================
+LOGO
+========================================================= */
+
+.scale-logo {
+    font-size: 42px;
+    font-weight: 700;
+}
+
+/* =========================================================
+TEXT
+========================================================= */
+
+.page-title {
+    font-size: 58px;
+    font-weight: 700;
+    color: #161616;
+    line-height: 1.2;
+}
+
+.page-subtitle {
+    font-size: 24px;
+    color: #666666;
+    line-height: 1.7;
+}
+
+/* =========================================================
+LABELS
+========================================================= */
+
+label,
+.stSelectbox label,
+.stTextArea label {
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+}
+
+/* =========================================================
+BUTTONS
+========================================================= */
+
+.stButton > button {
+    background: #1F6F43 !important;
+    color: white !important;
+
+    border: none !important;
+    border-radius: 14px !important;
+
+    min-height: 58px !important;
+    width: 340px !important;
+
+    font-size: 22px !important;
+    font-weight: 700 !important;
+}
+
+.stButton > button:hover {
+    background: #1F6F43 !important;
+    color: white !important;
+}
+
+.stButton > button:active {
+    background: #1F6F43 !important;
+    color: white !important;
+}
 
-    /* =========================================================
-    BACK ARROW
-    ========================================================= */
+/* =========================================================
+BACK ARROW
+========================================================= */
 
-    .back-arrow button {
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
+.back-arrow button {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    color: black !important;
 
-        color: black !important;
+    width: auto !important;
+    height: auto !important;
 
-        width: auto !important;
-        height: auto !important;
+    min-height: auto !important;
 
-        padding: 0 !important;
-        margin: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
 
-        min-height: unset !important;
+    font-size: 70px !important;
+    font-weight: 300 !important;
+}
 
-        font-size: 72px !important;
-        font-weight: 300 !important;
-    }
+.back-arrow button:hover {
+    background: transparent !important;
+    color: black !important;
+}
 
-    .back-arrow button:hover {
-        background: transparent !important;
-        color: black !important;
-    }
+.back-arrow button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
 
-    .back-arrow button:focus {
-        outline: none !important;
-        box-shadow: none !important;
-    }
+.back-arrow button p {
+    font-size: 70px !important;
+    margin: 0 !important;
+    color: black !important;
+}
 
-    .back-arrow button p {
-        font-size: 72px !important;
-        margin: 0 !important;
-        color: black !important;
-    }
+/* =========================================================
+SELECTBOX
+========================================================= */
 
-    /* =========================================================
-    SELECT BOX
-    ========================================================= */
+div[data-baseweb="select"] > div {
+    background: white !important;
 
-    div[data-baseweb="select"] > div {
-        background: white !important;
+    border: 1px solid #D9D9D9 !important;
 
-        border: 1px solid #D9D9D9 !important;
+    border-radius: 0px !important;
 
-        border-radius: 0px !important;
+    min-height: 58px !important;
 
-        min-height: 60px !important;
+    box-shadow: none !important;
+}
 
-        box-shadow: none !important;
-    }
+div[data-baseweb="select"] span {
+    color: black !important;
+    font-size: 18px !important;
+}
 
-    div[data-baseweb="select"] span {
-        color: black !important;
-        font-size: 18px !important;
-    }
+div[role="listbox"] {
+    background: white !important;
+    border: 1px solid #D9D9D9 !important;
+}
 
-    div[role="listbox"] {
-        background: white !important;
-        border: 1px solid #D9D9D9 !important;
-    }
+div[role="option"] {
+    background: white !important;
+    color: black !important;
+}
 
-    div[role="option"] {
-        background: white !important;
-        color: black !important;
+div[role="option"]:hover {
+    background: #E7F3EC !important;
+    color: black !important;
+}
 
-        font-size: 17px !important;
-    }
+div[aria-selected="true"] {
+    background: #1F6F43 !important;
+}
 
-    div[role="option"]:hover {
-        background: #E7F3EC !important;
-        color: black !important;
-    }
+div[aria-selected="true"] * {
+    color: white !important;
+}
 
-    div[aria-selected="true"] {
-        background: #1F6F43 !important;
-    }
+/* =========================================================
+TEXT AREA
+========================================================= */
 
-    div[aria-selected="true"] * {
-        color: white !important;
-    }
+.stTextArea textarea {
+    background: white !important;
+    color: black !important;
 
-    /* =========================================================
-    TEXT AREA
-    ========================================================= */
+    border: 1px solid #D9D9D9 !important;
 
-    .stTextArea textarea {
-        background: white !important;
-        color: black !important;
+    border-radius: 4px !important;
 
-        border: 1px solid #D9D9D9 !important;
+    font-size: 18px !important;
 
-        border-radius: 4px !important;
+    min-height: 220px !important;
 
-        font-size: 18px !important;
+    padding: 18px !important;
+}
 
-        min-height: 230px !important;
+/* =========================================================
+IDEA CARD
+========================================================= */
 
-        padding: 18px !important;
-    }
+.idea-card {
+    background: white;
 
-    /* =========================================================
-    IDEA CARD
-    ========================================================= */
+    border: 1px solid #E1E1E1;
 
-    .idea-card {
-        background: white;
+    border-radius: 18px;
 
-        border: 1px solid #E1E1E1;
+    padding: 42px;
+}
 
-        border-radius: 18px;
+.idea-title {
+    text-align: center;
 
-        padding: 42px;
-    }
+    font-size: 32px;
+    font-weight: 700;
 
-    .idea-title {
-        text-align: center;
+    margin-bottom: 28px;
 
-        font-size: 32px;
-        font-weight: 700;
+    color: #161616;
+}
 
-        margin-bottom: 28px;
+.idea-text {
+    font-size: 20px;
 
-        color: #161616;
-    }
+    line-height: 2;
 
-    .idea-text {
-        font-size: 20px;
+    color: #2B2B2B;
+}
 
-        line-height: 2;
+.idea-counter {
+    text-align: center;
 
-        color: #2B2B2B;
+    margin-top: 28px;
 
-        text-align: left;
-    }
+    font-size: 18px;
+}
 
-    .idea-counter {
-        text-align: center;
+/* =========================================================
+SIDE ARROWS
+========================================================= */
 
-        margin-top: 28px;
+.arrow-button button {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 
-        font-size: 18px;
+    color: #1F6F43 !important;
 
-        color: black;
-    }
+    width: auto !important;
+    height: auto !important;
 
-    /* =========================================================
-    ARROWS
-    ========================================================= */
+    min-height: auto !important;
 
-    .arrow-button button {
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
+    padding-top: 150px !important;
 
-        color: #1F6F43 !important;
+    font-size: 68px !important;
+}
 
-        width: auto !important;
-        height: auto !important;
+.arrow-button button:hover {
+    background: transparent !important;
+}
 
-        min-height: unset !important;
+.arrow-button button p {
+    font-size: 68px !important;
+    color: #1F6F43 !important;
+}
 
-        font-size: 70px !important;
-
-        padding-top: 150px !important;
-    }
-
-    .arrow-button button:hover {
-        background: transparent !important;
-    }
-
-    .arrow-button button p {
-        font-size: 70px !important;
-        color: #1F6F43 !important;
-    }
-
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+</style>
+""", unsafe_allow_html=True)
 
 # =========================================================
 # PAGE 0
@@ -458,8 +447,7 @@ if st.session_state.page == 0:
         <div style="text-align:center;">
 
             <div class="page-title">
-                Hi! I'm
-                <span style="color:#14532D;">SCA</span><span style="color:#8BC34A;">le</span>.
+                Hi! I'm SCAle.
             </div>
 
             <br>
@@ -475,16 +463,20 @@ if st.session_state.page == 0:
 
     st.markdown("<br><br><br>", unsafe_allow_html=True)
 
-    st.image(
-        "d06d65c5-67c9-4a99-b853-40525a2c4d2c.png",
-        width=420
-    )
+    col1, col2, col3 = st.columns([1,2,1])
+
+    with col2:
+
+        st.image(
+            "d06d65c5-67c9-4a99-b853-40525a2c4d2c.png",
+            width=420
+        )
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([1,1,1])
+    c1, c2, c3 = st.columns([1,1,1])
 
-    with col2:
+    with c2:
 
         if st.button("Start Your Project Ideas"):
             next_page()
@@ -496,4 +488,320 @@ if st.session_state.page == 0:
 
 elif st.session_state.page == 1:
 
-    st.write("Page 1")
+    col_back, _ = st.columns([0.08, 0.92])
+
+    with col_back:
+
+        st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
+
+        if st.button("←", key="back1"):
+            previous_page()
+            st.rerun()
+
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    st.markdown(
+        """
+        <div class="page-title">
+            What is your diploma?
+        </div>
+
+        <br>
+
+        <div class="page-subtitle">
+            This helps me to tailor sustainability project ideas to your field of study.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    diploma = st.selectbox(
+        "Select your diploma",
+        DIPLOMAS
+    )
+
+    st.session_state.diploma = diploma
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    c1, c2, c3 = st.columns([1,1,1])
+
+    with c2:
+
+        if st.button("Continue →"):
+            next_page()
+            st.rerun()
+
+# =========================================================
+# PAGE 2
+# =========================================================
+
+elif st.session_state.page == 2:
+
+    col_back, _ = st.columns([0.08, 0.92])
+
+    with col_back:
+
+        st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
+
+        if st.button("←", key="back2"):
+            previous_page()
+            st.rerun()
+
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    st.markdown(
+        """
+        <div class="page-title">
+            What sustainability category interests you?
+        </div>
+
+        <br>
+
+        <div class="page-subtitle">
+            This allows sustainability project ideas align to your focus areas.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    category = st.selectbox(
+        "Select sustainability category",
+        CATEGORIES
+    )
+
+    st.session_state.category = category
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    c1, c2, c3 = st.columns([1,1,1])
+
+    with c2:
+
+        if st.button("Continue →"):
+            next_page()
+            st.rerun()
+
+# =========================================================
+# PAGE 3
+# =========================================================
+
+elif st.session_state.page == 3:
+
+    col_back, _ = st.columns([0.08, 0.92])
+
+    with col_back:
+
+        st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
+
+        if st.button("←", key="back3"):
+            previous_page()
+            st.rerun()
+
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    st.markdown(
+        """
+        <div class="page-title">
+            What sustainability problem would you like to solve?
+        </div>
+
+        <br>
+
+        <div class="page-subtitle">
+            Share an problem or challenge you have noticed in school, community, or daily life.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    concern = st.text_area(
+        "Sustainability concern",
+        max_chars=200
+    )
+
+    st.session_state.concern = concern
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    c1, c2, c3 = st.columns([1,1,1])
+
+    with c2:
+
+        if st.button("Continue →"):
+
+            if concern.strip() == "":
+                st.warning("Please enter a sustainability concern.")
+
+            else:
+                next_page()
+                st.rerun()
+
+# =========================================================
+# PAGE 4
+# =========================================================
+
+elif st.session_state.page == 4:
+
+    col_back, _ = st.columns([0.08, 0.92])
+
+    with col_back:
+
+        st.markdown('<div class="back-arrow">', unsafe_allow_html=True)
+
+        if st.button("←", key="back4"):
+            previous_page()
+            st.rerun()
+
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    st.markdown(
+        """
+        <div class="page-title">
+            Which solution format are you interested in developing?
+        </div>
+
+        <br>
+
+        <div class="page-subtitle">
+            This helps me to suggest the right type of project for you.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    solution_type = st.selectbox(
+        "Select Solution Type",
+        SOLUTION_TYPES
+    )
+
+    st.session_state.solution_type = solution_type
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    c1, c2, c3 = st.columns([1,1,1])
+
+    with c2:
+
+        if st.button("Submit"):
+
+            with st.spinner("Generating ideas..."):
+
+                st.session_state.ideas = generate_ideas(
+                    st.session_state.diploma,
+                    st.session_state.category,
+                    st.session_state.concern,
+                    solution_type
+                )
+
+            next_page()
+            st.rerun()
+
+# =========================================================
+# PAGE 5
+# =========================================================
+
+elif st.session_state.page == 5:
+
+    ideas = st.session_state.ideas
+    current = st.session_state.current_idea
+
+    idea = ideas[current]
+
+    st.markdown(
+        """
+        <div style="text-align:center;">
+
+            <div style="font-size:22px;font-weight:600;color:black;">
+                Here are your
+            </div>
+
+            <div class="page-title">
+                Project Ideas!
+            </div>
+
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    left, center, right = st.columns([1,10,1])
+
+    with left:
+
+        st.markdown('<div class="arrow-button">', unsafe_allow_html=True)
+
+        if st.button("←", key="idea_left"):
+
+            if current > 0:
+                st.session_state.current_idea -= 1
+                st.rerun()
+
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    with center:
+
+        st.markdown(
+            f"""
+            <div class="idea-card">
+
+                <div class="idea-title">
+                    {idea['title']}
+                </div>
+
+                <div class="idea-text">
+                    {idea['idea']}
+                </div>
+
+                <div class="idea-counter">
+                    {current + 1} / {len(ideas)}
+                </div>
+
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    with right:
+
+        st.markdown('<div class="arrow-button">', unsafe_allow_html=True)
+
+        if st.button("→", key="idea_right"):
+
+            if current < len(ideas) - 1:
+                st.session_state.current_idea += 1
+                st.rerun()
+
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    c1, c2, c3 = st.columns([1,1,1])
+
+    with c2:
+
+        if st.button("Start Over"):
+
+            st.session_state.page = 0
+            st.session_state.current_idea = 0
+            st.session_state.ideas = []
+
+            st.rerun()
