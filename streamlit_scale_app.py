@@ -1070,16 +1070,18 @@ elif st.session_state.page == "results":
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([1,6,1])
+    space1, left_arrow, card, right_arrow, space2 = st.columns(
+    [0.2, 0.4, 6, 0.4, 0.2]
+    )
 
-    with col1:
+    with left_arrow:
 
         if current > 0:
             if st.button("←", key="prev", type="secondary"):
                 st.session_state.idea_index -= 1
                 st.rerun()
 
-    with col2:
+    with card:
 
         raw_idea = st.session_state.ideas[current]
 
@@ -1131,7 +1133,7 @@ f"""
             unsafe_allow_html=True
         )
 
-    with col3:
+    with right_arrow:
 
         if current < len(st.session_state.ideas) - 1:
             if st.button("→", key="next", type="secondary"):
