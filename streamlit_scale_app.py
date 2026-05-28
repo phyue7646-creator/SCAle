@@ -251,6 +251,35 @@ button[kind="secondary"]:focus  {
 SELECTBOX
 ========================================================= */
 
+/* SHOW SELECTED ITEM */
+
+div[data-baseweb="select"] div {
+
+    color: black !important;
+
+    opacity: 1 !important;
+}
+
+div[data-baseweb="select"] span {
+
+    color: black !important;
+
+    opacity: 1 !important;
+
+    -webkit-text-fill-color: black !important;
+}
+
+/* selected value shown in box */
+
+
+div[data-baseweb="select"] input {
+
+    color: black !important;
+
+    -webkit-text-fill-color: black !important;
+
+    opacity: 1 !important;
+}
 div[data-baseweb="select"] > div {
     background-color: white !important;
 
@@ -263,25 +292,14 @@ div[data-baseweb="select"] > div {
     box-shadow: none !important;
 }
 
-div[data-baseweb="select"] span {
+div[data-baseweb="select"] > div * {
+
     color: black !important;
-    font-size: 18px !important;
+
+    -webkit-text-fill-color: black !important;
+
     opacity: 1 !important;
 }
-
-/* selected value shown in box */
-
-div[data-baseweb="select"] input {
-
-    color: black !important;          /* UPDATED */
-
-    -webkit-text-fill-color: black !important;   /* UPDATED */
-
-    font-size: 18px !important;       /* UPDATED */
-
-    opacity: 1 !important;            /* UPDATED */
-}
-
 /* SHOW SELECTED ITEM */
 
 div[data-baseweb="select"] div[class*="singleValue"] {
