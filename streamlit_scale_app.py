@@ -623,8 +623,8 @@ if st.session_state.page == "welcome":
 
     c1, c2, c3 = st.columns([1.2,1.6,1.2])
 
-    with c2:
-        st.image(image, width=430)
+    #with c2:
+        #st.image(image, width=430)
 
     button_left, button_center, button_right = st.columns([2.2,1,2.2])
 
